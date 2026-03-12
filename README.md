@@ -118,8 +118,8 @@ answer to those problems.
 ## Documentation Roadmap
 
 This README is the landing document. Durable student-facing reference material
-will be added under `docs/` in later documentation sprints so the repository
-has distinct layers for:
+is now beginning to live under `docs/`, and later documentation sprints will
+expand that layer so the repository has distinct areas for:
 
 - landing-page orientation
 - technology explanations
@@ -128,6 +128,10 @@ has distinct layers for:
 
 Until that documentation is implemented, the planning artifacts under
 `docs/_specs/` remain the source of truth for the current roadmap.
+
+The first durable student-facing document now available is:
+
+- [Technology Orientation](docs/foundation/technology-orientation.md)
 
 ## Development
 
@@ -171,7 +175,8 @@ npm run test:watch
 ├── app/                    # Next.js App Router entry points and global styles
 ├── components/             # Shared UI and layout components
 ├── docs/
-│   └── _specs/             # Process artifacts now, student-facing docs later
+│   ├── foundation/         # Student-facing reference docs
+│   └── _specs/             # Process artifacts
 ├── lib/                    # Shared site config and future helpers
 ├── tests/                  # Automated tests
 ```
