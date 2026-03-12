@@ -141,12 +141,19 @@ The next durable vocabulary document now available is:
 
 - [Power Words](docs/foundation/power-words.md)
 
+The next durable process-scaling document now available is:
+
+- [Lightweight Change Path](docs/foundation/lightweight-change-path.md)
+
 The distinction matters: the technology document explains the current and
 planned stack, while the orchestration document explains how this repository
 turns requests into bounded, verified work.
 
 The power-words document explains how named frameworks and practitioner
 references function as compressed engineering vocabulary in this repository.
+
+The lightweight-change-path document explains when a narrow change can use a
+smaller `Change Note` instead of the full spec-and-sprint workflow.
 
 ## Development
 
