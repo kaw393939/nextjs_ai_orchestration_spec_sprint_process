@@ -148,9 +148,9 @@ export const institutionProfiles: NarrativeProfile[] = [
       "This is one of the clearest cases where deployment itself becomes a historical fact, not merely a technical consequence.",
     officialUrl: "https://openai.com/about/",
     officialLabel: "OpenAI about",
-    imageUrl:
-      "https://images.ctfassets.net/kftzwdyauwt9/7fnM7WwfGlji0mE0t8DefO/cc161016b8d84fd6d789b06c92416544/stangel-openAI-offices-2022-1714.webp?w=1920&q=90&fm=webp",
-    imageAlt: "OpenAI office image from the official about page.",
+    imageUrl: "/media/generated/openai-public-ai.png",
+    imageAlt:
+      "Illustration of a modern AI research office at dusk representing the public AI deployment era.",
     socialLinks: [
       { label: "X", href: "https://x.com/OpenAI" },
       { label: "YouTube", href: "https://www.youtube.com/OpenAI" },
@@ -228,10 +228,9 @@ export const historicalAnchors: HistoricalAnchor[] = [
     officialUrl:
       "https://home.dartmouth.edu/about/artificial-intelligence-ai-coined-dartmouth",
     officialLabel: "Dartmouth history page",
-    imageUrl:
-      "https://home.dartmouth.edu/sites/home/files/styles/media_grid_landscape/public/2022-10/artificial-intelligence.png?h=e70e10e6&itok=127Ti6t3",
+    imageUrl: "/media/generated/dartmouth-proposal.png",
     imageAlt:
-      "Dartmouth AI history image from Dartmouth's official institutional page.",
+      "Illustration of the 1956 Dartmouth Summer Research Project where AI was named as a field.",
     sourceRecord: "docs/content/media/records/dartmouth-proposal-image.md",
   },
   {

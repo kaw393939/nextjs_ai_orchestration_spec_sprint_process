@@ -9,7 +9,25 @@ export type ImageFocusData = {
 };
 
 export const imageFocusMap: Record<string, ImageFocusData> = {
+  "/media/generated/dartmouth-proposal.png": {
+    aspectRatio: 1.5,
+    height: 1024,
+    objectPosition: "48.6% 50.0%",
+    orientation: "landscape",
+    sourceKind: "local",
+    suggestedFit: "cover",
+    width: 1536,
+  },
   "/media/generated/latent-space-landscape-v1.png": {
+    aspectRatio: 1.5,
+    height: 1024,
+    objectPosition: "48.6% 50.0%",
+    orientation: "landscape",
+    sourceKind: "local",
+    suggestedFit: "cover",
+    width: 1536,
+  },
+  "/media/generated/openai-public-ai.png": {
     aspectRatio: 1.5,
     height: 1024,
     objectPosition: "48.6% 50.0%",
@@ -108,26 +126,6 @@ export const imageFocusMap: Record<string, ImageFocusData> = {
       sourceKind: "remote",
       suggestedFit: "contain",
       width: 2400,
-    },
-  "https://home.dartmouth.edu/sites/home/files/styles/media_grid_landscape/public/2022-10/artificial-intelligence.png?h=e70e10e6&itok=127Ti6t3":
-    {
-      aspectRatio: 1.7778,
-      height: 720,
-      objectPosition: "49.7% 50.0%",
-      orientation: "landscape",
-      sourceKind: "remote",
-      suggestedFit: "cover",
-      width: 1280,
-    },
-  "https://images.ctfassets.net/kftzwdyauwt9/7fnM7WwfGlji0mE0t8DefO/cc161016b8d84fd6d789b06c92416544/stangel-openAI-offices-2022-1714.webp?w=1920&q=90&fm=webp":
-    {
-      aspectRatio: 1.3333,
-      height: 1440,
-      objectPosition: "49.9% 50.0%",
-      orientation: "landscape",
-      sourceKind: "remote",
-      suggestedFit: "cover",
-      width: 1920,
     },
   "https://lh3.googleusercontent.com/IKFFuhFkZzhLkWnElU90rLqcyTzNc0awe-ivw6S1nt9tVovfLLE4e4dlESx3p06fJPAz-rUUPLmB9VuBX_UV1h9C-AwRY6uBSErjz2gVhuGXed1jxg=w1200-h630-n-nu-rw":
     {
