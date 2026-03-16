@@ -30,6 +30,7 @@ describe("learning bridges", () => {
     ).toBeInTheDocument();
     expect(
       screen.getByRole("heading", {
+        level: 2,
         name: /safety and interpretability thread/i,
       })
     ).toBeInTheDocument();

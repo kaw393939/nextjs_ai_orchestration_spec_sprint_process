@@ -32,9 +32,7 @@ describe("modern ML expansion", () => {
     ).toBeInTheDocument();
 
     expect(
-      screen.getByText(
-        /neural networks do not instantly take over the field here/i
-      )
+      screen.getByText(/two strands make the revival era legible/i)
     ).toBeInTheDocument();
   });
 
@@ -60,7 +58,7 @@ describe("modern ML expansion", () => {
 
     expect(
       screen.getByText(
-        /transformers matter because they change the runway to llms/i
+        /follow the transformer handoff through the paper trail/i
       )
     ).toBeInTheDocument();
 

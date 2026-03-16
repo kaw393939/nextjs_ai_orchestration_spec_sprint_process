@@ -145,6 +145,36 @@ export default function PrecursorsToMachineIntelligencePage() {
       </GuideCallout>
 
       <ChapterSection
+        id="era-1-reading-frame"
+        eyebrow="Reading Frame"
+        title="Three ideas to hold in your head while you read"
+      >
+        <div className="content-grid content-grid--dense">
+          <article className="content-card">
+            <h3>Logic</h3>
+            <p>
+              Boole matters because symbolic reasoning becomes representable,
+              not because AI already exists.
+            </p>
+          </article>
+          <article className="content-card">
+            <h3>Machinery</h3>
+            <p>
+              Babbage matters because calculation becomes a machine-design
+              problem, which makes later computation teachable.
+            </p>
+          </article>
+          <article className="content-card">
+            <h3>Caution</h3>
+            <p>
+              Lovelace matters because she keeps execution and intelligence from
+              collapsing into the same claim too early.
+            </p>
+          </article>
+        </div>
+      </ChapterSection>
+
+      <ChapterSection
         id="era-1-precursors"
         eyebrow="Runway"
         title="Three anchor precursors"
@@ -213,13 +243,16 @@ export default function PrecursorsToMachineIntelligencePage() {
 
       <GuideCallout
         variant="why-it-matters"
-        title="Lovelace helps students ask the right question early"
+        title="Use Era 1 as a runway, then move quickly into Era 2"
       >
         <p>
-          One reason this era works so well in teaching is that Lovelace keeps
-          the story from racing too quickly from procedure to intelligence. That
-          tension becomes useful again in Era 2, where machine intelligence
-          becomes a sharper research agenda.
+          This chapter does its job once logic, machinery, and caution are in
+          place. The next stop is{" "}
+          <a href="/eras/computation-information-field-formation">Era 2</a>,
+          where those precursor lines become computability, information theory,
+          and a named research agenda. If you want the document trail instead,
+          move straight to the{" "}
+          <a href="/reading-maps/intellectual-lineage">reading map</a>.
         </p>
       </GuideCallout>
 

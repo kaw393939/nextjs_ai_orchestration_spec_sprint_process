@@ -19,6 +19,16 @@ type ReadingEntry = {
   lineage: string;
 };
 
+const eraRouteByEra: Record<string, string> = {
+  "Era 1": "/eras/precursors-to-machine-intelligence",
+  "Era 2": "/eras/computation-information-field-formation",
+  "Era 3": "/eras/symbolic-optimism-and-early-ai-programs",
+  "Era 4": "/eras/knowledge-systems-critique-and-the-first-ai-winter",
+  "Era 5": "/eras/statistical-learning-and-network-revival",
+  "Era 6": "/eras/deep-learning-breakthroughs",
+  "Era 7": "/eras/foundation-models-and-generative-ai",
+};
+
 const chronologyCards = [
   {
     era: "Era 1",
@@ -387,6 +397,45 @@ export default function IntellectualLineageReadingMapPage() {
           />
         </ChapterSection>
 
+        <ChapterSection
+          id="reading-paths"
+          eyebrow="Reading Paths"
+          title="Choose the path that matches the time and focus you have"
+        >
+          <div className="content-grid content-grid--dense">
+            <article className="content-card">
+              <h3>15-minute chronology</h3>
+              <p>
+                Read one era cluster at a time if you want the shortest
+                paper-based route from precursors to foundation models.
+              </p>
+              <p className="artifact-note">
+                <a href="#reading-map-main">Start the main chronology</a>
+              </p>
+            </article>
+            <article className="content-card">
+              <h3>Turning-point scan</h3>
+              <p>
+                Jump to the hinge documents if you need the decisive moments
+                without committing to every reading entry on the page.
+              </p>
+              <p className="artifact-note">
+                <a href="#reading-map-turning-points">Go to turning points</a>
+              </p>
+            </article>
+            <article className="content-card">
+              <h3>Follow the safety thread</h3>
+              <p>
+                Use the companion thread when your question is less about the
+                whole chronology and more about how alignment vocabulary forms.
+              </p>
+              <p className="artifact-note">
+                <a href="#reading-map-safety">Go to the safety thread</a>
+              </p>
+            </article>
+          </div>
+        </ChapterSection>
+
         <PullQuote
           quote="The right question for every paper here is not whether it won, but what it made thinkable for the era that followed."
           attribution="Reading principle"
@@ -400,10 +449,21 @@ export default function IntellectualLineageReadingMapPage() {
         >
           <div className="content-grid paper-cluster-grid">
             {chronologyCards.map((card) => (
-              <article key={card.era} className="content-card">
+              <article
+                key={card.era}
+                id={`reading-map-${card.era.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+                className="content-card"
+              >
                 <p className="content-card__meta">{card.era}</p>
                 <h3>{card.title}</h3>
                 <p>{eraGuideposts[card.era]}</p>
+                <p className="artifact-note">
+                  Start here: {card.readings[0]?.work}.{" "}
+                  <a href={eraRouteByEra[card.era]}>
+                    Read the matching era chapter
+                  </a>
+                  .
+                </p>
                 <div className="reading-stack">
                   {card.readings.map((reading) => (
                     <div

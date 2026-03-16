@@ -157,6 +157,30 @@ export default function StatisticalLearningAndNetworkRevivalPage() {
       </GuideCallout>
 
       <ChapterSection
+        id="era-5-two-strands"
+        eyebrow="Organizing Lens"
+        title="Two strands make the revival era legible"
+      >
+        <div className="content-grid content-grid--dense">
+          <article className="content-card">
+            <h3>Learning from data</h3>
+            <p>
+              Probability, benchmarks, and representation learning redefine
+              progress as something measured on data rather than encoded by
+              hand.
+            </p>
+          </article>
+          <article className="content-card">
+            <h3>Industrial scale</h3>
+            <p>
+              Deep Blue, Watson, and later lab infrastructure make the era an
+              engineering story as much as a methodological one.
+            </p>
+          </article>
+        </div>
+      </ChapterSection>
+
+      <ChapterSection
         id="era-5-chronology"
         eyebrow="Chronology"
         title="Five anchor points"
@@ -231,18 +255,6 @@ export default function StatisticalLearningAndNetworkRevivalPage() {
         </div>
       </ChapterSection>
 
-      <GuideCallout
-        variant="misconception-watch"
-        title="Neural networks do not instantly take over the field here"
-      >
-        <p>
-          The most accurate story is broader. Era 5 belongs to probability,
-          statistics, corpora, benchmark culture, and revived neural methods all
-          at once. Deep learning becomes dominant later, after this transition
-          has already changed what AI researchers count as credible evidence.
-        </p>
-      </GuideCallout>
-
       <ChapterSection
         id="era-5-concepts"
         eyebrow="Linked Concepts"
@@ -260,7 +272,10 @@ export default function StatisticalLearningAndNetworkRevivalPage() {
           This era is the runway for deep learning rather than its full victory
           lap. By the end of Era 5, the field is primed to trust large-scale
           learning systems far more than it did during the symbolic and
-          expert-systems period.
+          expert-systems period. If you want the shortest bridge from this page
+          into modern retrieval and embeddings, use the{" "}
+          <a href="/guides/embeddings-latent-space-and-llm-math">math guide</a>{" "}
+          before moving on to Era 6.
         </p>
       </ChapterSection>
 

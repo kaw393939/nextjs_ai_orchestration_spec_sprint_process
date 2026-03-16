@@ -193,6 +193,45 @@ export default function FoundationModelsAndGenerativeAiPage() {
       </GuideCallout>
 
       <ChapterSection
+        id="era-7-reading-lanes"
+        eyebrow="Reading Lanes"
+        title="Choose the lane that matches what you need from the modern era"
+      >
+        <div className="content-grid content-grid--dense">
+          <article className="content-card">
+            <h3>Public deployment</h3>
+            <p>
+              Start here if your question is how models became part of work,
+              education, search, and everyday public interfaces.
+            </p>
+            <p className="artifact-note">
+              <a href="#era-7-chronology">Start with chronology</a>
+            </p>
+          </article>
+          <article className="content-card">
+            <h3>Technical stack</h3>
+            <p>
+              Use this lane if you want embeddings, retrieval, multimodality,
+              and transformers to stay connected as one system story.
+            </p>
+            <p className="artifact-note">
+              <a href="#era-7-concepts">Go to concepts</a>
+            </p>
+          </article>
+          <article className="content-card">
+            <h3>Safety and governance</h3>
+            <p>
+              Follow this lane if reliability, institutional posture, and
+              alignment debates are the reason you are on the page.
+            </p>
+            <p className="artifact-note">
+              <a href="#era-7-institutions">Go to institutions</a>
+            </p>
+          </article>
+        </div>
+      </ChapterSection>
+
+      <ChapterSection
         id="era-7-chronology"
         eyebrow="Chronology"
         title="Five anchor points"
@@ -335,7 +374,12 @@ export default function FoundationModelsAndGenerativeAiPage() {
           images, or other items into dense vectors so similar things can be
           found near each other. Latent space is the teaching idea that names
           this internal representational neighborhood. That is why retrieval and
-          semantic similarity matter so much in modern AI stacks.
+          semantic similarity matter so much in modern AI stacks. If this is the
+          point where the chapter becomes too technical, step into the{" "}
+          <a href="/guides/embeddings-latent-space-and-llm-math">
+            math bridge guide
+          </a>{" "}
+          and then come back.
         </p>
       </GuideCallout>
 

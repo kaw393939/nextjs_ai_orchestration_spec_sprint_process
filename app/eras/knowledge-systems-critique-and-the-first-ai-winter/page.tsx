@@ -153,6 +153,43 @@ export default function KnowledgeSystemsCritiqueAndFirstAiWinterPage() {
       </GuideCallout>
 
       <ChapterSection
+        id="era-4-causal-chain"
+        eyebrow="Cause And Effect"
+        title="How the first winter actually forms"
+      >
+        <div className="content-grid content-grid--dense">
+          <article className="content-card">
+            <h3>1. Local success</h3>
+            <p>
+              Expert systems work in bounded domains strongly enough to keep AI
+              credible for medicine and science.
+            </p>
+          </article>
+          <article className="content-card">
+            <h3>2. Scaling limits</h3>
+            <p>
+              Knowledge engineering stays labor-intensive and brittle once the
+              domain stops being narrow and carefully controlled.
+            </p>
+          </article>
+          <article className="content-card">
+            <h3>3. Public critique</h3>
+            <p>
+              Lighthill and related criticism make the gap between promise and
+              robust delivery visible beyond the lab.
+            </p>
+          </article>
+          <article className="content-card">
+            <h3>4. Funding pressure</h3>
+            <p>
+              Once critique and limited scale meet tighter institutional
+              patience, the field enters winter conditions instead of collapse.
+            </p>
+          </article>
+        </div>
+      </ChapterSection>
+
+      <ChapterSection
         id="era-4-chronology"
         eyebrow="Chronology"
         title="Five anchor points"
@@ -255,14 +292,15 @@ export default function KnowledgeSystemsCritiqueAndFirstAiWinterPage() {
       </ChapterSection>
 
       <GuideCallout
-        variant="misconception-watch"
-        title="The first AI winter had multiple causes"
+        variant="why-it-matters"
+        title="Era 5 is the methodological answer to this winter"
       >
         <p>
-          A single report did not freeze the field by itself. The stronger
-          explanation is cumulative: symbolic methods hit scaling problems, some
-          ambitious programs under-delivered, critics made those problems
-          public, and funders became less patient with open-ended promises.
+          Once narrow symbolic success stops scaling cleanly, the next chapter
+          turns toward probability, data, and learned features. Move directly to{" "}
+          <a href="/eras/statistical-learning-and-network-revival">Era 5</a> if
+          you want to see the field&apos;s practical answer to the limits named
+          here.
         </p>
       </GuideCallout>
 

@@ -14,6 +14,14 @@ import {
 import { HomeSectionSplit } from "@/components/content/home/home-shared";
 import { cn } from "@/lib/utils";
 
+function getScenesEntrySpanClass(entry: EditorialEntry, index: number) {
+  if (entry.variant === "strip") {
+    return "xl:col-span-2";
+  }
+
+  return index === 0 ? "xl:col-span-2" : "xl:col-span-1";
+}
+
 function MosaicEntry({
   href,
   eyebrow,
@@ -87,12 +95,18 @@ export function ScenesSection({
       <HomeSectionSplit
         className="xl:grid-cols-[minmax(24rem,0.68fr)_minmax(0,1fr)]"
         leftClassName="self-start"
-        rightClassName="grid gap-4 self-start sm:grid-cols-2 xl:grid-cols-2"
+        rightClassName="grid gap-4 self-start sm:grid-cols-2 xl:grid-cols-3"
         left={<MosaicEntry {...scenesFeature} />}
         right={
           <>
-            {scenesGridEntries.map((entry) => (
-              <div key={entry.title}>
+            {scenesGridEntries.map((entry, index) => (
+              <div
+                key={entry.title}
+                className={cn(
+                  entry.variant === "strip" && "sm:col-span-2",
+                  getScenesEntrySpanClass(entry, index)
+                )}
+              >
                 <MosaicEntry {...entry} />
               </div>
             ))}

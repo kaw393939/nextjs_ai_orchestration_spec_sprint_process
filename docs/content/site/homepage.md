@@ -124,7 +124,7 @@ chronology:
 readingModel:
   heading:
     eyebrow: Reading model
-    title: Four companion routes.
+    title: Branch without breaking the argument.
     description: Chronology is the main line. These routes clarify specific questions as you move through it.
   signals:
     - eyebrow: Return rule
@@ -165,7 +165,7 @@ readingModel:
 scenes:
   heading:
     eyebrow: Entry scenes
-    title: Enter through scenes and texts
+    title: Enter through scenes, texts, and institutions
     description: The chronology stays central, but these routes let you begin with an origin scene, a paper trail, or a midpoint shortcut.
   entries:
     - href: /eras/precursors-to-machine-intelligence
@@ -178,6 +178,16 @@ scenes:
       eyebrow: Key papers
       title: Read the decisive texts.
       description: Follow the argument from Boole and Turing through transformers, RLHF, and interpretability in the documents that set each turn.
+      variant: support
+    - href: /people-and-institutions
+      eyebrow: Cast and institutions
+      title: Follow the people and labs.
+      description: Move through the field as a cast of researchers, institutions, and strategic actors instead of as anonymous breakthroughs.
+      variant: support
+    - href: /guides/embeddings-latent-space-and-llm-math
+      eyebrow: Concept bridge
+      title: Decode the math under the stack.
+      description: Use the guide when embeddings, retrieval, and latent space start to feel like background vocabulary instead of working ideas.
       variant: support
     - href: /eras/statistical-learning-and-network-revival
       eyebrow: Midpoint entry

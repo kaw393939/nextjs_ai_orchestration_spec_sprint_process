@@ -150,6 +150,30 @@ export default function DeepLearningBreakthroughsPage() {
       </GuideCallout>
 
       <ChapterSection
+        id="era-6-before-after"
+        eyebrow="Before And After"
+        title="What changes between Era 5 and Era 6"
+      >
+        <div className="content-grid content-grid--dense">
+          <article className="content-card">
+            <h3>Era 5: plausible methods</h3>
+            <p>
+              Statistical learning and revived networks matter because they
+              reopen the path, but they do not yet dominate the field.
+            </p>
+          </article>
+          <article className="content-card">
+            <h3>Era 6: dominant regime</h3>
+            <p>
+              Deep learning becomes the main performance story once scale,
+              representation learning, and transformers move from promising to
+              decisive.
+            </p>
+          </article>
+        </div>
+      </ChapterSection>
+
+      <ChapterSection
         id="era-6-chronology"
         eyebrow="Chronology"
         title="Five anchor points"
@@ -228,13 +252,18 @@ export default function DeepLearningBreakthroughsPage() {
 
       <GuideCallout
         variant="why-it-matters"
-        title="Transformers matter because they change the runway to LLMs"
+        title="Follow the transformer handoff through the paper trail"
       >
         <p>
-          The transformer shift is the clearest direct bridge into the next era.
-          Once attention-based models outperform older sequence designs and
-          scale cleanly, the field gains the architecture that later supports
-          foundation models, modern embeddings, and large language models.
+          The transformer shift is the clearest direct bridge into the next era,
+          but you do not need to hold every repetition in your head here. If you
+          want the cleanest documentary handoff, jump from this chapter to
+          <a href="/reading-maps/intellectual-lineage#reading-map-main">
+            the reading map&apos;s Era 6 cluster
+          </a>{" "}
+          or use the{" "}
+          <a href="/guides/embeddings-latent-space-and-llm-math">math guide</a>{" "}
+          for the embeddings and representation layer.
         </p>
       </GuideCallout>
 

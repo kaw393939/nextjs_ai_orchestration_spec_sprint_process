@@ -152,6 +152,29 @@ export default function SymbolicOptimismAndEarlyAiProgramsPage() {
       </GuideCallout>
 
       <ChapterSection
+        id="era-3-tension"
+        eyebrow="Organizing Tension"
+        title="What symbolic AI could do, and what it could not yet scale"
+      >
+        <div className="content-grid content-grid--dense">
+          <article className="content-card">
+            <h3>What the era could do</h3>
+            <p>
+              Symbolic systems could prove theorems, search problem spaces, plan
+              actions, and make intelligence look programmable.
+            </p>
+          </article>
+          <article className="content-card">
+            <h3>What the era could not yet scale</h3>
+            <p>
+              The same methods still struggled with messy environments, brittle
+              representations, and the widening ambition of general AI.
+            </p>
+          </article>
+        </div>
+      </ChapterSection>
+
+      <ChapterSection
         id="era-3-chronology"
         eyebrow="Chronology"
         title="Five anchor points"
@@ -339,6 +362,13 @@ export default function SymbolicOptimismAndEarlyAiProgramsPage() {
             />
           ))}
         </div>
+        <p className="artifact-note">
+          Want the documents behind this chapter? Start with the{" "}
+          <a href="/reading-maps/intellectual-lineage#reading-map-era-3">
+            Era 3 cluster in the reading map
+          </a>{" "}
+          for Logic Theorist, LISP, and the resolution-principle papers.
+        </p>
       </ChapterSection>
 
       <TransitionBlock

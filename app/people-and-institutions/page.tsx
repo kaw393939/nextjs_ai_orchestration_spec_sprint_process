@@ -20,6 +20,7 @@ const castGroups = [
   {
     key: "precursors",
     title: "Precursors and field formation",
+    eraHref: "/eras/computation-information-field-formation",
     description:
       "The cast begins before anyone says 'artificial intelligence.' These figures build the mathematical, mechanical, and informational substrate the field inherits.",
     members: peopleProfiles.filter((profile) =>
@@ -29,6 +30,7 @@ const castGroups = [
   {
     key: "symbolic",
     title: "The symbolic generation",
+    eraHref: "/eras/symbolic-optimism-and-early-ai-programs",
     description:
       "After Dartmouth, these researchers turn AI into a working research program built on symbolic logic, heuristic search, and institutional ambition.",
     members: peopleProfiles.filter((profile) =>
@@ -38,6 +40,7 @@ const castGroups = [
   {
     key: "knowledge-systems",
     title: "Knowledge systems and critique",
+    eraHref: "/eras/knowledge-systems-critique-and-the-first-ai-winter",
     description:
       "Expert systems narrow AI into commercially viable tools, but the pivot also reveals the limits of hand-coded knowledge.",
     members: peopleProfiles.filter((profile) =>
@@ -47,6 +50,7 @@ const castGroups = [
   {
     key: "revival",
     title: "Statistical revival and neural pioneers",
+    eraHref: "/eras/statistical-learning-and-network-revival",
     description:
       "These figures bridge the gap between the symbolic era and the deep learning revolution, proving that learning from data can outperform handcrafted rules.",
     members: peopleProfiles.filter((profile) =>
@@ -61,6 +65,7 @@ const castGroups = [
   {
     key: "builders",
     title: "Builders and deployers",
+    eraHref: "/eras/foundation-models-and-generative-ai",
     description:
       "These figures make the current era legible as institution-building, scale, and public release strategy rather than pure research abstraction.",
     members: peopleProfiles.filter((profile) =>
@@ -70,6 +75,7 @@ const castGroups = [
   {
     key: "interpreters",
     title: "Public interpreters of the stack",
+    eraHref: "/eras/foundation-models-and-generative-ai",
     description:
       "The modern era is remembered through explanation as well as invention. These figures teach the public how to see the systems they are using.",
     members: peopleProfiles.filter(
@@ -79,6 +85,7 @@ const castGroups = [
   {
     key: "safety",
     title: "Safety and alignment voices",
+    eraHref: "/eras/foundation-models-and-generative-ai",
     description:
       "This group keeps the public AI era tied to reliability, existential risk, and the question of what frontier systems should be allowed to become.",
     members: peopleProfiles.filter((profile) =>
@@ -151,6 +158,45 @@ export default function PeopleAndInstitutionsPage() {
           </p>
         </GuideCallout>
 
+        <ChapterSection
+          id="use-this-page"
+          eyebrow="How To Use This Page"
+          title="Choose the route that matches the question you have"
+        >
+          <div className="content-grid content-grid--dense">
+            <article className="content-card">
+              <h3>Meet the cast</h3>
+              <p>
+                Start with the grouped figures if you need the chronology to
+                feel human before it feels institutional.
+              </p>
+              <p className="artifact-note">
+                <a href="#people-index">Go to people groups</a>
+              </p>
+            </article>
+            <article className="content-card">
+              <h3>Follow the labs and companies</h3>
+              <p>
+                Use the institution section when you want the story told through
+                Bell Labs, MIT, DARPA, and the modern frontier-model labs.
+              </p>
+              <p className="artifact-note">
+                <a href="#institution-index">Go to institutions</a>
+              </p>
+            </article>
+            <article className="content-card">
+              <h3>Check the documents</h3>
+              <p>
+                Move to the source anchors when you want named reports, papers,
+                and documentary objects to keep the story honest.
+              </p>
+              <p className="artifact-note">
+                <a href="#source-anchors">Go to source anchors</a>
+              </p>
+            </article>
+          </div>
+        </ChapterSection>
+
         <PullQuote
           quote="Chronology becomes easier to remember once readers can attach each turn in the story to people, institutions, and documents that keep those abstractions grounded."
           attribution="Companion surface"
@@ -176,6 +222,11 @@ export default function PeopleAndInstitutionsPage() {
                   <p className="eyebrow">Cast group</p>
                   <h3>{group.title}</h3>
                   <p>{group.description}</p>
+                  <p className="artifact-note">
+                    <a href={group.eraHref}>
+                      Read the chapter behind this cast
+                    </a>
+                  </p>
                 </div>
                 <div
                   className={cn(

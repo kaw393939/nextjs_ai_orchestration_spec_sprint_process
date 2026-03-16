@@ -90,7 +90,7 @@ export default function EmbeddingsLatentSpaceAndLlmMathPage() {
           period="Math guide"
           title="Embeddings, Latent Space, And The Minimum LLM Math"
           lede="This page is the shortest useful math bridge for the modern AI era. It explains why vectors, similarity, and learned internal structure matter without pretending readers need a full course before the history makes sense."
-          scene="Use this as a companion chapter when the modern era starts to feel too abstract. The goal is to give just enough geometry and vocabulary to make retrieval, embeddings, and LLM behavior less mysterious."
+          scene="Use this after Era 5 and before the most technical parts of Era 6 or Era 7. The goal is to give just enough geometry and vocabulary to make retrieval, embeddings, and LLM behavior less mysterious."
           backHref="/"
           backLabel="Back to overview"
           links={[
@@ -181,6 +181,52 @@ export default function EmbeddingsLatentSpaceAndLlmMathPage() {
               </li>
             ))}
           </ol>
+        </ChapterSection>
+
+        <ChapterSection
+          id="math-bridge-example"
+          eyebrow="Worked Example"
+          title="One modern workflow from question to model response"
+        >
+          <div className="content-grid content-grid--dense">
+            <article className="content-card">
+              <h3>1. A user asks a question</h3>
+              <p>
+                Start with a natural-language query such as asking for the
+                causes of the first AI winter.
+              </p>
+            </article>
+            <article className="content-card">
+              <h3>2. The system embeds the query</h3>
+              <p>
+                The question becomes a dense vector so it can be compared with
+                document chunks that live nearby in semantic space.
+              </p>
+            </article>
+            <article className="content-card">
+              <h3>3. Retrieval pulls the nearest context</h3>
+              <p>
+                A vector index finds passages about expert systems, Lighthill,
+                and funding pressure instead of relying on exact keyword match.
+              </p>
+            </article>
+            <article className="content-card">
+              <h3>4. The model answers with that context in view</h3>
+              <p>
+                The response becomes more historically grounded because the LLM
+                now works with retrieved evidence rather than memory alone.
+              </p>
+              <p className="artifact-note">
+                This is why{" "}
+                <a href="/eras/statistical-learning-and-network-revival">
+                  Era 5
+                </a>{" "}
+                and{" "}
+                <a href="/eras/foundation-models-and-generative-ai">Era 7</a>{" "}
+                belong on the same representational line.
+              </p>
+            </article>
+          </div>
         </ChapterSection>
 
         <ChapterSection

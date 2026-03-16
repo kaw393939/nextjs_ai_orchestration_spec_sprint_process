@@ -27,7 +27,7 @@ describe("homepage content loader", () => {
     expect(homepage.scenes.featureEntry.title).toBe(
       "The machine question comes first."
     );
-    expect(homepage.scenes.supportEntries).toHaveLength(2);
+    expect(homepage.scenes.supportEntries).toHaveLength(4);
     expect(homepage.editorialNotesMarkdown).toMatch(
       /repository-managed markdown/i
     );

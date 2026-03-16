@@ -221,6 +221,43 @@ export default function ComputationInformationFieldFormationPage() {
       </GuideCallout>
 
       <ChapterSection
+        id="era-2-convergence-map"
+        eyebrow="Orientation"
+        title="Four strands become one field"
+      >
+        <div className="content-grid content-grid--dense">
+          <article className="content-card">
+            <h3>Computability</h3>
+            <p>
+              Turing defines what a machine can do in principle and gives the
+              chapter its formal backbone.
+            </p>
+          </article>
+          <article className="content-card">
+            <h3>Engineering</h3>
+            <p>
+              Shannon and Bell Labs keep the origin story inside circuitry,
+              signals, and communication infrastructure.
+            </p>
+          </article>
+          <article className="content-card">
+            <h3>Neural abstraction</h3>
+            <p>
+              McCulloch and Pitts keep the slice broader than one symbolic line
+              by linking logic to simple neuron-like units.
+            </p>
+          </article>
+          <article className="content-card">
+            <h3>Field formation</h3>
+            <p>
+              Dartmouth names the field only after the other strands make that
+              naming moment historically possible.
+            </p>
+          </article>
+        </div>
+      </ChapterSection>
+
+      <ChapterSection
         id="era-2-chronology"
         eyebrow="Chronology"
         title="Five anchor points"
@@ -254,9 +291,10 @@ export default function ComputationInformationFieldFormationPage() {
             <p>
               McCulloch and Pitts keep the package from turning into a pure
               story of symbols and circuits by showing how neuron-inspired units
-              can be modeled computationally. Dartmouth closes the era as a
-              field-formation moment: not the invention of every relevant idea,
-              but the point where those lines of work become a named agenda.
+              can be modeled computationally. The documentary payoff is that the
+              era now has distinct objects to follow: a Turing paper, Bell Labs
+              engineering work, neuron-style abstraction, and the Dartmouth
+              proposal itself.
             </p>
           </div>
           <EditorialAside
@@ -266,7 +304,8 @@ export default function ComputationInformationFieldFormationPage() {
             <p>
               Computation defines procedure, Shannon gives the era engineering
               and information, McCulloch-Pitts broaden the origin story, and
-              Dartmouth names the research agenda those strands now support.
+              Dartmouth provides the documentary hinge where those strands can
+              be taught together.
             </p>
           </EditorialAside>
         </div>

@@ -61,7 +61,7 @@ describe("mid-century expansion", () => {
     ).toBeInTheDocument();
 
     expect(
-      screen.getByText(/the first ai winter had multiple causes/i)
+      screen.getByText(/era 5 is the methodological answer to this winter/i)
     ).toBeInTheDocument();
   });
 });

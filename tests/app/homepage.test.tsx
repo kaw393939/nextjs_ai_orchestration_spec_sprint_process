@@ -30,14 +30,14 @@ describe("homepage", () => {
     expect(
       screen.getByRole("heading", {
         level: 2,
-        name: /enter through scenes and texts/i,
+        name: /enter through scenes, texts, and institutions/i,
       })
     ).toBeInTheDocument();
 
     expect(
       screen.getByRole("heading", {
         level: 2,
-        name: /four companion routes/i,
+        name: /branch without breaking the argument/i,
       })
     ).toBeInTheDocument();
 
@@ -46,12 +46,22 @@ describe("homepage", () => {
     ).toHaveAttribute("href", "/reading-maps/intellectual-lineage");
 
     expect(
-      screen.getByRole("link", { name: /follow the people and labs/i })
-    ).toHaveAttribute("href", "/people-and-institutions");
+      screen
+        .getAllByRole("link", { name: /follow the people and labs/i })
+        .some(
+          (link) => link.getAttribute("href") === "/people-and-institutions"
+        )
+    ).toBe(true);
 
     expect(
-      screen.getByRole("link", { name: /decode the math/i })
-    ).toHaveAttribute("href", "/guides/embeddings-latent-space-and-llm-math");
+      screen
+        .getAllByRole("link", { name: /decode the math/i })
+        .some(
+          (link) =>
+            link.getAttribute("href") ===
+            "/guides/embeddings-latent-space-and-llm-math"
+        )
+    ).toBe(true);
 
     expect(
       screen.getByRole("heading", {
