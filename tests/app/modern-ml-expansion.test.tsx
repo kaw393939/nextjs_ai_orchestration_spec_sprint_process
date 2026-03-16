@@ -32,7 +32,7 @@ describe("modern ML expansion", () => {
     ).toBeInTheDocument();
 
     expect(
-      screen.getByText(/two strands make the revival era legible/i)
+      screen.getByText(/two strands of the revival era/i)
     ).toBeInTheDocument();
   });
 
@@ -64,7 +64,7 @@ describe("modern ML expansion", () => {
 
     expect(
       screen.getByText(
-        /the transformer shift is the last major hinge before foundation models/i
+        /the transformer shift is the clearest direct bridge into the next era/i
       )
     ).toBeInTheDocument();
   });

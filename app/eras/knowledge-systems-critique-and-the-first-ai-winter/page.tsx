@@ -4,6 +4,7 @@ import {
   ChapterHero,
   ChapterSection,
   ChapterTimeline,
+  ChapterVisualBreak,
   EditorialAside,
   PullQuote,
   TransitionBlock,
@@ -60,6 +61,8 @@ const peopleCards = [
     summary:
       "Feigenbaum anchors the expert-systems turn, where symbolic AI becomes most persuasive in narrow scientific and industrial domains.",
     links: ["DENDRAL", "MYCIN", "knowledge engineering"],
+    imageUrl: "/media/wikimedia/edward-feigenbaum.webp",
+    imageAlt: "Wikimedia Commons portrait of Edward Feigenbaum.",
   },
   {
     name: "Allen Newell and Herbert Simon",
@@ -72,6 +75,8 @@ const peopleCards = [
     summary:
       "Minsky keeps the lab-centered symbolic tradition visible even as critics and funders question how far that tradition can scale.",
     links: ["MIT AI Lab", "symbolic AI", "institutional influence"],
+    imageUrl: "/media/wikimedia/marvin-minsky.webp",
+    imageAlt: "Wikimedia Commons portrait of Marvin Minsky.",
   },
 ];
 
@@ -116,29 +121,6 @@ const minimumRouteCards = [
   },
 ];
 
-const causalChainCards = [
-  {
-    title: "1. Local success",
-    description:
-      "Expert systems work in bounded domains strongly enough to keep AI credible for medicine and science.",
-  },
-  {
-    title: "2. Scaling limits",
-    description:
-      "Knowledge engineering stays labor-intensive and brittle once the domain stops being narrow and carefully controlled.",
-  },
-  {
-    title: "3. Public critique",
-    description:
-      "Lighthill and related criticism make the gap between promise and robust delivery visible beyond the lab.",
-  },
-  {
-    title: "4. Funding pressure",
-    description:
-      "Once critique and limited scale meet tighter institutional patience, the field enters winter conditions instead of collapse.",
-  },
-];
-
 export const metadata: Metadata = {
   title: "Knowledge Systems, Critique, And The First AI Winter",
   description:
@@ -150,29 +132,30 @@ export default function KnowledgeSystemsCritiqueAndFirstAiWinterPage() {
     <article className="hero-panel exemplar-panel chapter-theme chapter-theme--winter">
       <ChapterHero
         eyebrow="Era 4"
-        period="Era 4, 1970-1987"
-        title="Knowledge Systems, Critique, And The First AI Winter"
+        period="1970–1987"
+        title="Knowledge Systems, Critique, and the First AI Winter"
         lede="The field narrows in this era rather than disappearing. Expert systems prove that symbolic methods can succeed in bounded domains, but public critique, scaling limits, and tighter funding conditions make it much harder to sustain the broader promise of general symbolic intelligence."
-        scene="This chapter should feel tighter and colder than Era 3. Success still exists, but it is local, expensive, and surrounded by a growing sense that the broad promise has outrun the methods."
-        backHref="/"
-        backLabel="Back to overview"
+        featureImage={{
+          src: "/media/generated/era-4-expert-systems.webp",
+          alt: "Illustration of expert systems, knowledge engineering, and the first AI winter.",
+        }}
         links={[
           {
             href: "/eras/symbolic-optimism-and-early-ai-programs",
-            label: "Back to Era 3: Symbolic Optimism And Early AI Programs",
+            label: "Back to Era 3: Symbolic Optimism and Early AI Programs",
           },
           {
             href: "/eras/statistical-learning-and-network-revival",
             label:
-              "Continue to Era 5: Statistical Learning And Network Revival",
+              "Continue to Era 5: Statistical Learning and Network Revival",
           },
         ]}
       >
         <div className="prose-block">
           <p>
-            The chapter works when readers feel both facts at once: symbolic
-            systems can be genuinely useful, and those same systems can fail to
-            justify the grandest claims made on their behalf.
+            The first AI winter holds two facts at once: symbolic systems could
+            be genuinely useful in bounded domains, and those same systems
+            failed to justify the broader claims made on their behalf.
           </p>
         </div>
         <EditorialAside
@@ -201,17 +184,9 @@ export default function KnowledgeSystemsCritiqueAndFirstAiWinterPage() {
       </GuideCallout>
 
       <ChapterSection
-        id="era-4-causal-chain"
-        eyebrow="Cause And Effect"
-        title="How the first winter actually forms"
-      >
-        <EditorialSummaryGrid items={causalChainCards} />
-      </ChapterSection>
-
-      <ChapterSection
         id="era-4-minimum-route"
         eyebrow="Shortest Route"
-        title="If the winter story feels too binary, keep these three facts"
+        title="Three facts behind the first AI winter"
       >
         <EditorialSummaryGrid items={minimumRouteCards} />
       </ChapterSection>
@@ -273,8 +248,8 @@ export default function KnowledgeSystemsCritiqueAndFirstAiWinterPage() {
               tone="contrast"
             >
               <p>
-                This is the causal center of the chapter and the best bridge
-                into later data-driven methods.
+                This tension — narrow success that could not carry the whole
+                promise — is the best bridge into later data-driven methods.
               </p>
             </EditorialAside>
           }
@@ -283,7 +258,7 @@ export default function KnowledgeSystemsCritiqueAndFirstAiWinterPage() {
 
       <ChapterSection
         id="era-4-people"
-        eyebrow="Linked People"
+        eyebrow="Key Figures"
         title="Who makes the narrowing visible"
       >
         <EditorialCardGrid
@@ -291,13 +266,15 @@ export default function KnowledgeSystemsCritiqueAndFirstAiWinterPage() {
             title: person.name,
             description: person.summary,
             meta: `Linked ideas: ${person.links.join("; ")}`,
+            imageUrl: person.imageUrl,
+            imageAlt: person.imageAlt,
           }))}
         />
       </ChapterSection>
 
       <ChapterSection
         id="era-4-concepts"
-        eyebrow="Linked Concepts"
+        eyebrow="Core Concepts"
         title="The causal structure of the first winter"
       >
         <EditorialCardGrid
@@ -307,12 +284,6 @@ export default function KnowledgeSystemsCritiqueAndFirstAiWinterPage() {
             description: concept.summary,
           }))}
         />
-        <p className="artifact-note">
-          This era is the handoff point to later methods: once symbolic systems
-          prove difficult to scale and costly to maintain, the field becomes
-          more receptive to statistical learning and later neural revival, which
-          take center stage in Era 5.
-        </p>
       </ChapterSection>
 
       <GuideCallout
@@ -327,6 +298,12 @@ export default function KnowledgeSystemsCritiqueAndFirstAiWinterPage() {
           here.
         </p>
       </GuideCallout>
+
+      <ChapterVisualBreak
+        src="/media/generated/era-4-visual-break.webp"
+        alt="Computer terminal showing a rule-based expert system interface beside stacked ring binders with declining funding charts."
+        caption="Expert systems succeed in bounded domains while broader symbolic ambitions meet institutional doubt."
+      />
 
       <ChapterSection
         id="era-4-institutions"
@@ -348,18 +325,12 @@ export default function KnowledgeSystemsCritiqueAndFirstAiWinterPage() {
             },
           ]}
         />
-        <p className="artifact-note">
-          The chronology now moves directly from this constrained symbolic era
-          into data-driven and probabilistic approaches, where learning from
-          examples increasingly looks more scalable than encoding everything by
-          hand.
-        </p>
       </ChapterSection>
 
       <ChapterSection
         id="era-4-documentary-profiles"
-        eyebrow="Documentary Profiles"
-        title="Portraits and source anchors for the knowledge-systems era"
+        eyebrow="Profiles"
+        title="Portraits of the knowledge-systems era"
       >
         <NarrativeProfileGrid
           profiles={era4People}
@@ -368,7 +339,7 @@ export default function KnowledgeSystemsCritiqueAndFirstAiWinterPage() {
         <HistoricalAnchorGrid
           anchors={era4Anchors}
           className="documentary-grid--anchors"
-          story="This anchor keeps the era tied to a named document rather than to retrospective summary alone."
+          story="Grounding the knowledge-systems era in primary texts and named archives."
         />
       </ChapterSection>
 

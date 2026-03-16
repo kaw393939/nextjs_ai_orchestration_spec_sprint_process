@@ -4,6 +4,7 @@ import {
   ChapterHero,
   ChapterSection,
   ChapterTimeline,
+  ChapterVisualBreak,
   EditorialAside,
   PullQuote,
   TransitionBlock,
@@ -57,12 +58,16 @@ const peopleCards = [
     summary:
       "McCarthy carries Dartmouth forward into programming practice and the symbolic research culture that defines the era.",
     links: ["LISP", "symbolic AI", "MIT AI Lab"],
+    imageUrl: "/media/wikimedia/john-mccarthy.webp",
+    imageAlt: "Wikimedia Commons portrait of John McCarthy.",
   },
   {
     name: "Marvin Minsky",
     summary:
       "Minsky gives the era a lab-centered face, connecting symbolic ambition to robotics and knowledge representation.",
     links: ["MIT AI Lab", "robotics", "symbolic AI"],
+    imageUrl: "/media/wikimedia/marvin-minsky.webp",
+    imageAlt: "Wikimedia Commons portrait of Marvin Minsky.",
   },
   {
     name: "Allen Newell and Herbert Simon",
@@ -113,19 +118,6 @@ const minimumRouteCards = [
   },
 ];
 
-const tensionCards = [
-  {
-    title: "What the era could do",
-    description:
-      "Symbolic systems could prove theorems, search problem spaces, plan actions, and make intelligence look programmable.",
-  },
-  {
-    title: "What the era could not yet scale",
-    description:
-      "The same methods still struggled with messy environments, brittle representations, and the widening ambition of general AI.",
-  },
-];
-
 export const metadata: Metadata = {
   title: "Symbolic Optimism And Early AI Programs",
   description:
@@ -137,30 +129,31 @@ export default function SymbolicOptimismAndEarlyAiProgramsPage() {
     <article className="hero-panel exemplar-panel chapter-theme chapter-theme--symbolic">
       <ChapterHero
         eyebrow="Era 3"
-        period="Era 3, 1956-1969"
-        title="Symbolic Optimism And Early AI Programs"
+        period="1956–1969"
+        title="Symbolic Optimism and Early AI Programs"
         lede="After Dartmouth, AI becomes a working research program. The period is defined by symbolic systems, search, heuristics, theorem proving, early planning, and laboratory cultures that make intelligence look programmable even before the field understands how hard scaling will be."
-        scene="This chapter should feel ambitious. The field has a name, labs have momentum, and reasoning looks programmable enough that many researchers believe a broad symbolic route to intelligence is within reach."
-        backHref="/"
-        backLabel="Back to overview"
+        featureImage={{
+          src: "/media/generated/era-3-symbolic-programs.webp",
+          alt: "Illustration of symbolic AI programs and heuristic search in the optimism era.",
+        }}
         links={[
           {
             href: "/eras/computation-information-field-formation",
             label:
-              "Back to Era 2: Computation, Information, And Field Formation",
+              "Back to Era 2: Computation, Information, and Field Formation",
           },
           {
             href: "/eras/knowledge-systems-critique-and-the-first-ai-winter",
             label:
-              "Continue to Era 4: Knowledge Systems, Critique, And The First AI Winter",
+              "Continue to Era 4: Knowledge Systems, Critique, and the First AI Winter",
           },
         ]}
       >
         <div className="prose-block">
           <p>
-            Era 3 is easiest to misremember as a punchline. The chapter works
-            better when it is shown as the field&apos;s first serious attempt to
-            operationalize reasoning at laboratory scale.
+            The symbolic era is often reduced to a punchline, but it was the
+            field&apos;s first serious attempt to operationalize reasoning at
+            laboratory scale.
           </p>
         </div>
         <EditorialAside
@@ -187,17 +180,9 @@ export default function SymbolicOptimismAndEarlyAiProgramsPage() {
       </GuideCallout>
 
       <ChapterSection
-        id="era-3-tension"
-        eyebrow="Organizing Tension"
-        title="What symbolic AI could do, and what it could not yet scale"
-      >
-        <EditorialSummaryGrid items={tensionCards} />
-      </ChapterSection>
-
-      <ChapterSection
         id="era-3-minimum-route"
         eyebrow="Shortest Route"
-        title="If you only need the chapter hinge, keep one success and one limit in view"
+        title="One success and one limit define the era"
       >
         <EditorialSummaryGrid items={minimumRouteCards} />
       </ChapterSection>
@@ -225,7 +210,7 @@ export default function SymbolicOptimismAndEarlyAiProgramsPage() {
       <ChapterSection
         id="era-3-narrative"
         eyebrow="Core Narrative"
-        title="How the era teaches the field after Dartmouth"
+        title="The field after Dartmouth"
         prose
       >
         <EditorialSplit
@@ -234,21 +219,16 @@ export default function SymbolicOptimismAndEarlyAiProgramsPage() {
           left={
             <>
               <p>
-                Era 3 works best when it is taught as the field&apos;s first
-                serious attempt to operationalize reasoning. Logic Theorist and
-                GPS matter because they make symbolic problem solving look
-                programmable. Search and heuristics matter because they give the
-                period a way to act intelligently without examining every
-                possible move.
+                Logic Theorist and GPS made symbolic problem solving look
+                programmable. Search and heuristics gave the period a way to act
+                intelligently without examining every possible move.
               </p>
               <p>
-                The era also broadens quickly. LISP makes AI easier to build,
-                theorem proving deepens the formal side of the field, and
-                planning plus robotics show that symbolic systems can be used to
-                connect internal representations to action. The historical
-                strength of the era is exactly what later critique has to
-                answer: symbolic AI did enough real work that its limitations
-                only became visible once its ambitions widened.
+                The era broadened quickly. LISP made AI easier to build, theorem
+                proving deepened the formal side of the field, and planning plus
+                robotics showed that symbolic systems could connect internal
+                representations to action. Symbolic AI did enough real work that
+                its limitations only became visible once its ambitions widened.
               </p>
             </>
           }
@@ -258,24 +238,18 @@ export default function SymbolicOptimismAndEarlyAiProgramsPage() {
               title="Explicit representation plus symbolic manipulation"
             >
               <p>
-                Era 3 needs this premise made visible. Otherwise later critiques
-                of brittleness and scaling float without a clear target.
+                Symbolic AI treated intelligence as rule-based manipulation of
+                structured representations — a premise that later eras would
+                challenge directly.
               </p>
             </EditorialAside>
           }
         />
-        <p className="artifact-note">
-          These ideas also prepare the next turn in the chronology: once
-          symbolic AI can do theorem proving and planning in bounded settings,
-          the real historical question becomes what happens when researchers,
-          funders, and the public expect the same methods to scale much more
-          broadly.
-        </p>
       </ChapterSection>
 
       <ChapterSection
         id="era-3-people"
-        eyebrow="Linked People"
+        eyebrow="Key Figures"
         title="Who carries the symbolic era"
       >
         <EditorialCardGrid
@@ -283,6 +257,8 @@ export default function SymbolicOptimismAndEarlyAiProgramsPage() {
             title: person.name,
             description: person.summary,
             meta: `Linked ideas: ${person.links.join("; ")}`,
+            imageUrl: person.imageUrl,
+            imageAlt: person.imageAlt,
           }))}
         />
       </ChapterSection>
@@ -301,8 +277,8 @@ export default function SymbolicOptimismAndEarlyAiProgramsPage() {
 
       <ChapterSection
         id="era-3-concepts"
-        eyebrow="Linked Concepts"
-        title="The ideas that make the optimism intelligible"
+        eyebrow="Core Concepts"
+        title="The ideas behind the optimism"
       >
         <EditorialCardGrid
           dense
@@ -311,14 +287,13 @@ export default function SymbolicOptimismAndEarlyAiProgramsPage() {
             description: concept.summary,
           }))}
         />
-        <p className="artifact-note">
-          These ideas also prepare the next turn in the chronology: once
-          symbolic AI can do theorem proving and planning in bounded settings,
-          the real historical question becomes what happens when researchers,
-          funders, and the public expect the same methods to scale much more
-          broadly.
-        </p>
       </ChapterSection>
+
+      <ChapterVisualBreak
+        src="/media/generated/era-3-visual-break.webp"
+        alt="Chalkboard covered in formal logic notation, decision trees, and flowchart diagrams with chalk dust visible."
+        caption="Logic Theorist, LISP, and laboratory ambition define the symbolic era."
+      />
 
       <ChapterSection
         id="era-3-institutions"
@@ -340,18 +315,12 @@ export default function SymbolicOptimismAndEarlyAiProgramsPage() {
             },
           ]}
         />
-        <p className="artifact-note">
-          Era 3 is therefore a bridge period: the field inherits the formal
-          logic of Era 2, builds symbolic systems that genuinely work, and in
-          doing so creates the expectations that Era 4 will test much more
-          harshly.
-        </p>
       </ChapterSection>
 
       <ChapterSection
         id="era-3-documentary-profiles"
-        eyebrow="Documentary Profiles"
-        title="Portraits and institutions of the symbolic era"
+        eyebrow="Profiles"
+        title="Portraits of the symbolic era"
       >
         <NarrativeProfileGrid
           profiles={era3People}
@@ -362,13 +331,6 @@ export default function SymbolicOptimismAndEarlyAiProgramsPage() {
           className="documentary-grid--institutions"
           cardClassName="narrative-card--institution"
         />
-        <p className="artifact-note">
-          Want the documents behind this chapter? Start with the{" "}
-          <a href="/reading-maps/intellectual-lineage#reading-map-era-3">
-            Era 3 cluster in the reading map
-          </a>{" "}
-          for Logic Theorist, LISP, and the resolution-principle papers.
-        </p>
       </ChapterSection>
 
       <TransitionBlock

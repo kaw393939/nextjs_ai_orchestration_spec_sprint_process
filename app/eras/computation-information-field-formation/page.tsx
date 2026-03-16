@@ -4,6 +4,7 @@ import {
   ChapterHero,
   ChapterSection,
   ChapterTimeline,
+  ChapterVisualBreak,
   EditorialAside,
   TransitionBlock,
 } from "@/components/content/chapter";
@@ -25,7 +26,7 @@ const milestoneItems = [
     year: "1936",
     title: "Turing defines computability",
     detail:
-      "The slice begins with a rigorous account of what a machine can compute in principle.",
+      "The era begins with a rigorous account of what a machine can compute in principle.",
   },
   {
     year: "1938",
@@ -59,12 +60,16 @@ const peopleCards = [
     summary:
       "Turing gives the slice its strongest answer to what a machine can compute and later presses the question of machine intelligence directly.",
     links: ["Computability", "Machine intelligence as research agenda"],
+    imageUrl: "/media/wikimedia/alan-turing.webp",
+    imageAlt: "Wikimedia Commons portrait of Alan Turing.",
   },
   {
     name: "Claude Shannon",
     summary:
       "Shannon ties logic to circuitry, formalizes information, and helps make the Dartmouth moment legible as engineering as well as theory.",
     links: ["Information theory", "Bell Labs"],
+    imageUrl: "/media/wikimedia/claude-shannon.webp",
+    imageAlt: "Wikimedia Commons portrait of Claude Shannon.",
   },
   {
     name: "Warren McCulloch and Walter Pitts",
@@ -77,6 +82,8 @@ const peopleCards = [
     summary:
       "McCarthy stands at the field-formation end of the slice, where a scattered prehistory becomes a named research program.",
     links: ["Machine intelligence as research agenda", "Dartmouth"],
+    imageUrl: "/media/wikimedia/john-mccarthy.webp",
+    imageAlt: "Wikimedia Commons portrait of John McCarthy.",
   },
 ];
 
@@ -108,62 +115,17 @@ const conceptCards = [
   },
 ];
 
-const mediaRecords = [
-  {
-    title: "Logic to AI diagram",
-    status: "Diagram",
-    path: "docs/content/media/records/logic-to-ai-diagram.md",
-    summary:
-      "Explains how computation, information, neural abstraction, and Dartmouth converge in the Era 2 story.",
-  },
-  {
-    title: "Dartmouth origin audio plan",
-    status: "Audio companion",
-    path: "docs/content/media/records/dartmouth-origin-audio-plan.md",
-    summary:
-      "Adds a short narration for readers who process chronology and contrast more clearly when it is spoken aloud.",
-  },
-  {
-    title: "Dartmouth proposal image",
-    status: "Source page",
-    path: "docs/content/media/records/dartmouth-proposal-image.md",
-    summary:
-      "A historical source page that keeps Dartmouth attached to a named institutional object rather than retrospective legend.",
-  },
-  {
-    title: "Shannon / Theseus image",
-    status: "Source page",
-    path: "docs/content/media/records/shannon-theseus-image.md",
-    summary:
-      "A source image record that keeps Shannon and Bell Labs visible as part of the engineering lineage of the era.",
-  },
-  {
-    title: "Turing to Dartmouth story card",
-    status: "Story card",
-    path: "docs/content/media/records/turing-to-dartmouth-story-card.md",
-    summary:
-      "A documentary teaching card for the convergence argument that leads from computability to field formation.",
-  },
-  {
-    title: "Shannon and Bell Labs story card",
-    status: "Story card",
-    path: "docs/content/media/records/shannon-bell-labs-story-card.md",
-    summary:
-      "A documentary teaching card that keeps the era tied to engineering institutions rather than abstract theory alone.",
-  },
-];
-
 const storyCards = [
   {
     title: "Turing makes Dartmouth possible without causing it alone",
     summary:
-      "This story card teaches the era as a runway. Computability defines what a machine can do in principle, but that does not yet name AI as a field. Dartmouth becomes legible because Turing has already made procedure rigorous.",
+      "Computability defines what a machine can do in principle, but that does not yet name AI as a field. Dartmouth becomes legible because Turing has already made procedure rigorous.",
     path: "docs/content/media/records/turing-to-dartmouth-story-card.md",
   },
   {
     title: "Shannon keeps the origin story inside engineering as well as logic",
     summary:
-      "This card keeps Bell Labs in the frame. Logic becomes circuitry, information becomes measurable, and the eventual AI field inherits a technical culture shaped by communication engineering as much as by philosophy.",
+      "Bell Labs is part of the frame. Logic becomes circuitry, information becomes measurable, and the eventual AI field inherits a technical culture shaped by communication engineering as much as by philosophy.",
     path: "docs/content/media/records/shannon-bell-labs-story-card.md",
   },
 ];
@@ -179,28 +141,30 @@ export default function ComputationInformationFieldFormationPage() {
     <article className="hero-panel exemplar-panel chapter-theme chapter-theme--formation">
       <ChapterHero
         eyebrow="Era 2"
-        period="Era 2, 1936-1956"
-        title="Computation, Information, And Field Formation"
-        lede="The first live slice of the site argues that modern AI became thinkable before Dartmouth named the field. Turing, Shannon, McCulloch, Pitts, and McCarthy matter here because they connect formal computation, logic in machinery, information, neural abstraction, and field formation into one teachable sequence."
-        scene="This is the convergence chapter of the chronology. It teaches origin as buildup: a field becomes legible only after several lines of work are already underway."
-        backHref="/"
-        backLabel="Back to overview"
+        period="1936–1956"
+        title="Computation, Information, and Field Formation"
+        lede="Modern AI became thinkable before Dartmouth named the field. Turing, Shannon, McCulloch, Pitts, and McCarthy matter here because they connect formal computation, information theory, neural abstraction, and field formation into one teachable sequence."
+        featureImage={{
+          src: "/media/generated/era-2-field-formation.webp",
+          alt: "Illustration of computation, information theory, and field formation converging toward Dartmouth.",
+        }}
         links={[
           {
             href: "/eras/precursors-to-machine-intelligence",
-            label: "Back to Era 1: Precursors To Machine Intelligence",
+            label: "Back to Era 1: Precursors to Machine Intelligence",
           },
           {
             href: "/eras/symbolic-optimism-and-early-ai-programs",
-            label: "Continue to Era 3: Symbolic Optimism And Early AI Programs",
+            label: "Continue to Era 3: Symbolic Optimism and Early AI Programs",
           },
         ]}
       >
         <div className="prose-block">
           <p>
-            Era 2 is also the strongest template for the rest of the site. It
-            combines chronology, argument, diagram, source anchors, documentary
-            cards, and concept teaching without dropping the historical thread.
+            Turing, Shannon, McCulloch, Pitts, and Dartmouth each contribute a
+            distinct strand to the origin of AI. The field did not emerge from a
+            single breakthrough but from the convergence of computation,
+            engineering, neural abstraction, and institutional organization.
           </p>
         </div>
         <EditorialAside
@@ -219,10 +183,9 @@ export default function ComputationInformationFieldFormationPage() {
         title="This origin story is about convergence, not a single invention"
       >
         <p>
-          If Dartmouth is taught as a sudden beginning, students lose the deeper
-          logic of the field. Era 2 works better when the naming moment is shown
-          as the end of a buildup in computation, engineering, information, and
-          neural abstraction.
+          Dartmouth did not appear from nowhere. The naming moment only makes
+          sense as the end of a buildup in computation, engineering,
+          information, and neural abstraction.
         </p>
       </GuideCallout>
 
@@ -276,7 +239,7 @@ export default function ComputationInformationFieldFormationPage() {
       <ChapterSection
         id="era-2-narrative"
         eyebrow="Core Narrative"
-        title="How the package teaches the era"
+        title="Why convergence matters more than any single strand"
         prose
       >
         <EditorialSplit
@@ -285,19 +248,19 @@ export default function ComputationInformationFieldFormationPage() {
           left={
             <>
               <p>
-                The slice begins with Turing because the story needs a serious
-                account of what computation means before it can move to stronger
-                claims about machine intelligence. Shannon then changes the feel
-                of the narrative by making logic matter in electrical machinery
-                and by giving the period a formal theory of information.
+                The period begins with Turing because computation had to be made
+                rigorous before anyone could seriously ask whether machines
+                might think. Shannon then shifts the ground by making logic
+                matter in electrical machinery and by formalizing information
+                itself.
               </p>
               <p>
-                McCulloch and Pitts keep the package from turning into a pure
-                story of symbols and circuits by showing how neuron-inspired
-                units can be modeled computationally. The documentary payoff is
-                that the era now has distinct objects to follow: a Turing paper,
-                Bell Labs engineering work, neuron-style abstraction, and the
-                Dartmouth proposal itself.
+                McCulloch and Pitts prevent the origin story from becoming
+                purely symbolic by showing how neuron-inspired units can be
+                modeled computationally. By the mid-1950s, the era has four
+                distinct threads to follow: a Turing paper, Bell Labs
+                engineering work, neuron-style abstraction, and the Dartmouth
+                proposal itself.
               </p>
             </>
           }
@@ -307,10 +270,10 @@ export default function ComputationInformationFieldFormationPage() {
               title="Each strand does a different job in the origin package"
             >
               <p>
-                Computation defines procedure, Shannon gives the era engineering
-                and information, McCulloch-Pitts broaden the origin story, and
-                Dartmouth provides the documentary hinge where those strands can
-                be taught together.
+                Computation defines procedure, Shannon adds engineering and
+                information, McCulloch-Pitts broaden the origin beyond pure
+                symbolism, and Dartmouth is the institutional moment where those
+                strands converge under a single name.
               </p>
             </EditorialAside>
           }
@@ -327,41 +290,48 @@ export default function ComputationInformationFieldFormationPage() {
 
       <ChapterSection
         id="era-2-story-layer"
-        eyebrow="Documentary Story Layer"
-        title="Two teaching cards that keep the convergence legible"
+        eyebrow="Convergence Stories"
+        title="Two paths to field formation"
       >
         <EditorialCardGrid
           items={storyCards.map((card) => ({
             title: card.title,
             description: card.summary,
-            footer: <p className="artifact-card__path">{card.path}</p>,
           }))}
         />
       </ChapterSection>
 
+      <ChapterVisualBreak
+        src="/media/generated/era-2-visual-break.webp"
+        alt="Vacuum tubes, relay switches, and paper tape from an early mainframe computer with faint circuit diagrams."
+        caption="Computation, information, neural abstraction, and Dartmouth converge into a formally named field."
+      />
+
       <ChapterSection
         id="era-2-source-anchors"
-        eyebrow="Source Anchors"
-        title="Historical objects and source pages for the convergence story"
+        eyebrow="Primary Sources"
+        title="Key documents and archives"
       >
         <HistoricalAnchorGrid
           anchors={era2Anchors}
           className="documentary-grid--anchors"
-          story="These anchors keep the era attached to named documents and source institutions, not only to retrospective explanation."
+          story="Linking the convergence story to primary sources and institutional records."
           getSubtitle={() => "Era 2 · source anchor"}
         />
       </ChapterSection>
 
       <ChapterSection
         id="era-2-people"
-        eyebrow="Linked People"
-        title="Who carries the story"
+        eyebrow="Key Figures"
+        title="Who carries the convergence story"
       >
         <EditorialCardGrid
           items={peopleCards.map((person) => ({
             title: person.name,
             description: person.summary,
             meta: `Linked ideas: ${person.links.join("; ")}`,
+            imageUrl: person.imageUrl,
+            imageAlt: person.imageAlt,
           }))}
         />
       </ChapterSection>
@@ -380,8 +350,8 @@ export default function ComputationInformationFieldFormationPage() {
 
       <ChapterSection
         id="era-2-concepts"
-        eyebrow="Linked Concepts"
-        title="The technical ideas students must meet"
+        eyebrow="Core Concepts"
+        title="The technical ideas behind field formation"
       >
         <EditorialCardGrid
           dense
@@ -390,12 +360,6 @@ export default function ComputationInformationFieldFormationPage() {
             description: concept.summary,
           }))}
         />
-        <p className="artifact-note">
-          These concepts now teach across eras as well as within Era 2: formal
-          logic and mechanized calculation build the runway in Era 1, and
-          computability plus machine intelligence narrow that runway into a
-          modern research agenda here.
-        </p>
       </ChapterSection>
 
       <ChapterSection
@@ -409,7 +373,7 @@ export default function ComputationInformationFieldFormationPage() {
             {
               title: "Bell Labs",
               description:
-                "Bell Labs gives the slice an institutional setting for Shannon's engineering work, which helps explain why logic and information are not just philosophical ideas in this story.",
+                "Bell Labs gives the era an institutional setting for Shannon's engineering work, which helps explain why logic and information are not just philosophical ideas in this story.",
             },
             {
               title:
@@ -419,49 +383,12 @@ export default function ComputationInformationFieldFormationPage() {
             },
           ]}
         />
-
-        <GuideCallout
-          variant="misconception-watch"
-          title="Dartmouth is the naming moment, not the whole origin story"
-        >
-          <p>
-            Saying AI was simply invented in one summer makes the history too
-            smooth. The better claim is narrower and stronger: Dartmouth
-            organized and named a field that earlier work had already prepared.
-          </p>
-        </GuideCallout>
-      </ChapterSection>
-
-      <ChapterSection
-        id="era-2-media"
-        eyebrow="Media And Source Trail"
-        title="Media and source trail for this era"
-      >
-        <div className="artifact-grid">
-          {mediaRecords.map((record) => (
-            <article key={record.title} className="artifact-card">
-              <div className="artifact-card__topline">
-                <h3>{record.title}</h3>
-                <span className="artifact-status artifact-status--approved">
-                  {record.status}
-                </span>
-              </div>
-              <p>{record.summary}</p>
-              <p className="artifact-card__path">{record.path}</p>
-            </article>
-          ))}
-        </div>
-        <p className="artifact-note">
-          The point of this section is documentary clarity: diagrams, source
-          pages, and story cards show how the chapter is built from named
-          objects rather than only from retrospective summary.
-        </p>
       </ChapterSection>
 
       <ChapterSection
         id="era-2-documentary-profiles"
-        eyebrow="Documentary Profiles"
-        title="Portraits and source anchors for the field-formation era"
+        eyebrow="Profiles"
+        title="Portraits of the field-formation era"
       >
         <NarrativeProfileGrid
           profiles={era2People}

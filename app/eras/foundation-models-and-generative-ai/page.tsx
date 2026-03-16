@@ -4,6 +4,7 @@ import {
   ChapterHero,
   ChapterSection,
   ChapterTimeline,
+  ChapterVisualBreak,
   EditorialAside,
   PullQuote,
   TransitionBlock,
@@ -62,36 +63,48 @@ const peopleCards = [
     summary:
       "Sutskever makes the research lineage from Hinton-era deep learning through Google Brain and OpenAI legible inside the foundation-model story.",
     links: ["transformers", "large language models"],
+    imageUrl: "/media/wikimedia/ilya-sutskever.webp",
+    imageAlt: "Wikimedia Commons portrait of Ilya Sutskever.",
   },
   {
     name: "Demis Hassabis",
     summary:
       "Hassabis keeps the current era broader than public chat by tying modern AI to DeepMind, AlphaFold, and the pursuit of general systems.",
     links: ["multimodality", "scientific discovery"],
+    imageUrl: "/media/wikimedia/demis-hassabis.webp",
+    imageAlt: "Wikimedia Commons portrait of Demis Hassabis.",
   },
   {
     name: "Andrej Karpathy",
     summary:
       "Karpathy helps explain the era's public technical culture by linking OpenAI's model work to widely used teaching and explanation around how LLM systems are built.",
     links: ["large language models", "public understanding"],
+    imageUrl: "/media/wikimedia/andrej-karpathy.webp",
+    imageAlt: "Wikimedia Commons portrait of Andrej Karpathy.",
   },
   {
     name: "Sam Altman",
     summary:
       "Altman makes the deployment era legible by tying frontier-model progress to mass public interfaces, infrastructure expansion, and explicit AGI governance claims.",
     links: ["public deployment", "institutional strategy"],
+    imageUrl: "/media/wikimedia/sam-altman.webp",
+    imageAlt: "Wikimedia Commons portrait of Sam Altman.",
   },
   {
     name: "Dario Amodei",
     summary:
       "Amodei anchors the safety-first institutional path of Era 7 by linking frontier-model scaling to reliability, interpretability, and responsible-scaling language.",
     links: ["AI safety", "responsible scaling"],
+    imageUrl: "/media/wikimedia/dario-amodei.webp",
+    imageAlt: "Wikimedia Commons portrait of Dario Amodei.",
   },
   {
     name: "Eliezer Yudkowsky",
     summary:
       "Yudkowsky keeps the current era connected to the pre-LLM alignment tradition that shaped paperclip, instrumental-convergence, and existential-risk arguments.",
     links: ["instrumental convergence", "alignment"],
+    imageUrl: "/media/wikimedia/eliezer-yudkowsky.webp",
+    imageAlt: "Wikimedia Commons portrait of Eliezer Yudkowsky.",
   },
 ];
 
@@ -215,12 +228,13 @@ export default function FoundationModelsAndGenerativeAiPage() {
     <article className="hero-panel exemplar-panel chapter-theme chapter-theme--foundation">
       <ChapterHero
         eyebrow="Era 7"
-        period="Era 7, 2020-2026"
-        title="Foundation Models And Generative AI"
+        period="2020–2026"
+        title="Foundation Models and Generative AI"
         lede="The current era begins when transformer-based systems become reusable foundation models, large language models move into public life, and embeddings, multimodality, and deployment debates reshape what AI means in work, education, search, and science."
-        scene="This final chapter of the current chronology is not an endless present. It is a bounded historical period in which pretrained transformer systems become public infrastructure while debates about reliability, labor, governance, and understanding move to the center of the story."
-        backHref="/"
-        backLabel="Back to overview"
+        featureImage={{
+          src: "/media/generated/era-7-foundation-models.webp",
+          alt: "Illustration of foundation models, large language models, and the public AI era.",
+        }}
         links={[
           {
             href: "/eras/deep-learning-breakthroughs",
@@ -234,9 +248,10 @@ export default function FoundationModelsAndGenerativeAiPage() {
       >
         <div className="prose-block">
           <p>
-            The chapter works when it is read as synthesis: architecture,
-            infrastructure, retrieval, multimodality, public deployment, and
-            safety all converge on the same surface.
+            Architecture, infrastructure, retrieval, multimodality, public
+            deployment, and safety all converge on the same surface. The result
+            is that capability debates and responsibility debates can no longer
+            be separated.
           </p>
         </div>
         <EditorialAside
@@ -295,11 +310,6 @@ export default function FoundationModelsAndGenerativeAiPage() {
         <EditorialSummaryGrid items={synthesisCards} />
       </ChapterSection>
 
-      <PullQuote
-        quote="Foundation models become historical when one pretrained system stops being a single demonstration and starts acting like reusable public infrastructure."
-        attribution="Era 7 framing"
-      />
-
       <ChapterSection
         id="era-7-narrative"
         eyebrow="Core Narrative"
@@ -348,19 +358,16 @@ export default function FoundationModelsAndGenerativeAiPage() {
 
       <ChapterSection
         id="era-7-people"
-        eyebrow="Linked People"
+        eyebrow="Key Figures"
         title="Who makes the modern turn legible"
       >
-        <p className="artifact-note">
-          This is not a complete roster of everyone who matters. It is a
-          teaching cast: builders, explainers, deployers, and safety voices who
-          make the era easier to remember as a human story.
-        </p>
         <EditorialCardGrid
           items={peopleCards.map((person) => ({
             title: person.name,
             description: person.summary,
             meta: `Linked ideas: ${person.links.join("; ")}`,
+            imageUrl: person.imageUrl,
+            imageAlt: person.imageAlt,
           }))}
         />
       </ChapterSection>
@@ -370,13 +377,6 @@ export default function FoundationModelsAndGenerativeAiPage() {
         eyebrow="Documentary Visuals"
         title="Portraits and institutions in the public AI era"
       >
-        <p className="artifact-note">
-          These profiles keep the period tied to identifiable people and
-          institutions instead of letting the modern stack dissolve into product
-          names and abstractions. Images and official links serve the history
-          here because they attach claims to real actors, labs, and
-          public-facing organizations.
-        </p>
         <NarrativeProfileGrid
           profiles={featuredPeople}
           cardClassName="narrative-card--person"
@@ -426,7 +426,7 @@ export default function FoundationModelsAndGenerativeAiPage() {
 
       <ChapterSection
         id="era-7-concepts"
-        eyebrow="Linked Concepts"
+        eyebrow="Core Concepts"
         title="The ideas that define the current horizon"
       >
         <EditorialCardGrid
@@ -436,29 +436,19 @@ export default function FoundationModelsAndGenerativeAiPage() {
             description: concept.summary,
           }))}
         />
-        <p className="artifact-note">
-          The modern stack is easiest to teach as continuity rather than
-          rupture: transformers make LLMs possible, embeddings support
-          retrieval, latent space explains learned internal structure, and
-          multimodality expands the same representation story across media.
-          Mechanistic interpretability explains why that same stack is still
-          only partly transparent, while instrumental convergence explains why
-          the paperclip-maximizer thought experiment remains part of current
-          safety vocabulary.
-        </p>
       </ChapterSection>
+
+      <ChapterVisualBreak
+        src="/media/generated/era-7-visual-break.webp"
+        alt="Attention matrix heat map visualization with transformer architecture query-key-value arrows floating above."
+        caption="Foundation models turn research architecture into public infrastructure."
+      />
 
       <ChapterSection
         id="era-7-institutions"
-        eyebrow="Institutions And Turning Point"
+        eyebrow="Institutions"
         title="Deployment choices become historical facts"
       >
-        <p className="artifact-note">
-          The shortest way to read this section is to compare institutional
-          posture. OpenAI foregrounds public deployment, DeepMind keeps the era
-          tied to science and general systems, and Anthropic frames frontier
-          work through reliability and steerability.
-        </p>
         <EditorialSummaryGrid
           className="institution-grid"
           items={institutionCards}
@@ -467,13 +457,12 @@ export default function FoundationModelsAndGenerativeAiPage() {
 
       <ChapterSection
         id="era-7-source-anchors"
-        eyebrow="Source Anchors"
+        eyebrow="Primary Sources"
         title="The architecture paper that made this era possible"
       >
         <HistoricalAnchorGrid
           anchors={era7Anchors}
           className="documentary-grid--anchors"
-          story="This anchor keeps the era tied to a named document rather than to retrospective summary alone."
         />
       </ChapterSection>
 

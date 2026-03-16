@@ -17,9 +17,6 @@ describe("chapter components", () => {
           period="Era X"
           title="Shared Reading System"
           lede="A reusable hero for long-form routes."
-          scene="One clear scene-setting sentence."
-          backHref="/"
-          backLabel="Back"
           links={[{ href: "/next", label: "Next step" }]}
         >
           <p>Chapter body content.</p>
@@ -46,9 +43,6 @@ describe("chapter components", () => {
 
     expect(
       screen.getByRole("heading", { level: 1, name: /shared reading system/i })
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(/one clear scene-setting sentence/i)
     ).toBeInTheDocument();
     expect(screen.getByText(/secondary framing/i)).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /next step/i })).toHaveAttribute(

@@ -67,6 +67,23 @@ export const peopleProfiles: NarrativeProfile[] = [
     sourceRecord: "",
   },
   {
+    slug: "claude-shannon",
+    name: "Claude Shannon",
+    era: "Era 2",
+    kind: "person",
+    role: "Father of information theory",
+    summary:
+      "Shannon linked Boolean logic to electrical circuits and founded information theory, giving the field a formal language for communication, signals, and uncertainty.",
+    story:
+      "He makes the period legible as engineering, not only theory. Without information theory, the Dartmouth generation cannot measure or communicate what their machines process.",
+    officialUrl: "https://www.britannica.com/biography/Claude-Shannon",
+    officialLabel: "Britannica biography",
+    imageUrl: "/media/wikimedia/claude-shannon.webp",
+    imageAlt: "Wikimedia Commons portrait of Claude Shannon.",
+    socialLinks: [],
+    sourceRecord: "",
+  },
+  {
     slug: "john-mccarthy",
     name: "John McCarthy",
     era: "Era 3",
@@ -120,6 +137,24 @@ export const peopleProfiles: NarrativeProfile[] = [
     sourceRecord: "",
   },
   {
+    slug: "allen-newell",
+    name: "Allen Newell",
+    era: "Era 3",
+    kind: "person",
+    role: "Co-creator of Logic Theorist and pioneer of cognitive architectures",
+    summary:
+      "Newell (with Simon) built Logic Theorist and the General Problem Solver, then spent decades trying to unify AI under a single theory of cognition.",
+    story:
+      "He represents the ambition to make AI a true science of mind — not just a bag of tricks but a unified architecture. That ambition shaped and then haunted the symbolic tradition.",
+    officialUrl: "https://www.britannica.com/biography/Allen-Newell",
+    officialLabel: "Britannica biography",
+    imageUrl: "/media/wikimedia/allen-newell.webp",
+    imageAlt:
+      "Photograph of Allen Newell, Carnegie Mellon University archives.",
+    socialLinks: [],
+    sourceRecord: "",
+  },
+  {
     slug: "edward-feigenbaum",
     name: "Edward Feigenbaum",
     era: "Era 4",
@@ -135,6 +170,23 @@ export const peopleProfiles: NarrativeProfile[] = [
     imageUrl: "/media/wikimedia/edward-feigenbaum.webp",
     imageAlt:
       "Photograph of Edward Feigenbaum, Wikimedia Commons, CC BY-SA 3.0.",
+    socialLinks: [],
+    sourceRecord: "",
+  },
+  {
+    slug: "marvin-minsky-era4",
+    name: "Marvin Minsky",
+    era: "Era 4",
+    kind: "person",
+    role: "Co-author of the Perceptrons critique and MIT AI Lab leader",
+    summary:
+      "Minsky and Papert's 1969 'Perceptrons' demonstrated limits of single-layer networks, redirecting AI funding away from neural approaches for over a decade.",
+    story:
+      "His critique of neural networks is one of the most consequential acts in AI history — it shaped which research got funded and which got starved, setting the stage for the first AI winter.",
+    officialUrl: "https://www.britannica.com/biography/Marvin-Minsky",
+    officialLabel: "Britannica biography",
+    imageUrl: "/media/wikimedia/marvin-minsky.webp",
+    imageAlt: "Photograph of Marvin Minsky, Wikimedia Commons, CC BY 3.0.",
     socialLinks: [],
     sourceRecord: "",
   },
@@ -449,7 +501,7 @@ export const historicalAnchors: HistoricalAnchor[] = [
     era: "Era 2",
     title: "Dartmouth proposal and naming moment",
     summary:
-      "This is the clearest historical object for teaching Dartmouth as field formation rather than sudden invention.",
+      "The 1956 Dartmouth Summer Research Project brought together the researchers who named artificial intelligence as a field, marking the moment when scattered threads of computation, logic, and learning became a shared research agenda.",
     officialUrl:
       "https://home.dartmouth.edu/about/artificial-intelligence-ai-coined-dartmouth",
     officialLabel: "Dartmouth history page",
@@ -463,12 +515,13 @@ export const historicalAnchors: HistoricalAnchor[] = [
     era: "Era 2",
     title: "Claude Shannon and the Theseus machine story",
     summary:
-      "Shannon belongs here as an engineer and builder, not only as an abstract theorist. The machine story helps teach the logic-to-machinery bridge.",
+      "Claude Shannon built Theseus, a maze-solving electromechanical mouse, in 1950 — one of the earliest physical demonstrations that a machine could appear to learn from experience.",
     officialUrl:
       "http://belllabs-site-claude-shannon.s3-website-us-east-1.amazonaws.com/",
     officialLabel: "Bell Labs historical material",
-    imageUrl: "/media/wikimedia/claude-shannon.webp",
-    imageAlt: "Wikimedia Commons portrait of Claude Shannon.",
+    imageUrl: "/media/generated/shannon-theseus-maze.webp",
+    imageAlt:
+      "Reconstruction of Claude Shannon's Theseus maze-solving automaton with aluminum walls and electromagnetic relays.",
     sourceRecord: "docs/content/media/records/shannon-theseus-image.md",
   },
   {
@@ -476,7 +529,7 @@ export const historicalAnchors: HistoricalAnchor[] = [
     era: "Era 1",
     title: "Lovelace and the Analytical Engine",
     summary:
-      "This source keeps the precursor story grounded in a real historical text rather than in a vague prehistory of AI.",
+      "Ada Lovelace's 1843 notes on Babbage's Analytical Engine contain the first published discussion of what a general-purpose computing machine could and could not do — including her famous caution that the Engine 'has no pretensions to originate anything.'",
     officialUrl: "https://www.fourmilab.ch/babbage/sketch.html",
     officialLabel: "Lovelace and Menabrea notes",
     imageUrl: "/media/wikimedia/ada-lovelace.webp",
@@ -489,7 +542,7 @@ export const historicalAnchors: HistoricalAnchor[] = [
     era: "Era 1",
     title: "Boole to Turing logical runway",
     summary:
-      "The point of this anchor is the handoff: symbolic logic becomes the runway for computability rather than remaining a disconnected precursor anecdote.",
+      "George Boole's 1854 'Laws of Thought' turned reasoning into symbolic algebra. That formal structure became the foundation for Turing's theory of computation and every logic-based AI system that followed.",
     officialUrl: "https://archive.org/details/investigationofl00bool",
     officialLabel: "Boole source archive",
     imageUrl: "/media/wikimedia/george-boole.webp",

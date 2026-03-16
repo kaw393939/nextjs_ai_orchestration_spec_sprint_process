@@ -27,10 +27,41 @@ const eraRouteByEra: Record<string, string> = {
   "Era 7": "/eras/foundation-models-and-generative-ai",
 };
 
+const eraImageByEra: Record<string, { src: string; alt: string }> = {
+  "Era 1": {
+    src: "/media/generated/era-1-precursors.webp",
+    alt: "Illustration of symbolic logic and early mechanical computation",
+  },
+  "Era 2": {
+    src: "/media/generated/era-2-field-formation.webp",
+    alt: "Illustration of computation, information theory, and field formation",
+  },
+  "Era 3": {
+    src: "/media/generated/era-3-symbolic-programs.webp",
+    alt: "Illustration of symbolic AI programs and heuristic search",
+  },
+  "Era 4": {
+    src: "/media/generated/era-4-expert-systems.webp",
+    alt: "Illustration of expert systems and the first AI winter",
+  },
+  "Era 5": {
+    src: "/media/generated/era-5-statistical-revival.webp",
+    alt: "Illustration of statistical learning and neural network revival",
+  },
+  "Era 6": {
+    src: "/media/generated/era-6-deep-learning.webp",
+    alt: "Illustration of deep learning breakthroughs",
+  },
+  "Era 7": {
+    src: "/media/generated/era-7-foundation-models.webp",
+    alt: "Illustration of foundation models and generative AI",
+  },
+};
+
 const chronologyCards = [
   {
     era: "Era 1",
-    title: "Precursors To Machine Intelligence",
+    title: "Precursors to Machine Intelligence",
     readings: [
       {
         work: "Ada Lovelace, Notes on the Analytical Engine",
@@ -52,7 +83,7 @@ const chronologyCards = [
   },
   {
     era: "Era 2",
-    title: "Computation, Information, And Field Formation",
+    title: "Computation, Information, and Field Formation",
     readings: [
       {
         work: "Alan Turing, On Computable Numbers",
@@ -90,7 +121,7 @@ const chronologyCards = [
   },
   {
     era: "Era 3",
-    title: "Symbolic Optimism And Early AI Programs",
+    title: "Symbolic Optimism and Early AI Programs",
     readings: [
       {
         work: "Newell and Simon, The Logic Theory Machine",
@@ -120,7 +151,7 @@ const chronologyCards = [
   },
   {
     era: "Era 4",
-    title: "Knowledge Systems, Critique, And The First AI Winter",
+    title: "Knowledge Systems, Critique, and the First AI Winter",
     readings: [
       {
         work: "Buchanan, Sutherland, and Feigenbaum, The Heuristic DENDRAL Project",
@@ -150,7 +181,7 @@ const chronologyCards = [
   },
   {
     era: "Era 5",
-    title: "Statistical Learning And Network Revival",
+    title: "Statistical Learning and Network Revival",
     readings: [
       {
         work: "Rumelhart, Hinton, and Williams, Learning Representations by Back-Propagating Errors",
@@ -218,7 +249,7 @@ const chronologyCards = [
   },
   {
     era: "Era 7",
-    title: "Foundation Models And Generative AI",
+    title: "Foundation Models and Generative AI",
     readings: [
       {
         work: "Brown et al., Language Models are Few-Shot Learners",
@@ -390,13 +421,10 @@ export default function IntellectualLineageReadingMapPage() {
     <main className="page-shell exemplar-shell">
       <article className="hero-panel exemplar-panel chapter-theme chapter-theme--papers">
         <ChapterHero
-          eyebrow="Companion reading map"
+          eyebrow="Companion chapter"
           period="Reading map"
-          title="Intellectual Lineage And Key Papers"
+          title="Intellectual Lineage and Key Papers"
           lede="This route turns the repository's paper lineage into a paced companion chapter. It is not a full bibliography. It is a reading map for seeing how one era hands its problems, methods, and vocabulary to the next."
-          scene="Use this page when you want the chronology told through documents rather than only through summaries. The point is lineage, not ranking."
-          backHref="/"
-          backLabel="Back to overview"
           links={[
             {
               href: "/eras/precursors-to-machine-intelligence",
@@ -436,9 +464,9 @@ export default function IntellectualLineageReadingMapPage() {
           title="A reading map is for lineage, not for ranking winners"
         >
           <p>
-            The point of this page is to keep the chronology legible. Each text
-            matters because it helps explain why the next phase of AI looked the
-            way it did, not because it deserves a timeless greatest-hits badge.
+            Each text here matters because it helps explain why the next phase
+            of AI looked the way it did, not because it deserves a timeless
+            greatest-hits badge.
           </p>
         </GuideCallout>
 
@@ -501,6 +529,8 @@ export default function IntellectualLineageReadingMapPage() {
               title: card.title,
               description: eraGuideposts[card.era],
               routeHref: eraRouteByEra[card.era],
+              imageUrl: eraImageByEra[card.era]?.src,
+              imageAlt: eraImageByEra[card.era]?.alt,
               readings: card.readings,
             }))}
           />

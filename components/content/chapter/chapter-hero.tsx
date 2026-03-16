@@ -1,6 +1,9 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
+import { FocalImage } from "@/components/media/focal-image";
+import { cn } from "@/lib/utils";
+
 type ChapterHeroLink = {
   href: string;
   label: string;
@@ -11,11 +14,13 @@ type ChapterHeroProps = {
   period?: string;
   title: string;
   lede: string;
-  scene?: string;
-  backHref?: string;
-  backLabel?: string;
   links?: ChapterHeroLink[];
   children?: ReactNode;
+  /** Optional feature image shown in the hero support column. */
+  featureImage?: {
+    src: string;
+    alt: string;
+  };
 };
 
 export function ChapterHero({
@@ -23,22 +28,19 @@ export function ChapterHero({
   period,
   title,
   lede,
-  scene,
-  backHref,
-  backLabel,
   links,
   children,
+  featureImage,
 }: ChapterHeroProps) {
+  const hasSupport = children || featureImage || (links && links.length > 0);
+
   return (
-    <header className="chapter-hero">
+    <header
+      className={cn("chapter-hero", featureImage && "chapter-hero--visual")}
+    >
       <div className="chapter-hero__lead">
         <div className="chapter-hero__topbar">
           <p className="eyebrow">{eyebrow}</p>
-          {backHref && backLabel ? (
-            <Link href={backHref} className="back-link">
-              {backLabel}
-            </Link>
-          ) : null}
         </div>
 
         <div className="chapter-hero__header exemplar-header">
@@ -46,12 +48,23 @@ export function ChapterHero({
           <h1>{title}</h1>
           <p className="lede">{lede}</p>
         </div>
-
-        {scene ? <p className="chapter-hero__scene">{scene}</p> : null}
       </div>
 
-      {children || (links && links.length > 0) ? (
+      {hasSupport ? (
         <div className="chapter-hero__support">
+          {featureImage ? (
+            <div className="chapter-hero__feature-image">
+              <FocalImage
+                src={featureImage.src}
+                alt={featureImage.alt}
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="object-cover"
+              />
+            </div>
+          ) : null}
+
           {children ? (
             <div className="chapter-hero__body">{children}</div>
           ) : null}

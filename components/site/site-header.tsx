@@ -8,6 +8,7 @@ import { siteConfig } from "@/lib/site";
 import {
   homeSectionNavigation,
   mainNavigation,
+  pageSectionNavigation,
   type HeaderNavigationItem,
 } from "@/lib/site-navigation";
 import { cn } from "@/lib/utils";
@@ -92,6 +93,44 @@ function NavigationRow({
   );
 }
 
+function PageSectionNav({
+  items,
+  activeHash,
+}: {
+  items: { href: string; label: string }[];
+  activeHash: string;
+}) {
+  const normalizedHash = normalizeHash(activeHash);
+
+  return (
+    <div className="site-header__subnavblock">
+      <p className="site-nav__label">On this page</p>
+      <nav aria-label="Page sections" className="site-subnav">
+        {items.map((item) => {
+          const itemHash = item.href.includes("#")
+            ? `#${item.href.split("#")[1]}`
+            : "";
+          const isActive = normalizedHash === itemHash;
+
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              aria-current={isActive ? "location" : undefined}
+              className={cn(
+                "site-subnav__link",
+                isActive && "site-subnav__link--active"
+              )}
+            >
+              {item.label}
+            </Link>
+          );
+        })}
+      </nav>
+    </div>
+  );
+}
+
 export function SiteHeader() {
   const pathname = usePathname() ?? "/";
   const [hash, setHash] = useState("");
@@ -144,6 +183,11 @@ export function SiteHeader() {
               ariaLabel="Homepage sections"
             />
           </div>
+        ) : pageSectionNavigation[pathname] ? (
+          <PageSectionNav
+            items={pageSectionNavigation[pathname]}
+            activeHash={hash}
+          />
         ) : null}
       </div>
     </header>

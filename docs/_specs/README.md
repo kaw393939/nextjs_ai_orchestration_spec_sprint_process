@@ -8,18 +8,19 @@ this process is in
 
 ## Workstreams
 
-| Workstream                                                      | Status       | Sprints | What It Produced                                                                                  |
-| --------------------------------------------------------------- | ------------ | ------- | ------------------------------------------------------------------------------------------------- |
-| [documentation-foundation](documentation-foundation/)           | **Complete** | 6       | README, technology orientation, orchestration method, power words, lightweight change path        |
-| [setup](setup/)                                                 | Reference    | 0       | Architectural rules for UI framework; implemented as part of site-foundation                      |
-| [refactor/code-quality](refactor/code-quality/)                 | **Complete** | 5       | Token consolidation, section file split, classname consistency, Next.js patterns                  |
-| [refactor/browser-enhancements](refactor/browser-enhancements/) | **Complete** | 5       | Mobile touch, typography, visual effects, layout/color, QA pass                                   |
-| [refactor/reading-system](refactor/reading-system/)             | In Progress  | 2       | Shared chapter patterns (chapter-hero, chapter-section, editorial-aside, pull-quote)              |
-| [refactor/narrative-surfaces](refactor/narrative-surfaces/)     | Planned      | 2       | Homepage and reading-map chapter refactor                                                         |
-| [refactor/era-chapters](refactor/era-chapters/)                 | Planned      | 4       | Era 1–7 chapter-style rollout                                                                     |
-| [documentation-cleanup](documentation-cleanup/)                 | In Progress  | 1       | Student orientation, workstream index, status markers                                             |
-| [deployment-and-verification](deployment-and-verification/)     | In Progress  | 2       | Static export, CI/CD pipeline, Lighthouse, GitHub Pages, verification pedagogy                    |
-| [homepage-exhibition](homepage-exhibition/)                     | Planned      | 3       | Era images via AI generation, visual breathing room, navigation simplification, heading reduction |
+| Workstream                                                                | Status       | Sprints | What It Produced                                                                                  |
+| ------------------------------------------------------------------------- | ------------ | ------- | ------------------------------------------------------------------------------------------------- |
+| [documentation-foundation](documentation-foundation/)                     | **Complete** | 6       | README, technology orientation, orchestration method, power words, lightweight change path        |
+| [setup](setup/)                                                           | Reference    | 0       | Architectural rules for UI framework; implemented as part of site-foundation                      |
+| [refactor/code-quality](refactor/code-quality/)                           | **Complete** | 5       | Token consolidation, section file split, classname consistency, Next.js patterns                  |
+| [refactor/browser-enhancements](refactor/browser-enhancements/)           | **Complete** | 5       | Mobile touch, typography, visual effects, layout/color, QA pass                                   |
+| [refactor/reading-system](refactor/reading-system/)                       | In Progress  | 2       | Shared chapter patterns (chapter-hero, chapter-section, editorial-aside, pull-quote)              |
+| [refactor/narrative-surfaces](refactor/narrative-surfaces/)               | Planned      | 2       | Homepage and reading-map chapter refactor                                                         |
+| [refactor/chapter-exhibition-parity](refactor/chapter-exhibition-parity/) | Planned      | 9       | Homepage-parity visual audit and redesign of non-home chapter surfaces                            |
+| [refactor/era-chapters](refactor/era-chapters/)                           | Planned      | 4       | Era 1–7 chapter-style rollout                                                                     |
+| [documentation-cleanup](documentation-cleanup/)                           | In Progress  | 1       | Student orientation, workstream index, status markers                                             |
+| [deployment-and-verification](deployment-and-verification/)               | In Progress  | 2       | Static export, CI/CD pipeline, Lighthouse, GitHub Pages, verification pedagogy                    |
+| [homepage-exhibition](homepage-exhibition/)                               | Planned      | 3       | Era images via AI generation, visual breathing room, navigation simplification, heading reduction |
 
 ### Archived Workstreams
 

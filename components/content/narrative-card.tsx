@@ -11,7 +11,7 @@ type NarrativeCardProps = {
   title: string;
   subtitle: string;
   summary: string;
-  story: string;
+  story?: string;
   officialLink: NarrativeLink;
   sourceRecord: string;
   imageUrl?: string;
@@ -21,27 +21,17 @@ type NarrativeCardProps = {
   imageFit?: "auto" | "cover" | "contain";
 };
 
-function formatSourceRecordLabel(sourceRecord: string) {
-  const recordName =
-    sourceRecord.split("/").pop()?.replace(/\.md$/i, "") ?? sourceRecord;
-
-  return recordName.replace(/-/g, " ");
-}
-
 export function NarrativeCard({
   title,
   subtitle,
   summary,
-  story,
   officialLink,
-  sourceRecord,
   imageUrl,
   imageAlt,
   socialLinks,
   className,
   imageFit = "auto",
 }: NarrativeCardProps) {
-  const sourceRecordLabel = formatSourceRecordLabel(sourceRecord);
   const focusData = imageUrl ? getImageFocusData(imageUrl) : undefined;
   const effectiveImageFit =
     imageFit === "auto" ? (focusData?.suggestedFit ?? "cover") : imageFit;
@@ -77,15 +67,11 @@ export function NarrativeCard({
       <p className="content-card__meta">{subtitle}</p>
       <h3>{title}</h3>
       <p>{summary}</p>
-      <p>{story}</p>
 
       <div className="narrative-card__links">
         <a href={officialLink.href} target="_blank" rel="noreferrer">
           {officialLink.label}
         </a>
-        <span className="artifact-card__path narrative-card__record">
-          Source record: {sourceRecordLabel}
-        </span>
       </div>
 
       {socialLinks && socialLinks.length > 0 ? (

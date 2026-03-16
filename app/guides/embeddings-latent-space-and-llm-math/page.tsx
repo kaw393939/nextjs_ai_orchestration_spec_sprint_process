@@ -10,25 +10,26 @@ import {
 import { EditorialCardGrid } from "@/components/content/editorial/editorial-card-grid";
 import { EditorialSummaryGrid } from "@/components/content/editorial/editorial-summary-grid";
 import { GuideCallout } from "@/components/content/guide-callout";
+import { MathBlock } from "@/components/content/math-block";
 import { FocalImage } from "@/components/media/focal-image";
 import { EmbeddingsNeighborhoodDiagram } from "@/components/content/visualizations/embeddings-neighborhood-diagram";
 
 const mathCards = [
   {
     title: "Vectors are learned coordinates",
-    expression: "embedding = [0.12, -0.40, 0.91, ...]",
+    tex: "\\mathbf{e} = [e_1,\\; e_2,\\; e_3,\\; \\ldots,\\; e_n] \\in \\mathbb{R}^n",
     explanation:
       "A model can represent a token, sentence, document, or image patch as a dense list of numbers. The useful meaning comes from the pattern across the list, not from one number in isolation.",
   },
   {
     title: "Similarity is a geometric comparison",
-    expression: "cos(theta) = dot(a, b) / (|a| |b|)",
+    tex: "\\cos\\theta = \\frac{\\mathbf{a} \\cdot \\mathbf{b}}{\\|\\mathbf{a}\\|\\;\\|\\mathbf{b}\\|}",
     explanation:
       "If two vectors point in similar directions, they usually represent related items. That is the intuition behind semantic similarity and nearest-neighbor retrieval.",
   },
   {
     title: "Latent space names the neighborhood story",
-    expression: "nearer vectors -> more similar uses or meanings",
+    tex: "\\|\\mathbf{a} - \\mathbf{b}\\| \\; \\text{small} \\;\\Longrightarrow\\; \\text{similar meanings}",
     explanation:
       "Latent space is a teaching label for the learned internal structure that lets models cluster related patterns and move between nearby regions.",
   },
@@ -63,18 +64,27 @@ const historicalAnchors = [
     title: "Representation learning becomes the real bridge",
     detail:
       "Backpropagation and neural language models make learned distributed representations central instead of treating them as side effects.",
+    imageUrl: "/media/generated/representation-learning-bridge.webp",
+    imageAlt:
+      "Abstract visualization of scattered data points transforming into organized clusters through neural network layers",
   },
   {
     period: "Era 6",
     title: "Transformers make contextual representations dominant",
     detail:
       "Attention-based models strengthen the idea that context changes how each token should be represented and used.",
+    imageUrl: "/media/generated/era-6-visual-break.webp",
+    imageAlt:
+      "GPU server racks layered with convolutional neural network feature map visualizations",
   },
   {
     period: "Era 7",
     title: "Embeddings become infrastructure",
     detail:
       "Vector search, retrieval, recommendation, and assistant pipelines make embeddings visible as part of everyday AI systems.",
+    imageUrl: "/media/generated/era-7-visual-break.webp",
+    imageAlt:
+      "Attention matrix heat map visualization with transformer architecture elements",
   },
 ];
 
@@ -134,7 +144,7 @@ const workedExampleCards = [
 ];
 
 export const metadata: Metadata = {
-  title: "Embeddings, Latent Space, And The Minimum LLM Math",
+  title: "Embeddings, Latent Space, and the Minimum LLM Math",
   description:
     "A plain-language guide to vectors, similarity, latent space, and the minimum math needed to understand why embeddings matter in modern AI.",
 };
@@ -144,13 +154,14 @@ export default function EmbeddingsLatentSpaceAndLlmMathPage() {
     <main className="page-shell exemplar-shell">
       <article className="hero-panel exemplar-panel chapter-theme chapter-theme--guide">
         <ChapterHero
-          eyebrow="Companion math guide"
+          eyebrow="Companion chapter"
           period="Math guide"
-          title="Embeddings, Latent Space, And The Minimum LLM Math"
+          title="Embeddings, Latent Space, and the Minimum LLM Math"
           lede="This page is the shortest useful math bridge for the modern AI era. It explains why vectors, similarity, and learned internal structure matter without pretending readers need a full course before the history makes sense."
-          scene="Use this after Era 5 and before the most technical parts of Era 6 or Era 7. The goal is to give just enough geometry and vocabulary to make retrieval, embeddings, and LLM behavior less mysterious."
-          backHref="/"
-          backLabel="Back to overview"
+          featureImage={{
+            src: "/media/generated/math-guide-hero.webp",
+            alt: "Visualization of high-dimensional vector space with luminous dots clustered into semantic neighborhoods connected by distance lines",
+          }}
           links={[
             {
               href: "/eras/statistical-learning-and-network-revival",
@@ -209,7 +220,9 @@ export default function EmbeddingsLatentSpaceAndLlmMathPage() {
               title: card.title,
               description: (
                 <>
-                  <p className="equation-line">{card.expression}</p>
+                  <div className="equation-line">
+                    <MathBlock tex={card.tex} display />
+                  </div>
                   <p>{card.explanation}</p>
                 </>
               ),
@@ -304,6 +317,8 @@ export default function EmbeddingsLatentSpaceAndLlmMathPage() {
               title: anchor.title,
               description: anchor.detail,
               meta: anchor.period,
+              imageUrl: anchor.imageUrl,
+              imageAlt: anchor.imageAlt,
             }))}
           />
           <div className="prose-block">

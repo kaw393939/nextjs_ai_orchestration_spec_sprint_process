@@ -4,6 +4,7 @@ import {
   ChapterHero,
   ChapterSection,
   ChapterTimeline,
+  ChapterVisualBreak,
   EditorialAside,
   PullQuote,
   TransitionBlock,
@@ -65,18 +66,24 @@ const peopleCards = [
     summary:
       "Hinton anchors the network-revival story because he helps sustain neural learning through the period when it regains serious technical credibility.",
     links: ["backpropagation revival", "deep architectures"],
+    imageUrl: "/media/wikimedia/geoffrey-hinton.webp",
+    imageAlt: "Wikimedia Commons portrait of Geoffrey Hinton.",
   },
   {
     name: "Yann LeCun",
     summary:
-      "LeCun keeps the era tied to practical learning systems, especially where neural methods begin to matter for real perception tasks.",
+      "LeCun anchors the era in practical learning systems, especially where neural methods begin to matter for real perception tasks.",
     links: ["neural networks", "representation learning"],
+    imageUrl: "/media/wikimedia/yann-lecun.webp",
+    imageAlt: "Wikimedia Commons portrait of Yann LeCun.",
   },
   {
     name: "Yoshua Bengio",
     summary:
-      "Bengio helps make the era legible as a story about learned representations, not only about faster hardware or bigger datasets.",
+      "Bengio represents the era as a story about learned representations, not only about faster hardware or bigger datasets.",
     links: ["representation learning", "deep learning"],
+    imageUrl: "/media/wikimedia/yoshua-bengio.webp",
+    imageAlt: "Wikimedia Commons portrait of Yoshua Bengio.",
   },
 ];
 
@@ -145,17 +152,18 @@ export default function StatisticalLearningAndNetworkRevivalPage() {
     <article className="hero-panel exemplar-panel chapter-theme chapter-theme--statistical">
       <ChapterHero
         eyebrow="Era 5"
-        period="Era 5, 1988-2011"
-        title="Statistical Learning And Network Revival"
+        period="1988–2011"
+        title="Statistical Learning and Network Revival"
         lede="After the first AI winter, the field becomes more empirical, probabilistic, and data-driven. Statistical learning spreads through language, speech, and pattern recognition, while neural networks gain renewed credibility and set the stage for deep learning."
-        scene="This chapter is the methodological turn. The field does not simply switch ideologies; it starts trusting data, uncertainty, and measurable performance in ways that make later deep learning plausible."
-        backHref="/"
-        backLabel="Back to overview"
+        featureImage={{
+          src: "/media/generated/era-5-statistical-revival.webp",
+          alt: "Illustration of statistical learning, neural network revival, and benchmark culture.",
+        }}
         links={[
           {
             href: "/eras/knowledge-systems-critique-and-the-first-ai-winter",
             label:
-              "Back to Era 4: Knowledge Systems, Critique, And The First AI Winter",
+              "Back to Era 4: Knowledge Systems, Critique, and the First AI Winter",
           },
           {
             href: "/eras/deep-learning-breakthroughs",
@@ -165,9 +173,9 @@ export default function StatisticalLearningAndNetworkRevivalPage() {
       >
         <div className="prose-block">
           <p>
-            The key educational move here is comparison: what do statistical and
-            learned approaches promise that hand-built symbolic systems no
-            longer seem able to provide at scale?
+            What do statistical and learned approaches offer that hand-built
+            symbolic systems could no longer provide at scale? That comparison
+            is the key to understanding this era.
           </p>
         </div>
         <EditorialAside
@@ -197,7 +205,7 @@ export default function StatisticalLearningAndNetworkRevivalPage() {
       <ChapterSection
         id="era-5-two-strands"
         eyebrow="Organizing Lens"
-        title="Two strands make the revival era legible"
+        title="Two strands of the revival era"
       >
         <EditorialSummaryGrid items={twoStrandsCards} />
       </ChapterSection>
@@ -205,7 +213,7 @@ export default function StatisticalLearningAndNetworkRevivalPage() {
       <ChapterSection
         id="era-5-minimum-route"
         eyebrow="Shortest Route"
-        title="If you only need the bridge to Era 6, keep these three claims"
+        title="Three claims that define the revival"
       >
         <EditorialSummaryGrid items={minimumRouteCards} />
       </ChapterSection>
@@ -242,19 +250,19 @@ export default function StatisticalLearningAndNetworkRevivalPage() {
           left={
             <>
               <p>
-                Era 5 works best when it is taught as a change in method rather
-                than a clean ideological break. The limits of hand-built
-                symbolic systems make researchers more willing to trust models
-                that learn from examples, rank uncertain answers, and improve
-                through larger datasets and clearer benchmarks.
+                The limits of hand-built symbolic systems made researchers more
+                willing to trust models that learn from examples, rank uncertain
+                answers, and improve through larger datasets and clearer
+                benchmarks. The era is a change in method rather than a clean
+                ideological break.
               </p>
               <p>
                 Neural networks belong inside that same story. Backpropagation
-                and later deep-architecture work matter because they reopen a
-                line of research that had been weakened after earlier criticism.
-                But the better historical claim is modest: this era prepares the
-                field for deep learning by making data, probability, and learned
-                features feel normal and increasingly powerful.
+                and later deep-architecture work reopened a line of research
+                that had been weakened after earlier criticism. This era
+                prepared the field for deep learning by making data,
+                probability, and learned features feel normal and increasingly
+                powerful.
               </p>
             </>
           }
@@ -264,8 +272,8 @@ export default function StatisticalLearningAndNetworkRevivalPage() {
               title="Hand-built rules give way to learned features and measurable prediction"
             >
               <p>
-                This is why the chapter matters: it changes not only tools but
-                the standards by which the field decides what counts as
+                The shift from hand-built rules to learned features changes not
+                only tools but the standards by which the field measures
                 progress.
               </p>
             </EditorialAside>
@@ -275,7 +283,7 @@ export default function StatisticalLearningAndNetworkRevivalPage() {
 
       <ChapterSection
         id="era-5-people"
-        eyebrow="Linked People"
+        eyebrow="Key Figures"
         title="Who carries the transition"
       >
         <EditorialCardGrid
@@ -283,13 +291,15 @@ export default function StatisticalLearningAndNetworkRevivalPage() {
             title: person.name,
             description: person.summary,
             meta: `Linked ideas: ${person.links.join("; ")}`,
+            imageUrl: person.imageUrl,
+            imageAlt: person.imageAlt,
           }))}
         />
       </ChapterSection>
 
       <ChapterSection
         id="era-5-concepts"
-        eyebrow="Linked Concepts"
+        eyebrow="Core Concepts"
         title="The methods that change the field"
       >
         <EditorialCardGrid
@@ -299,16 +309,13 @@ export default function StatisticalLearningAndNetworkRevivalPage() {
             description: concept.summary,
           }))}
         />
-        <p className="artifact-note">
-          This era is the runway for deep learning rather than its full victory
-          lap. By the end of Era 5, the field is primed to trust large-scale
-          learning systems far more than it did during the symbolic and
-          expert-systems period. If you want the shortest bridge from this page
-          into modern retrieval and embeddings, use the{" "}
-          <a href="/guides/embeddings-latent-space-and-llm-math">math guide</a>{" "}
-          before moving on to Era 6.
-        </p>
       </ChapterSection>
+
+      <ChapterVisualBreak
+        src="/media/generated/era-5-visual-break.webp"
+        alt="Scatter plot morphing into a neural network diagram with support vector margins and probability curves."
+        caption="Probability, benchmarks, and learned representations redefine what counts as AI progress."
+      />
 
       <ChapterSection
         id="era-5-institutions"
@@ -321,7 +328,7 @@ export default function StatisticalLearningAndNetworkRevivalPage() {
             {
               title: "IBM Research",
               description:
-                "IBM keeps the era grounded in industrial AI milestones such as Deep Blue and Watson, where large-scale computation, ranking, and language systems become part of the public story of AI again.",
+                "IBM anchors the era in industrial AI milestones such as Deep Blue and Watson, where large-scale computation, ranking, and language systems become part of the public story of AI again.",
             },
             {
               title: "Google Brain",
@@ -330,18 +337,12 @@ export default function StatisticalLearningAndNetworkRevivalPage() {
             },
           ]}
         />
-        <p className="artifact-note">
-          Era 5 ends by pointing directly toward a new question: once models can
-          learn stronger internal representations from large data, what happens
-          when those same systems scale further and language architectures
-          change again?
-        </p>
       </ChapterSection>
 
       <ChapterSection
         id="era-5-documentary-profiles"
-        eyebrow="Documentary Profiles"
-        title="Portraits, source anchors, and institutions for the revival era"
+        eyebrow="Profiles"
+        title="Portraits of the revival era"
       >
         <NarrativeProfileGrid
           profiles={era5People}
@@ -350,7 +351,7 @@ export default function StatisticalLearningAndNetworkRevivalPage() {
         <HistoricalAnchorGrid
           anchors={era5Anchors}
           className="documentary-grid--anchors"
-          story="This anchor keeps the era tied to a named document rather than to retrospective summary alone."
+          story="Grounding the revival era in primary texts and named archives."
         />
         <NarrativeProfileGrid
           profiles={era5Institutions}

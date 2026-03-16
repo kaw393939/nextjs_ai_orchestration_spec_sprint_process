@@ -28,7 +28,7 @@ export function EmbeddingsNeighborhoodDiagram() {
             refY="5"
             orient="auto-start-reverse"
           >
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="#9f3f24" />
+            <path d="M 0 0 L 10 5 L 0 10 z" className="viz-arrow-head" />
           </marker>
         </defs>
 

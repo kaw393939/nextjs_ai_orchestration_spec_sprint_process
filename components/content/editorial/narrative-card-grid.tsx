@@ -12,7 +12,7 @@ type NarrativeCardGridItem = {
   title: string;
   subtitle: string;
   summary: string;
-  story: string;
+  story?: string;
   officialLink: NarrativeLink;
   sourceRecord: string;
   imageUrl?: string;
@@ -98,7 +98,7 @@ export function HistoricalAnchorGrid({
   getSubtitle,
 }: {
   anchors: HistoricalAnchor[];
-  story: string;
+  story?: string;
   className?: string;
   cardClassName?: string;
   getSubtitle?: (anchor: HistoricalAnchor) => string;

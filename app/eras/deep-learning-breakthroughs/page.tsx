@@ -4,6 +4,7 @@ import {
   ChapterHero,
   ChapterSection,
   ChapterTimeline,
+  ChapterVisualBreak,
   EditorialAside,
   PullQuote,
   TransitionBlock,
@@ -60,18 +61,24 @@ const peopleCards = [
     summary:
       "Hinton remains central because the deep-learning era depends on work that kept multi-layer neural learning alive long enough to scale.",
     links: ["deep learning", "network revival"],
+    imageUrl: "/media/wikimedia/geoffrey-hinton.webp",
+    imageAlt: "Wikimedia Commons portrait of Geoffrey Hinton.",
   },
   {
     name: "Yann LeCun",
     summary:
-      "LeCun helps make the era legible through concrete vision and representation-learning gains rather than only abstract architectural talk.",
+      "LeCun represents the era through concrete vision and representation-learning gains rather than only abstract architectural talk.",
     links: ["representation learning", "vision systems"],
+    imageUrl: "/media/wikimedia/yann-lecun.webp",
+    imageAlt: "Wikimedia Commons portrait of Yann LeCun.",
   },
   {
     name: "Yoshua Bengio",
     summary:
       "Bengio gives the era its clearest conceptual language for deep models that learn multiple useful levels of abstraction.",
     links: ["representation learning", "deep architectures"],
+    imageUrl: "/media/wikimedia/yoshua-bengio.webp",
+    imageAlt: "Wikimedia Commons portrait of Yoshua Bengio.",
   },
 ];
 
@@ -140,20 +147,21 @@ export default function DeepLearningBreakthroughsPage() {
     <article className="hero-panel exemplar-panel chapter-theme chapter-theme--breakthrough">
       <ChapterHero
         eyebrow="Era 6"
-        period="Era 6, 2012-2019"
+        period="2012–2019"
         title="Deep Learning Breakthroughs"
         lede="Deep learning becomes the field's dominant performance regime in this era. Learned multi-layer representations, large-scale training, and finally transformers reshape what AI systems can do in vision, speech, and language."
-        scene="This chapter should feel faster than Era 5. Benchmarks move, scale becomes explanatory, and the transformer turns the runway toward foundation models into a direct line."
-        backHref="/"
-        backLabel="Back to overview"
+        featureImage={{
+          src: "/media/generated/era-6-deep-learning.webp",
+          alt: "Illustration of deep learning breakthroughs, representation learning, and the transformer shift.",
+        }}
         links={[
           {
             href: "/eras/statistical-learning-and-network-revival",
-            label: "Back to Era 5: Statistical Learning And Network Revival",
+            label: "Back to Era 5: Statistical Learning and Network Revival",
           },
           {
             href: "/eras/foundation-models-and-generative-ai",
-            label: "Continue to Era 7: Foundation Models And Generative AI",
+            label: "Continue to Era 7: Foundation Models and Generative AI",
           },
         ]}
       >
@@ -235,33 +243,33 @@ export default function DeepLearningBreakthroughsPage() {
           left={
             <>
               <p>
-                Era 6 should not be summarized as simple hype around larger
-                models. The stronger historical claim is that deep systems
-                increasingly learn intermediate structure for themselves and do
-                so well enough to change the research agenda. Vision, speech,
-                and language systems all start to benefit from the same general
-                logic: large-scale layered models can discover useful
-                representations from data rather than depending entirely on
-                handcrafted features.
+                Deep learning is not simple hype around larger models. The
+                stronger historical claim is that deep systems increasingly
+                learn intermediate structure for themselves and do so well
+                enough to change the research agenda. Vision, speech, and
+                language systems all benefit from the same general logic:
+                large-scale layered models can discover useful representations
+                from data rather than depending entirely on handcrafted
+                features.
               </p>
               <p>
                 The transformer is the era&apos;s decisive late turn. Attention
-                Is All You Need matters because it shows that sequence models do
-                not have to inherit older recurrent assumptions. Once
-                attention-centered architectures prove stronger and more
-                parallelizable, the field has the immediate architectural runway
-                for the foundation-model and large-language-model period.
+                Is All You Need showed that sequence models do not have to
+                inherit older recurrent assumptions. Once attention-centered
+                architectures proved stronger and more parallelizable, the field
+                had the immediate architectural runway for foundation models and
+                large language models.
               </p>
             </>
           }
           right={
             <EditorialAside
               label="Runway"
-              title="Transformers matter because they reorganize what scale can do"
+              title="Transformers reorganize what scale can do"
             >
               <p>
-                That is why the final handoff into Era 7 should feel immediate,
-                not like a separate product story detached from research.
+                The handoff into Era 7 is immediate, not a separate product
+                story detached from research.
               </p>
             </EditorialAside>
           }
@@ -270,7 +278,7 @@ export default function DeepLearningBreakthroughsPage() {
 
       <ChapterSection
         id="era-6-people"
-        eyebrow="Linked People"
+        eyebrow="Key Figures"
         title="Who makes the breakthrough legible"
       >
         <EditorialCardGrid
@@ -278,6 +286,8 @@ export default function DeepLearningBreakthroughsPage() {
             title: person.name,
             description: person.summary,
             meta: `Linked ideas: ${person.links.join("; ")}`,
+            imageUrl: person.imageUrl,
+            imageAlt: person.imageAlt,
           }))}
         />
       </ChapterSection>
@@ -301,7 +311,7 @@ export default function DeepLearningBreakthroughsPage() {
 
       <ChapterSection
         id="era-6-concepts"
-        eyebrow="Linked Concepts"
+        eyebrow="Core Concepts"
         title="The ideas that define the breakthrough"
       >
         <EditorialCardGrid
@@ -311,17 +321,17 @@ export default function DeepLearningBreakthroughsPage() {
             description: concept.summary,
           }))}
         />
-        <p className="artifact-note">
-          The transformer shift is the last major hinge before foundation
-          models. It makes the next era possible by turning attention and
-          large-scale learned representations into the main architecture story
-          for language and beyond.
-        </p>
       </ChapterSection>
+
+      <ChapterVisualBreak
+        src="/media/generated/era-6-visual-break.webp"
+        alt="GPU server racks with green indicator lights layered with convolutional neural network feature map visualizations."
+        caption="Scale, learned representations, and transformers turn deep learning into the dominant AI regime."
+      />
 
       <ChapterSection
         id="era-6-institutions"
-        eyebrow="Institutions And Turning Point"
+        eyebrow="Institutions"
         title="Industrial labs and the transformer inflection"
       >
         <EditorialCardGrid
@@ -343,7 +353,7 @@ export default function DeepLearningBreakthroughsPage() {
 
       <ChapterSection
         id="era-6-documentary-profiles"
-        eyebrow="Documentary Profiles"
+        eyebrow="Profiles"
         title="Portraits and source anchors for the deep learning era"
       >
         <NarrativeProfileGrid
@@ -353,7 +363,6 @@ export default function DeepLearningBreakthroughsPage() {
         <HistoricalAnchorGrid
           anchors={era6Anchors}
           className="documentary-grid--anchors"
-          story="This anchor keeps the era tied to a named document rather than to retrospective summary alone."
         />
       </ChapterSection>
 

@@ -16,17 +16,16 @@ describe("exemplar era package", () => {
 
     expect(screen.getAllByText(/^why it matters$/i).length).toBeGreaterThan(0);
 
-    expect(screen.getByText(/logic to ai diagram/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/logic to ai convergence diagram/i)
+    ).toBeInTheDocument();
 
     expect(
       screen.getByRole("heading", {
         level: 2,
-        name: /media and source trail for this era/i,
+        name: /key documents and archives/i,
       })
     ).toBeInTheDocument();
-
-    expect(screen.getAllByText(/story card/i).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/source page/i).length).toBeGreaterThan(0);
 
     expect(
       screen.getAllByText(

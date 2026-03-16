@@ -155,7 +155,7 @@ const modernInstitutions = institutionProfiles.filter(
 );
 
 export const metadata: Metadata = {
-  title: "People And Institutions",
+  title: "People and Institutions",
   description:
     "A narrative index of the people, institutions, and source anchors that make the AI history site feel grounded and inhabited.",
 };
@@ -165,13 +165,14 @@ export default function PeopleAndInstitutionsPage() {
     <main className="page-shell exemplar-shell people-index-shell">
       <article className="hero-panel exemplar-panel chapter-theme chapter-theme--cast people-index-panel">
         <ChapterHero
-          eyebrow="Narrative index"
-          period="People and institutions"
-          title="Who Carries The Story"
+          eyebrow="Companion chapter"
+          period="People & institutions"
+          title="Who Carries the Story"
           lede="This page is the site's cast sheet and institutional companion chapter. It treats AI history as something built by named people, labs, companies, critics, and documentary anchors instead of as a blur of anonymous breakthroughs."
-          scene="Readers rarely remember a long history through dates alone. They remember recurring characters, the organizations those people build, and the documents that keep the story honest."
-          backHref="/"
-          backLabel="Back to overview"
+          featureImage={{
+            src: "/media/generated/people-institutions-hero.webp",
+            alt: "Overlapping portrait silhouettes of scientists across decades connected by faint geometric lines, evoking intellectual lineage",
+          }}
           links={[
             {
               href: "/eras/foundation-models-and-generative-ai",
@@ -296,6 +297,22 @@ export default function PeopleAndInstitutionsPage() {
           title="Deployment becomes history when institutions choose to make systems public"
           description="The modern AI story does not live only in labs or models. It lives in organizations that decide how research becomes interface, infrastructure, and governance language."
         />
+
+        <ChapterSection
+          id="era-timeline"
+          eyebrow="Timeline"
+          title="Where these people and institutions sit across seven eras"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/media/generated/era-timeline.svg"
+            alt="Timeline showing the seven eras of AI history from Precursors (pre-1940) through Foundation Models (2017–present)"
+            width={1200}
+            height={180}
+            className="era-timeline-diagram"
+            style={{ width: "100%", height: "auto" }}
+          />
+        </ChapterSection>
 
         <ChapterSection
           id="institution-index"

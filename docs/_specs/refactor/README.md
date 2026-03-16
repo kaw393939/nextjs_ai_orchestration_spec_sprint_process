@@ -11,11 +11,12 @@ coherent multimedia-book reading experience.
 
 ## Workstreams
 
-| Workstream                                | Status      | Purpose                                                             |
-| ----------------------------------------- | ----------- | ------------------------------------------------------------------- |
-| [Reading System](reading-system/)         | In Progress | Shared chapter patterns, editorial UI, and long-form reading rhythm |
-| [Narrative Surfaces](narrative-surfaces/) | Planned     | Homepage, reading map, and people/institutions refactor             |
-| [Era Chapters](era-chapters/)             | Planned     | Chapter-style rollout across Era 1 through Era 7                    |
+| Workstream                                              | Status      | Purpose                                                                |
+| ------------------------------------------------------- | ----------- | ---------------------------------------------------------------------- |
+| [Reading System](reading-system/)                       | In Progress | Shared chapter patterns, editorial UI, and long-form reading rhythm    |
+| [Narrative Surfaces](narrative-surfaces/)               | Planned     | Homepage, reading map, and people/institutions refactor                |
+| [Chapter Exhibition Parity](chapter-exhibition-parity/) | Planned     | Homepage-parity visual audit and redesign of non-home chapter surfaces |
+| [Era Chapters](era-chapters/)                           | Planned     | Chapter-style rollout across Era 1 through Era 7                       |
 
 Two completed refactor workstreams (code-quality, browser-enhancements) remain
 in this directory as student study examples. A third (browser-polish) has been
@@ -34,8 +35,10 @@ moved to [docs/\_archive/](../../_archive/specs/refactor/browser-polish/).
 
 1. Implement [Reading System](reading-system/) first.
 2. Refactor [Narrative Surfaces](narrative-surfaces/) second.
-3. Roll out [Era Chapters](era-chapters/) last, using the new shared chapter
-   system and top-level story framing.
+3. Implement [Chapter Exhibition Parity](chapter-exhibition-parity/) to raise
+   non-home routes to the homepage's visual standard.
+4. Roll out [Era Chapters](era-chapters/) last, using the new shared chapter
+   system, top-level story framing, and the stricter visual benchmark.
 
 ## Expected Outcome
 

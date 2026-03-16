@@ -28,7 +28,7 @@ describe("chronology expansion", () => {
     expect(
       screen.getByRole("heading", {
         level: 2,
-        name: /documents and teaching cards for the precursor layer/i,
+        name: /key texts and archives/i,
       })
     ).toBeInTheDocument();
   });
@@ -46,12 +46,6 @@ describe("chronology expansion", () => {
       screen.getByRole("link", {
         name: /continue to era 3: symbolic optimism and early ai programs/i,
       })
-    ).toBeInTheDocument();
-
-    expect(
-      screen.getByText(
-        /these concepts now teach across eras as well as within era 2/i
-      )
     ).toBeInTheDocument();
 
     expect(

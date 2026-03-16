@@ -67,7 +67,7 @@ describe("learning bridges", () => {
     ).toBeInTheDocument();
 
     expect(
-      screen.getByText(/cos\(theta\) = dot\(a, b\) \/ \(\|a\| \|b\|\)/i)
+      screen.getByText(/similarity is a geometric comparison/i)
     ).toBeInTheDocument();
     expect(
       screen.getByText(/embeddings are coordinates, not hidden meanings/i)

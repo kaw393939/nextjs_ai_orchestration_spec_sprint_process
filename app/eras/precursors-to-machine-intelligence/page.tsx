@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import {
   ChapterHero,
   ChapterSection,
+  ChapterVisualBreak,
   EditorialAside,
   TransitionBlock,
 } from "@/components/content/chapter";
@@ -34,30 +35,6 @@ const precursorMilestones = [
   },
 ];
 
-const precursorPeople = [
-  {
-    name: "George Boole",
-    summary:
-      "Boole gives the era its clearest account of how reasoning can become symbolic structure.",
-    links: ["Formal logic", "Computability"],
-  },
-  {
-    name: "Charles Babbage",
-    summary:
-      "Babbage makes mechanized procedure imaginable as a serious machine problem instead of an abstract dream.",
-    links: ["Mechanized calculation", "Computability"],
-  },
-  {
-    name: "Ada Lovelace",
-    summary:
-      "Lovelace helps define the conceptual boundary between executing procedures and claiming genuine intelligence.",
-    links: [
-      "Mechanized calculation",
-      "Machine intelligence as research agenda",
-    ],
-  },
-];
-
 const lineageCards = [
   {
     title: "Formal logic to computability",
@@ -71,56 +48,48 @@ const lineageCards = [
   },
 ];
 
-const minimumRouteCards = [
-  {
-    title: "Boole supplies structure",
-    description:
-      "Logic becomes explicit symbolic form, which is the first part of the later computability story.",
-  },
-  {
-    title: "Babbage supplies machinery",
-    description:
-      "Procedure becomes a machine problem, which makes computation feel engineerable rather than merely philosophical.",
-  },
-  {
-    title: "Lovelace supplies caution",
-    description:
-      "She keeps execution from being mistaken for intelligence, which is the conceptual brake the rest of the site keeps returning to.",
-  },
-];
-
 const readingFrameCards = [
   {
     title: "Logic",
     description:
-      "Boole matters because symbolic reasoning becomes representable, not because AI already exists.",
+      "Boole formalizes symbolic reasoning into a structure that can be represented and manipulated explicitly.",
   },
   {
     title: "Machinery",
     description:
-      "Babbage matters because calculation becomes a machine-design problem, which makes later computation teachable.",
+      "Babbage makes calculation a machine-design problem, turning procedure into something engineerable.",
   },
   {
     title: "Caution",
     description:
-      "Lovelace matters because she keeps execution and intelligence from collapsing into the same claim too early.",
+      "Lovelace keeps execution and intelligence from collapsing into the same claim too early.",
   },
 ];
 
-const mediaRecords = [
+const peopleCards = [
   {
-    title: "Lovelace analytical-engine story card",
-    status: "Story card",
-    path: "docs/content/media/records/lovelace-analytical-engine-story-card.md",
-    summary:
-      "A short teaching card that frames Lovelace as a conceptual checkpoint rather than as a retroactive inventor of AI.",
+    title: "Ada Lovelace",
+    description:
+      "She frames the difference between following rules and proving intelligence before AI exists as a field. Her notes on the Analytical Engine establish the conceptual standard the rest of the chronology keeps testing.",
+    meta: "Interpretation · feature figure",
+    imageUrl: "/media/wikimedia/ada-lovelace.webp",
+    imageAlt: "Wikimedia Commons portrait of Ada Lovelace.",
   },
   {
-    title: "Boole to Turing story card",
-    status: "Story bridge",
-    path: "docs/content/media/records/boole-to-turing-story-card.md",
-    summary:
-      "A bridge card that makes the logical runway from symbolic reasoning into computability explicit.",
+    title: "George Boole",
+    description:
+      "Boole turns reasoning into symbolic form. That makes later computability legible as an extension rather than a rupture.",
+    meta: "Logic · symbolic structure",
+    imageUrl: "/media/wikimedia/george-boole.webp",
+    imageAlt: "Wikimedia Commons portrait of George Boole.",
+  },
+  {
+    title: "Charles Babbage",
+    description:
+      "Babbage makes mechanized procedure feel concrete. The precursor era stops being an abstract prologue once there is a machine to point at.",
+    meta: "Machinery · engineered object",
+    imageUrl: "/media/wikimedia/charles-babbage.webp",
+    imageAlt: "Wikimedia Commons portrait of Charles Babbage.",
   },
 ];
 
@@ -139,37 +108,21 @@ export default function PrecursorsToMachineIntelligencePage() {
     <article className="hero-panel exemplar-panel chapter-theme chapter-theme--precursor">
       <ChapterHero
         eyebrow="Era 1"
-        period="Era 1, before 1936"
-        title="Precursors To Machine Intelligence"
+        period="Before 1936"
+        title="Precursors to Machine Intelligence"
         lede="AI does not begin with electronics or Dartmouth. It begins earlier, when logic becomes symbolic, calculation becomes mechanizable, and the difference between execution and intelligence first becomes historically visible."
-        scene="Read Era 1 as the runway chapter: symbolic reasoning, machinery, and disciplined hesitation arrive before anyone can plausibly claim a formal field of AI exists."
-        backHref="/"
-        backLabel="Back to overview"
+        featureImage={{
+          src: "/media/generated/era-1-precursors.webp",
+          alt: "Illustration of the conceptual runway before formal computation: symbolic logic, mechanical engines, and the earliest abstraction of intelligence.",
+        }}
         links={[
           {
             href: "/eras/computation-information-field-formation",
             label:
-              "Continue to Era 2: Computation, Information, And Field Formation",
+              "Continue to Era 2: Computation, Information, and Field Formation",
           },
         ]}
-      >
-        <div className="prose-block">
-          <p>
-            Start here when the standard origin story feels too abrupt. This
-            chapter makes Turing and Dartmouth feel earned rather than
-            miraculous.
-          </p>
-        </div>
-        <EditorialAside
-          label="Runway Logic"
-          title="The chapter matters because it separates execution from stronger claims about intelligence"
-        >
-          <p>
-            That distinction starts early and returns repeatedly, from Lovelace
-            to modern debates about fluency and understanding.
-          </p>
-        </EditorialAside>
-      </ChapterHero>
+      />
 
       <GuideCallout
         variant="why-it-matters"
@@ -186,18 +139,16 @@ export default function PrecursorsToMachineIntelligencePage() {
       <ChapterSection
         id="era-1-reading-frame"
         eyebrow="Reading Frame"
-        title="Three ideas to hold in your head while you read"
+        title="Three ideas to hold while you read"
       >
         <EditorialSummaryGrid items={readingFrameCards} />
       </ChapterSection>
 
-      <ChapterSection
-        id="era-1-minimum-route"
-        eyebrow="Shortest Route"
-        title="If you only need the handoff, keep these three precursor jobs"
-      >
-        <EditorialSummaryGrid items={minimumRouteCards} />
-      </ChapterSection>
+      <ChapterVisualBreak
+        src="/media/generated/era-1-visual-break.webp"
+        alt="Close-up of brass gears, cam mechanisms, and engraved mathematical notation from a Difference Engine."
+        caption="Symbolic structure, engineered procedure, and the still-open question of what execution means."
+      />
 
       <ChapterSection
         id="era-1-precursors"
@@ -225,11 +176,10 @@ export default function PrecursorsToMachineIntelligencePage() {
           left={
             <>
               <p>
-                Era 1 should not pretend that Boole, Babbage, or Lovelace were
-                already doing AI in the modern sense. The value of this package
-                is narrower and stronger: it makes later questions about
-                computation, symbolic procedure, and machine intelligence easier
-                to teach.
+                Boole, Babbage, and Lovelace were not doing AI in the modern
+                sense. But they established the conceptual runway: symbolic
+                logic, mechanized procedure, and a clear separation between
+                execution and intelligence that later researchers inherited.
               </p>
               <p>
                 Boole gives the story symbolic logic. Babbage gives it
@@ -241,7 +191,7 @@ export default function PrecursorsToMachineIntelligencePage() {
           }
           right={
             <EditorialAside
-              label="Teaching Payoff"
+              label="Key Insight"
               title="Lovelace gives the chapter its first conceptual brake"
             >
               <p>
@@ -256,16 +206,10 @@ export default function PrecursorsToMachineIntelligencePage() {
 
       <ChapterSection
         id="era-1-people"
-        eyebrow="Linked People"
-        title="Who defines the precursor layer"
+        eyebrow="Key Figures"
+        title="Boole, Babbage, and Lovelace"
       >
-        <EditorialCardGrid
-          items={precursorPeople.map((person) => ({
-            title: person.name,
-            description: person.summary,
-            meta: `Linked ideas: ${person.links.join("; ")}`,
-          }))}
-        />
+        <EditorialCardGrid items={peopleCards} />
       </ChapterSection>
 
       <GuideCallout
@@ -285,8 +229,8 @@ export default function PrecursorsToMachineIntelligencePage() {
 
       <ChapterSection
         id="era-1-lineage"
-        eyebrow="Cross-Era Concept Teaching"
-        title="How Era 1 connects forward"
+        eyebrow="Connections"
+        title="How these ideas carry forward"
       >
         <EditorialCardGrid
           items={lineageCards.map((item) => ({
@@ -294,49 +238,17 @@ export default function PrecursorsToMachineIntelligencePage() {
             description: item.summary,
           }))}
         />
-        <p className="artifact-note">
-          The live chronology now has an explicit adjacent-era handoff: this
-          route builds the runway, and Era 2 narrows that runway into formal
-          computation, information, neural abstraction, and Dartmouth field
-          formation.
-        </p>
-      </ChapterSection>
-
-      <ChapterSection
-        id="era-1-media"
-        eyebrow="Documents And Teaching Cards"
-        title="Documents and teaching cards for the precursor layer"
-      >
-        <div className="artifact-grid">
-          {mediaRecords.map((record) => (
-            <article key={record.title} className="artifact-card">
-              <div className="artifact-card__topline">
-                <h3>{record.title}</h3>
-                <span className="artifact-status artifact-status--approved">
-                  {record.status}
-                </span>
-              </div>
-              <p>{record.summary}</p>
-              <p className="artifact-card__path">{record.path}</p>
-            </article>
-          ))}
-        </div>
-        <p className="artifact-note">
-          These records matter because Era 1 is strongest when it points to
-          named documents and explicit teaching frames rather than fading into a
-          generic prehistory of AI.
-        </p>
       </ChapterSection>
 
       <ChapterSection
         id="era-1-source-anchors"
-        eyebrow="Historical Source Anchors"
-        title="Primary texts and visual anchors for the runway into computation"
+        eyebrow="Primary Sources"
+        title="Key texts and archives"
       >
         <HistoricalAnchorGrid
           anchors={era1Anchors}
           className="source-anchor-grid"
-          story="The precursor layer gets stronger when it points to specific texts, archives, and arguments instead of acting like a vague prehistory."
+          story="Grounding the precursor era in primary texts and named archives."
           getSubtitle={() => "Era 1 · primary text and source anchor"}
         />
       </ChapterSection>
