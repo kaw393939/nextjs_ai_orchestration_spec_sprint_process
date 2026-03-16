@@ -164,14 +164,14 @@ export function SiteHeader() {
     };
   }, [pathname]);
 
-  const pageLevelItems =
-    pathname === "/"
-      ? homeSectionNavigation
-      : (pageSectionNavigation[pathname] ?? null);
-
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
   };
+
+  const activePrimaryItem =
+    mainNavigation.find((item) =>
+      isNavigationItemActive(item, pathname, hash)
+    ) ?? mainNavigation[0];
 
   return (
     <header className="site-header">
@@ -203,30 +203,18 @@ export function SiteHeader() {
               )}
             >
               <DialogHeader className="site-header__menu-header">
-                <p className="site-header__eyebrow">Story-led reference</p>
                 <DialogTitle className="site-header__menu-title">
-                  Navigate the exhibition
+                  Site navigation
                 </DialogTitle>
-                <DialogDescription className="site-header__menu-description">
-                  Move between the main chronology, companion chapters, and the
-                  section map without losing your place in the story.
+                <DialogDescription className="site-header__menu-description sr-only">
+                  Choose a main route and return to the page immediately.
                 </DialogDescription>
+                <p className="site-header__menu-current">
+                  Current destination: {activePrimaryItem.label}
+                </p>
               </DialogHeader>
 
               <div className="site-header__menu-body">
-                <div className="site-header__menu-brandcard">
-                  <Link
-                    href="/"
-                    className="site-brand site-brand--menu"
-                    onClick={closeMobileMenu}
-                  >
-                    {siteConfig.name}
-                  </Link>
-                  <p className="site-tagline site-tagline--menu">
-                    {siteTagline}
-                  </p>
-                </div>
-
                 <div className="site-header__menu-block">
                   <p className="site-nav__label">Main navigation</p>
                   <NavigationRow
@@ -238,28 +226,6 @@ export function SiteHeader() {
                     onItemSelect={closeMobileMenu}
                   />
                 </div>
-
-                {pageLevelItems ? (
-                  <div className="site-header__menu-block site-header__menu-block--secondary">
-                    <p className="site-nav__label">On this page</p>
-                    {pathname === "/" ? (
-                      <NavigationRow
-                        items={pageLevelItems}
-                        pathname={pathname}
-                        hash={hash}
-                        variant="secondary"
-                        ariaLabel="Homepage sections"
-                        onItemSelect={closeMobileMenu}
-                      />
-                    ) : (
-                      <PageSectionNav
-                        items={pageLevelItems}
-                        activeHash={hash}
-                        onItemSelect={closeMobileMenu}
-                      />
-                    )}
-                  </div>
-                ) : null}
               </div>
             </DialogContent>
           </Dialog>

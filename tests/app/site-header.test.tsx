@@ -68,7 +68,7 @@ describe("site header", () => {
     );
 
     expect(
-      await screen.findByRole("dialog", { name: /navigate the exhibition/i })
+      await screen.findByRole("dialog", { name: /site navigation/i })
     ).toBeInTheDocument();
 
     expect(
