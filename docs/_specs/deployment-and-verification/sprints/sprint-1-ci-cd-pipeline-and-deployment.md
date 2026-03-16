@@ -227,10 +227,12 @@ sections.
 
 ## QA Deviations
 
-1. **Lighthouse URL needed `.html` extension.** Next.js 16 static export
-   produces `out/eras/precursors-to-machine-intelligence.html` (not
-   `/index.html` inside a directory). The `lighthouserc.json` URL was updated
-   to `/eras/precursors-to-machine-intelligence.html` to match.
+1. **Lighthouse URL must match the exported route shape.** With
+   `trailingSlash: true`, Next.js static export serves the era route from
+   `out/eras/precursors-to-machine-intelligence/index.html` via the public URL
+   `/eras/precursors-to-machine-intelligence/`. The `lighthouserc.json` URL was
+   updated to the directory route to match what the local static server
+   actually serves.
 2. **Task 6 (live URL verification) deferred.** Confirming the live URL
    requires pushing to `main` and enabling GitHub Pages in the repository
    settings. The URL is already in README.md; verification happens on first

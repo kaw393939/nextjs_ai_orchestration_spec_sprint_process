@@ -130,7 +130,7 @@ Install `@lhci/cli` as a dev dependency. Configure with `lighthouserc.json`:
   "ci": {
     "collect": {
       "staticDistDir": "./out",
-      "url": ["/", "/eras/precursors-to-machine-intelligence.html"],
+      "url": ["/", "/eras/precursors-to-machine-intelligence/"],
       "numberOfRuns": 1
     },
     "assert": {

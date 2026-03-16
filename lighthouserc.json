@@ -2,7 +2,7 @@
   "ci": {
     "collect": {
       "staticDistDir": "./out",
-      "url": ["/", "/eras/precursors-to-machine-intelligence.html"],
+      "url": ["/", "/eras/precursors-to-machine-intelligence/"],
       "numberOfRuns": 1
     },
     "assert": {
