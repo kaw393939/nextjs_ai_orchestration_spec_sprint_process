@@ -50,6 +50,164 @@ export const peopleProfiles: NarrativeProfile[] = [
     sourceRecord: "",
   },
   {
+    slug: "alan-turing",
+    name: "Alan Turing",
+    era: "Era 2",
+    kind: "person",
+    role: "Computability theorist and wartime codebreaker",
+    summary:
+      "Turing formalized the concept of computation itself and asked whether machines could think, giving the field its foundational question.",
+    story:
+      "He connects the mathematical precursors to the institutional birth of AI. Without the Turing machine and the Turing test, the Dartmouth generation has no shared vocabulary.",
+    officialUrl: "https://www.britannica.com/biography/Alan-Turing",
+    officialLabel: "Britannica biography",
+    imageUrl: "/media/wikimedia/alan-turing.webp",
+    imageAlt: "Photograph of Alan Turing aged 16, Wikimedia Commons.",
+    socialLinks: [],
+    sourceRecord: "",
+  },
+  {
+    slug: "john-mccarthy",
+    name: "John McCarthy",
+    era: "Era 3",
+    kind: "person",
+    role: "Coined 'artificial intelligence' and led symbolic AI research",
+    summary:
+      "McCarthy named the field, organized the Dartmouth conference, and created LISP — the language that defined symbolic AI for decades.",
+    story:
+      "He is the bridge between the field-formation moment and the symbolic optimism era. Without McCarthy there is no Dartmouth, no LISP, and no institutional identity for AI research.",
+    officialUrl: "https://www.britannica.com/biography/John-McCarthy",
+    officialLabel: "Britannica biography",
+    imageUrl: "/media/wikimedia/john-mccarthy.webp",
+    imageAlt:
+      "Photograph of John McCarthy at Stanford, Wikimedia Commons, CC BY-SA 2.0.",
+    socialLinks: [],
+    sourceRecord: "",
+  },
+  {
+    slug: "marvin-minsky",
+    name: "Marvin Minsky",
+    era: "Era 3",
+    kind: "person",
+    role: "Co-founder of MIT AI Lab and theorist of mind and machines",
+    summary:
+      "Minsky built the institutional home for AI at MIT and wrote 'The Society of Mind,' shaping how a generation thought about intelligence as emergent computation.",
+    story:
+      "He represents the institutional confidence of the symbolic era and co-authored (with Papert) the critique of perceptrons that shaped the field's trajectory for 15 years.",
+    officialUrl: "https://www.britannica.com/biography/Marvin-Minsky",
+    officialLabel: "Britannica biography",
+    imageUrl: "/media/wikimedia/marvin-minsky.webp",
+    imageAlt: "Photograph of Marvin Minsky, Wikimedia Commons, CC BY 3.0.",
+    socialLinks: [],
+    sourceRecord: "",
+  },
+  {
+    slug: "herbert-simon",
+    name: "Herbert Simon",
+    era: "Era 3",
+    kind: "person",
+    role: "Nobel laureate and co-creator of early AI programs",
+    summary:
+      "Simon (with Newell) built Logic Theorist and GPS — the first programs that proved theorems and solved problems, demonstrating that machines could reason.",
+    story:
+      "He brings the cognitive-science thread into the AI narrative: the claim that human thinking is itself information processing, and that programs can model it.",
+    officialUrl: "https://www.britannica.com/biography/Herbert-A-Simon",
+    officialLabel: "Britannica biography",
+    imageUrl: "/media/wikimedia/herbert-simon.webp",
+    imageAlt:
+      "Photograph of Herbert Simon, Carnegie Mellon University archives.",
+    socialLinks: [],
+    sourceRecord: "",
+  },
+  {
+    slug: "edward-feigenbaum",
+    name: "Edward Feigenbaum",
+    era: "Era 4",
+    kind: "person",
+    role: "Father of expert systems",
+    summary:
+      "Feigenbaum pioneered knowledge engineering and expert systems, turning AI from general-purpose ambition into domain-specific industrial tools.",
+    story:
+      "He is the key figure for understanding why AI pivoted from general intelligence claims to narrow, commercially viable expert systems — and why that pivot eventually hit a wall.",
+    officialUrl:
+      "https://www.britannica.com/biography/Edward-Albert-Feigenbaum",
+    officialLabel: "Britannica biography",
+    imageUrl: "/media/wikimedia/edward-feigenbaum.webp",
+    imageAlt:
+      "Photograph of Edward Feigenbaum, Wikimedia Commons, CC BY-SA 3.0.",
+    socialLinks: [],
+    sourceRecord: "",
+  },
+  {
+    slug: "frank-rosenblatt",
+    name: "Frank Rosenblatt",
+    era: "Era 5",
+    kind: "person",
+    role: "Inventor of the Perceptron",
+    summary:
+      "Rosenblatt built the first trainable neural network, the Perceptron, in 1958 — the ancestor of every modern deep learning system.",
+    story:
+      "His work was marginalized by the Minsky-Papert critique but vindicated by the statistical revival. He is the human bridge between the symbolic era's suppression of neural approaches and their eventual triumph.",
+    officialUrl: "https://www.britannica.com/biography/Frank-Rosenblatt",
+    officialLabel: "Britannica biography",
+    imageUrl: "/media/wikimedia/frank-rosenblatt.webp",
+    imageAlt: "Photograph of Frank Rosenblatt, public domain.",
+    socialLinks: [],
+    sourceRecord: "",
+  },
+  {
+    slug: "geoffrey-hinton",
+    name: "Geoffrey Hinton",
+    era: "Era 6",
+    kind: "person",
+    role: "Pioneer of deep learning and 2024 Nobel laureate",
+    summary:
+      "Hinton co-invented backpropagation for neural networks, championed deep learning through decades of skepticism, and demonstrated that neural networks could outperform all alternatives at scale.",
+    story:
+      "He is the human thread connecting the statistical revival (Era 5) to the deep learning breakthroughs (Era 6) to the foundation model era (Era 7). His 2024 Nobel Prize in Physics validated deep learning as fundamental science.",
+    officialUrl: "https://www.britannica.com/biography/Geoffrey-Hinton",
+    officialLabel: "Britannica biography",
+    imageUrl: "/media/wikimedia/geoffrey-hinton.webp",
+    imageAlt:
+      "Photograph of Geoffrey Hinton at UBC, Wikimedia Commons, CC BY 2.0.",
+    socialLinks: [],
+    sourceRecord: "",
+  },
+  {
+    slug: "yann-lecun",
+    name: "Yann LeCun",
+    era: "Era 6",
+    kind: "person",
+    role: "Inventor of convolutional neural networks",
+    summary:
+      "LeCun designed ConvNets for image recognition, proved that deep architectures could learn useful representations from raw data, and led Meta AI.",
+    story:
+      "He is part of the 'deep learning trinity' with Hinton and Bengio. His work on convolutional networks is the direct ancestor of the computer vision revolution that made the ImageNet moment possible.",
+    officialUrl: "https://www.britannica.com/biography/Yann-LeCun",
+    officialLabel: "Britannica biography",
+    imageUrl: "/media/wikimedia/yann-lecun.webp",
+    imageAlt: "Photograph of Yann LeCun, Wikimedia Commons, CC BY-SA 4.0.",
+    socialLinks: [],
+    sourceRecord: "",
+  },
+  {
+    slug: "yoshua-bengio",
+    name: "Yoshua Bengio",
+    era: "Era 6",
+    kind: "person",
+    role: "Deep learning theorist and attention mechanism pioneer",
+    summary:
+      "Bengio's work on language models, attention mechanisms, and representation learning laid the theoretical groundwork for the Transformer architecture and modern NLP.",
+    story:
+      "He completes the deep learning trinity and brings the safety-and-governance thread: alongside his technical work, Bengio has become one of the most prominent voices calling for AI regulation.",
+    officialUrl: "https://www.britannica.com/biography/Yoshua-Bengio",
+    officialLabel: "Britannica biography",
+    imageUrl: "/media/wikimedia/yoshua-bengio.webp",
+    imageAlt: "Photograph of Yoshua Bengio, Wikimedia Commons, CC BY-SA 4.0.",
+    socialLinks: [],
+    sourceRecord: "",
+  },
+  {
     slug: "andrej-karpathy",
     name: "Andrej Karpathy",
     era: "Era 7",
@@ -154,6 +312,58 @@ export const peopleProfiles: NarrativeProfile[] = [
 
 export const institutionProfiles: NarrativeProfile[] = [
   {
+    slug: "bell-labs",
+    name: "Bell Labs",
+    era: "Era 2",
+    kind: "institution",
+    role: "Information theory birthplace and computing research hub",
+    summary:
+      "Bell Labs gave the world information theory (Shannon), the transistor, and early computing machines — the technical substrate on which AI was built.",
+    story:
+      "It teaches students that AI did not emerge from computer science departments alone. The field's preconditions were created in industrial research labs with broad mandates.",
+    officialUrl: "https://www.bell-labs.com/about/history/",
+    officialLabel: "Bell Labs history",
+    imageUrl: "/media/wikimedia/bell-labs.webp",
+    imageAlt: "Bell Labs Holmdel Complex, Wikimedia Commons, CC BY-SA 3.0.",
+    socialLinks: [],
+    sourceRecord: "",
+  },
+  {
+    slug: "mit-ai-lab",
+    name: "MIT AI Laboratory",
+    era: "Era 3",
+    kind: "institution",
+    role: "Home of symbolic AI and hacker culture",
+    summary:
+      "The MIT AI Lab (now CSAIL) was the institutional home of Minsky, McCarthy, and a generation of researchers who believed intelligence could be programmed in symbolic logic.",
+    story:
+      "It represents the institutional confidence of the symbolic era — and the culture of open exploration (hacker ethic, LISP machines) that defined early AI research.",
+    officialUrl: "https://www.csail.mit.edu/about",
+    officialLabel: "MIT CSAIL about",
+    imageUrl: "/media/wikimedia/mit-csail.webp",
+    imageAlt:
+      "MIT Computer Science and Artificial Intelligence Laboratory (CSAIL) building, Wikimedia Commons, CC BY 2.0.",
+    socialLinks: [],
+    sourceRecord: "",
+  },
+  {
+    slug: "darpa",
+    name: "DARPA",
+    era: "Era 5",
+    kind: "institution",
+    role: "Federal R&D funder that sustained AI through winters",
+    summary:
+      "DARPA funded AI research when no one else would — from early speech recognition to autonomous vehicles — keeping the field alive through its winters.",
+    story:
+      "It teaches that government funding and military interest were structural preconditions for AI's survival. The field did not run on curiosity alone.",
+    officialUrl: "https://www.darpa.mil/about/about-darpa",
+    officialLabel: "DARPA about",
+    imageUrl: "/media/wikimedia/darpa-hq.webp",
+    imageAlt: "DARPA headquarters building, Wikimedia Commons, CC BY-SA 3.0.",
+    socialLinks: [],
+    sourceRecord: "",
+  },
+  {
     slug: "openai",
     name: "OpenAI",
     era: "Era 7",
@@ -189,8 +399,7 @@ export const institutionProfiles: NarrativeProfile[] = [
       "It gives the site a way to teach the current era through science, infrastructure, and institutional continuity as well as through assistants.",
     officialUrl: "https://deepmind.google/about/",
     officialLabel: "Google DeepMind about",
-    imageUrl:
-      "https://lh3.googleusercontent.com/IKFFuhFkZzhLkWnElU90rLqcyTzNc0awe-ivw6S1nt9tVovfLLE4e4dlESx3p06fJPAz-rUUPLmB9VuBX_UV1h9C-AwRY6uBSErjz2gVhuGXed1jxg=w1200-h630-n-nu-rw",
+    imageUrl: "/media/wikimedia/deepmind-social.webp",
     imageAlt: "Google DeepMind official about-page social image.",
     socialLinks: [
       { label: "X", href: "https://x.com/googledeepmind" },
@@ -220,8 +429,7 @@ export const institutionProfiles: NarrativeProfile[] = [
       "It helps the site teach that safety becomes organizational posture as well as technical work during the public foundation-model era.",
     officialUrl: "https://www.anthropic.com/company",
     officialLabel: "Anthropic company",
-    imageUrl:
-      "https://cdn.prod.website-files.com/67ce28cfec624e2b733f8a52/68309ab48369f7ad9b4a40e1_open-graph.jpg",
+    imageUrl: "/media/wikimedia/anthropic-social.webp",
     imageAlt: "Anthropic official company social image.",
     socialLinks: [
       { label: "X", href: "https://x.com/AnthropicAI" },
@@ -288,6 +496,60 @@ export const historicalAnchors: HistoricalAnchor[] = [
     imageAlt: "Wikimedia Commons portrait of George Boole.",
     sourceRecord: "docs/content/media/records/boole-to-turing-story-card.md",
   },
+  {
+    slug: "lighthill-report",
+    era: "Era 4",
+    title: "The Lighthill Report and the first AI winter",
+    summary:
+      "James Lighthill's 1973 report to the British Science Research Council declared that AI had failed to deliver on its promises, triggering funding cuts across the UK and casting doubt worldwide.",
+    officialUrl:
+      "https://www.chilton-computing.org.uk/inf/literature/reports/lighthill_report/overview.htm",
+    officialLabel: "Lighthill Report archive",
+    imageUrl: "/media/generated/lighthill-report.webp",
+    imageAlt:
+      "Illustration of the 1973 Lighthill Report, a formal British government document that triggered the first AI winter.",
+    sourceRecord: "",
+  },
+  {
+    slug: "backpropagation-paper",
+    era: "Era 5",
+    title: "Learning representations by back-propagating errors",
+    summary:
+      "Rumelhart, Hinton, and Williams published the modern formulation of backpropagation in 1986, giving neural networks a practical training algorithm and reigniting interest after the AI winter.",
+    officialUrl: "https://www.nature.com/articles/323533a0",
+    officialLabel: "Nature 1986 paper",
+    imageUrl: "/media/generated/backpropagation-paper.webp",
+    imageAlt:
+      "Illustration of the 1986 backpropagation paper showing neural network diagrams with forward and backward arrows.",
+    sourceRecord: "",
+  },
+  {
+    slug: "imagenet-moment",
+    era: "Era 6",
+    title: "The ImageNet moment — AlexNet proves deep learning at scale",
+    summary:
+      "In 2012, Krizhevsky, Sutskever, and Hinton's AlexNet crushed the ImageNet competition by 10+ percentage points using a deep convolutional neural network trained on GPUs, proving that depth and data beat handcrafted features.",
+    officialUrl:
+      "https://papers.nips.cc/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html",
+    officialLabel: "NeurIPS 2012 paper",
+    imageUrl: "/media/generated/imagenet-moment.webp",
+    imageAlt:
+      "Illustration of the 2012 ImageNet breakthrough showing classified images with confidence scores and neural network architecture.",
+    sourceRecord: "",
+  },
+  {
+    slug: "transformer-paper",
+    era: "Era 7",
+    title: "Attention Is All You Need — the Transformer architecture",
+    summary:
+      "Vaswani et al. introduced the Transformer in 2017, replacing recurrence with self-attention and enabling the parallelism that made GPT, BERT, and every modern foundation model possible.",
+    officialUrl: "https://arxiv.org/abs/1706.03762",
+    officialLabel: "arXiv paper",
+    imageUrl: "/media/generated/transformer-paper.webp",
+    imageAlt:
+      "Illustration of the Transformer architecture from the 2017 'Attention Is All You Need' paper.",
+    sourceRecord: "",
+  },
 ];
 
 export type GeneratedIllustration = {
@@ -338,5 +600,28 @@ export const generatedIllustrations: GeneratedIllustration[] = [
     imageUrl: "/media/generated/era-7-foundation-models.webp",
     imageAlt:
       "Illustration of foundation models — token embeddings radiating outward with human silhouettes at chat interfaces.",
+  },
+  {
+    slug: "lighthill-report",
+    imageUrl: "/media/generated/lighthill-report.webp",
+    imageAlt:
+      "Illustration of the 1973 Lighthill Report on artificial intelligence.",
+  },
+  {
+    slug: "backpropagation-paper",
+    imageUrl: "/media/generated/backpropagation-paper.webp",
+    imageAlt:
+      "Illustration of the 1986 backpropagation paper with neural network diagrams.",
+  },
+  {
+    slug: "imagenet-moment",
+    imageUrl: "/media/generated/imagenet-moment.webp",
+    imageAlt:
+      "Illustration of the 2012 ImageNet/AlexNet breakthrough in computer vision.",
+  },
+  {
+    slug: "transformer-paper",
+    imageUrl: "/media/generated/transformer-paper.webp",
+    imageAlt: "Illustration of the 2017 Transformer architecture paper.",
   },
 ];
