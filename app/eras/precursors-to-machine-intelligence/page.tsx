@@ -6,8 +6,11 @@ import {
   EditorialAside,
   TransitionBlock,
 } from "@/components/content/chapter";
+import { EditorialCardGrid } from "@/components/content/editorial/editorial-card-grid";
+import { EditorialSplit } from "@/components/content/editorial/editorial-layout";
+import { HistoricalAnchorGrid } from "@/components/content/editorial/narrative-card-grid";
+import { EditorialSummaryGrid } from "@/components/content/editorial/editorial-summary-grid";
 import { GuideCallout } from "@/components/content/guide-callout";
-import { NarrativeCard } from "@/components/content/narrative-card";
 import { historicalAnchors } from "@/lib/narrative-data";
 
 const precursorMilestones = [
@@ -65,6 +68,42 @@ const lineageCards = [
     title: "Mechanized calculation to machine intelligence",
     summary:
       "Babbage and Lovelace do not build AI, but they make it easier to see why later researchers would ask whether symbolic procedure can scale into intelligence claims.",
+  },
+];
+
+const minimumRouteCards = [
+  {
+    title: "Boole supplies structure",
+    description:
+      "Logic becomes explicit symbolic form, which is the first part of the later computability story.",
+  },
+  {
+    title: "Babbage supplies machinery",
+    description:
+      "Procedure becomes a machine problem, which makes computation feel engineerable rather than merely philosophical.",
+  },
+  {
+    title: "Lovelace supplies caution",
+    description:
+      "She keeps execution from being mistaken for intelligence, which is the conceptual brake the rest of the site keeps returning to.",
+  },
+];
+
+const readingFrameCards = [
+  {
+    title: "Logic",
+    description:
+      "Boole matters because symbolic reasoning becomes representable, not because AI already exists.",
+  },
+  {
+    title: "Machinery",
+    description:
+      "Babbage matters because calculation becomes a machine-design problem, which makes later computation teachable.",
+  },
+  {
+    title: "Caution",
+    description:
+      "Lovelace matters because she keeps execution and intelligence from collapsing into the same claim too early.",
   },
 ];
 
@@ -149,29 +188,15 @@ export default function PrecursorsToMachineIntelligencePage() {
         eyebrow="Reading Frame"
         title="Three ideas to hold in your head while you read"
       >
-        <div className="content-grid content-grid--dense">
-          <article className="content-card">
-            <h3>Logic</h3>
-            <p>
-              Boole matters because symbolic reasoning becomes representable,
-              not because AI already exists.
-            </p>
-          </article>
-          <article className="content-card">
-            <h3>Machinery</h3>
-            <p>
-              Babbage matters because calculation becomes a machine-design
-              problem, which makes later computation teachable.
-            </p>
-          </article>
-          <article className="content-card">
-            <h3>Caution</h3>
-            <p>
-              Lovelace matters because she keeps execution and intelligence from
-              collapsing into the same claim too early.
-            </p>
-          </article>
-        </div>
+        <EditorialSummaryGrid items={readingFrameCards} />
+      </ChapterSection>
+
+      <ChapterSection
+        id="era-1-minimum-route"
+        eyebrow="Shortest Route"
+        title="If you only need the handoff, keep these three precursor jobs"
+      >
+        <EditorialSummaryGrid items={minimumRouteCards} />
       </ChapterSection>
 
       <ChapterSection
@@ -179,15 +204,13 @@ export default function PrecursorsToMachineIntelligencePage() {
         eyebrow="Runway"
         title="Three anchor precursors"
       >
-        <div className="content-grid">
-          {precursorMilestones.map((item) => (
-            <article key={item.title} className="content-card">
-              <p className="content-card__meta">{item.label}</p>
-              <h3>{item.title}</h3>
-              <p>{item.detail}</p>
-            </article>
-          ))}
-        </div>
+        <EditorialCardGrid
+          items={precursorMilestones.map((item) => ({
+            title: item.title,
+            description: item.detail,
+            meta: item.label,
+          }))}
+        />
       </ChapterSection>
 
       <ChapterSection
@@ -196,50 +219,54 @@ export default function PrecursorsToMachineIntelligencePage() {
         title="Why this period belongs in the history"
         prose
       >
-        <div className="chapter-split">
-          <div className="prose-block">
-            <p>
-              Era 1 should not pretend that Boole, Babbage, or Lovelace were
-              already doing AI in the modern sense. The value of this package is
-              narrower and stronger: it makes later questions about computation,
-              symbolic procedure, and machine intelligence easier to teach.
-            </p>
-            <p>
-              Boole gives the story symbolic logic. Babbage gives it machinery.
-              Lovelace gives it a disciplined hesitation about what procedure
-              and execution do or do not prove. Together they make Era 2
-              readable as a continuation, not a miracle.
-            </p>
-          </div>
-          <EditorialAside
-            label="Teaching Payoff"
-            title="Lovelace gives the chapter its first conceptual brake"
-          >
-            <p>
-              Her role keeps the site from racing from mechanism to intelligence
-              before readers understand how different those claims can be.
-            </p>
-          </EditorialAside>
-        </div>
+        <EditorialSplit
+          className="chapter-split"
+          leftClassName="prose-block"
+          left={
+            <>
+              <p>
+                Era 1 should not pretend that Boole, Babbage, or Lovelace were
+                already doing AI in the modern sense. The value of this package
+                is narrower and stronger: it makes later questions about
+                computation, symbolic procedure, and machine intelligence easier
+                to teach.
+              </p>
+              <p>
+                Boole gives the story symbolic logic. Babbage gives it
+                machinery. Lovelace gives it a disciplined hesitation about what
+                procedure and execution do or do not prove. Together they make
+                Era 2 readable as a continuation, not a miracle.
+              </p>
+            </>
+          }
+          right={
+            <EditorialAside
+              label="Teaching Payoff"
+              title="Lovelace gives the chapter its first conceptual brake"
+            >
+              <p>
+                Her role keeps the site from racing from mechanism to
+                intelligence before readers understand how different those
+                claims can be.
+              </p>
+            </EditorialAside>
+          }
+        />
       </ChapterSection>
 
-      <section className="exemplar-section" aria-labelledby="era-1-people">
-        <div className="section-heading">
-          <p className="eyebrow">Linked People</p>
-          <h2 id="era-1-people">Who defines the precursor layer</h2>
-        </div>
-        <div className="content-grid">
-          {precursorPeople.map((person) => (
-            <article key={person.name} className="content-card">
-              <h3>{person.name}</h3>
-              <p>{person.summary}</p>
-              <p className="content-card__meta">
-                Linked ideas: {person.links.join("; ")}
-              </p>
-            </article>
-          ))}
-        </div>
-      </section>
+      <ChapterSection
+        id="era-1-people"
+        eyebrow="Linked People"
+        title="Who defines the precursor layer"
+      >
+        <EditorialCardGrid
+          items={precursorPeople.map((person) => ({
+            title: person.name,
+            description: person.summary,
+            meta: `Linked ideas: ${person.links.join("; ")}`,
+          }))}
+        />
+      </ChapterSection>
 
       <GuideCallout
         variant="why-it-matters"
@@ -261,14 +288,12 @@ export default function PrecursorsToMachineIntelligencePage() {
         eyebrow="Cross-Era Concept Teaching"
         title="How Era 1 connects forward"
       >
-        <div className="content-grid">
-          {lineageCards.map((item) => (
-            <article key={item.title} className="content-card">
-              <h3>{item.title}</h3>
-              <p>{item.summary}</p>
-            </article>
-          ))}
-        </div>
+        <EditorialCardGrid
+          items={lineageCards.map((item) => ({
+            title: item.title,
+            description: item.summary,
+          }))}
+        />
         <p className="artifact-note">
           The live chronology now has an explicit adjacent-era handoff: this
           route builds the runway, and Era 2 narrows that runway into formal
@@ -308,25 +333,12 @@ export default function PrecursorsToMachineIntelligencePage() {
         eyebrow="Historical Source Anchors"
         title="Primary texts and visual anchors for the runway into computation"
       >
-        <div className="documentary-grid source-anchor-grid">
-          {era1Anchors.map((anchor) => (
-            <NarrativeCard
-              key={anchor.slug}
-              title={anchor.title}
-              subtitle="Era 1 · primary text and source anchor"
-              summary={anchor.summary}
-              story="The precursor layer gets stronger when it points to specific texts, archives, and arguments instead of acting like a vague prehistory."
-              officialLink={{
-                href: anchor.officialUrl,
-                label: anchor.officialLabel,
-              }}
-              sourceRecord={anchor.sourceRecord}
-              imageUrl={anchor.imageUrl}
-              imageAlt={anchor.imageAlt}
-              className="narrative-card--anchor"
-            />
-          ))}
-        </div>
+        <HistoricalAnchorGrid
+          anchors={era1Anchors}
+          className="source-anchor-grid"
+          story="The precursor layer gets stronger when it points to specific texts, archives, and arguments instead of acting like a vague prehistory."
+          getSubtitle={() => "Era 1 · primary text and source anchor"}
+        />
       </ChapterSection>
 
       <TransitionBlock

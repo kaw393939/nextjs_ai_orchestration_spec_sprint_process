@@ -3,11 +3,17 @@ import type { Metadata } from "next";
 import {
   ChapterHero,
   ChapterSection,
+  ChapterTimeline,
   EditorialAside,
   TransitionBlock,
 } from "@/components/content/chapter";
+import { EditorialCardGrid } from "@/components/content/editorial/editorial-card-grid";
+import { EditorialSplit } from "@/components/content/editorial/editorial-layout";
+import {
+  HistoricalAnchorGrid,
+  NarrativeProfileGrid,
+} from "@/components/content/editorial/narrative-card-grid";
 import { GuideCallout } from "@/components/content/guide-callout";
-import { NarrativeCard } from "@/components/content/narrative-card";
 import { LogicToAiDiagram } from "@/components/content/visualizations/logic-to-ai-diagram";
 import { historicalAnchors, peopleProfiles } from "@/lib/narrative-data";
 
@@ -225,36 +231,31 @@ export default function ComputationInformationFieldFormationPage() {
         eyebrow="Orientation"
         title="Four strands become one field"
       >
-        <div className="content-grid content-grid--dense">
-          <article className="content-card">
-            <h3>Computability</h3>
-            <p>
-              Turing defines what a machine can do in principle and gives the
-              chapter its formal backbone.
-            </p>
-          </article>
-          <article className="content-card">
-            <h3>Engineering</h3>
-            <p>
-              Shannon and Bell Labs keep the origin story inside circuitry,
-              signals, and communication infrastructure.
-            </p>
-          </article>
-          <article className="content-card">
-            <h3>Neural abstraction</h3>
-            <p>
-              McCulloch and Pitts keep the slice broader than one symbolic line
-              by linking logic to simple neuron-like units.
-            </p>
-          </article>
-          <article className="content-card">
-            <h3>Field formation</h3>
-            <p>
-              Dartmouth names the field only after the other strands make that
-              naming moment historically possible.
-            </p>
-          </article>
-        </div>
+        <EditorialCardGrid
+          dense
+          items={[
+            {
+              title: "Computability",
+              description:
+                "Turing defines what a machine can do in principle and gives the chapter its formal backbone.",
+            },
+            {
+              title: "Engineering",
+              description:
+                "Shannon and Bell Labs keep the origin story inside circuitry, signals, and communication infrastructure.",
+            },
+            {
+              title: "Neural abstraction",
+              description:
+                "McCulloch and Pitts keep the slice broader than one symbolic line by linking logic to simple neuron-like units.",
+            },
+            {
+              title: "Field formation",
+              description:
+                "Dartmouth names the field only after the other strands make that naming moment historically possible.",
+            },
+          ]}
+        />
       </ChapterSection>
 
       <ChapterSection
@@ -262,15 +263,14 @@ export default function ComputationInformationFieldFormationPage() {
         eyebrow="Chronology"
         title="Five anchor points"
       >
-        <ol className="timeline-list">
-          {milestoneItems.map((item) => (
-            <li key={item.year} className="timeline-card">
-              <p className="timeline-year">{item.year}</p>
-              <h3>{item.title}</h3>
-              <p>{item.detail}</p>
-            </li>
-          ))}
-        </ol>
+        <ChapterTimeline
+          items={milestoneItems.map((item) => ({
+            key: `${item.year}-${item.title}`,
+            eyebrow: item.year,
+            title: item.title,
+            description: item.detail,
+          }))}
+        />
       </ChapterSection>
 
       <ChapterSection
@@ -279,36 +279,42 @@ export default function ComputationInformationFieldFormationPage() {
         title="How the package teaches the era"
         prose
       >
-        <div className="chapter-split">
-          <div className="prose-block">
-            <p>
-              The slice begins with Turing because the story needs a serious
-              account of what computation means before it can move to stronger
-              claims about machine intelligence. Shannon then changes the feel
-              of the narrative by making logic matter in electrical machinery
-              and by giving the period a formal theory of information.
-            </p>
-            <p>
-              McCulloch and Pitts keep the package from turning into a pure
-              story of symbols and circuits by showing how neuron-inspired units
-              can be modeled computationally. The documentary payoff is that the
-              era now has distinct objects to follow: a Turing paper, Bell Labs
-              engineering work, neuron-style abstraction, and the Dartmouth
-              proposal itself.
-            </p>
-          </div>
-          <EditorialAside
-            label="Convergence Logic"
-            title="Each strand does a different job in the origin package"
-          >
-            <p>
-              Computation defines procedure, Shannon gives the era engineering
-              and information, McCulloch-Pitts broaden the origin story, and
-              Dartmouth provides the documentary hinge where those strands can
-              be taught together.
-            </p>
-          </EditorialAside>
-        </div>
+        <EditorialSplit
+          className="chapter-split"
+          leftClassName="prose-block"
+          left={
+            <>
+              <p>
+                The slice begins with Turing because the story needs a serious
+                account of what computation means before it can move to stronger
+                claims about machine intelligence. Shannon then changes the feel
+                of the narrative by making logic matter in electrical machinery
+                and by giving the period a formal theory of information.
+              </p>
+              <p>
+                McCulloch and Pitts keep the package from turning into a pure
+                story of symbols and circuits by showing how neuron-inspired
+                units can be modeled computationally. The documentary payoff is
+                that the era now has distinct objects to follow: a Turing paper,
+                Bell Labs engineering work, neuron-style abstraction, and the
+                Dartmouth proposal itself.
+              </p>
+            </>
+          }
+          right={
+            <EditorialAside
+              label="Convergence Logic"
+              title="Each strand does a different job in the origin package"
+            >
+              <p>
+                Computation defines procedure, Shannon gives the era engineering
+                and information, McCulloch-Pitts broaden the origin story, and
+                Dartmouth provides the documentary hinge where those strands can
+                be taught together.
+              </p>
+            </EditorialAside>
+          }
+        />
       </ChapterSection>
 
       <ChapterSection
@@ -324,15 +330,13 @@ export default function ComputationInformationFieldFormationPage() {
         eyebrow="Documentary Story Layer"
         title="Two teaching cards that keep the convergence legible"
       >
-        <div className="content-grid">
-          {storyCards.map((card) => (
-            <article key={card.title} className="content-card">
-              <h3>{card.title}</h3>
-              <p>{card.summary}</p>
-              <p className="artifact-card__path">{card.path}</p>
-            </article>
-          ))}
-        </div>
+        <EditorialCardGrid
+          items={storyCards.map((card) => ({
+            title: card.title,
+            description: card.summary,
+            footer: <p className="artifact-card__path">{card.path}</p>,
+          }))}
+        />
       </ChapterSection>
 
       <ChapterSection
@@ -340,25 +344,12 @@ export default function ComputationInformationFieldFormationPage() {
         eyebrow="Source Anchors"
         title="Historical objects and source pages for the convergence story"
       >
-        <div className="documentary-grid documentary-grid--anchors">
-          {era2Anchors.map((anchor) => (
-            <NarrativeCard
-              key={anchor.slug}
-              title={anchor.title}
-              subtitle="Era 2 · source anchor"
-              summary={anchor.summary}
-              story="These anchors keep the era attached to named documents and source institutions, not only to retrospective explanation."
-              officialLink={{
-                href: anchor.officialUrl,
-                label: anchor.officialLabel,
-              }}
-              sourceRecord={anchor.sourceRecord}
-              imageUrl={anchor.imageUrl}
-              imageAlt={anchor.imageAlt}
-              className="narrative-card--anchor"
-            />
-          ))}
-        </div>
+        <HistoricalAnchorGrid
+          anchors={era2Anchors}
+          className="documentary-grid--anchors"
+          story="These anchors keep the era attached to named documents and source institutions, not only to retrospective explanation."
+          getSubtitle={() => "Era 2 · source anchor"}
+        />
       </ChapterSection>
 
       <ChapterSection
@@ -366,17 +357,13 @@ export default function ComputationInformationFieldFormationPage() {
         eyebrow="Linked People"
         title="Who carries the story"
       >
-        <div className="content-grid">
-          {peopleCards.map((person) => (
-            <article key={person.name} className="content-card">
-              <h3>{person.name}</h3>
-              <p>{person.summary}</p>
-              <p className="content-card__meta">
-                Linked ideas: {person.links.join("; ")}
-              </p>
-            </article>
-          ))}
-        </div>
+        <EditorialCardGrid
+          items={peopleCards.map((person) => ({
+            title: person.name,
+            description: person.summary,
+            meta: `Linked ideas: ${person.links.join("; ")}`,
+          }))}
+        />
       </ChapterSection>
 
       <GuideCallout
@@ -396,17 +383,13 @@ export default function ComputationInformationFieldFormationPage() {
         eyebrow="Linked Concepts"
         title="The technical ideas students must meet"
       >
-        <div className="content-grid content-grid--dense">
-          {conceptCards.map((concept) => (
-            <article
-              key={concept.title}
-              className="content-card content-card--concept"
-            >
-              <h3>{concept.title}</h3>
-              <p>{concept.summary}</p>
-            </article>
-          ))}
-        </div>
+        <EditorialCardGrid
+          dense
+          items={conceptCards.map((concept) => ({
+            title: concept.title,
+            description: concept.summary,
+          }))}
+        />
         <p className="artifact-note">
           These concepts now teach across eras as well as within Era 2: formal
           logic and mechanized calculation build the runway in Era 1, and
@@ -420,25 +403,22 @@ export default function ComputationInformationFieldFormationPage() {
         eyebrow="Institutions And Turning Point"
         title="Bell Labs and Dartmouth do different jobs"
       >
-        <div className="institution-grid">
-          <article className="content-card">
-            <h3>Bell Labs</h3>
-            <p>
-              Bell Labs gives the slice an institutional setting for
-              Shannon&apos;s engineering work, which helps explain why logic and
-              information are not just philosophical ideas in this story.
-            </p>
-          </article>
-          <article className="content-card">
-            <h3>
-              Dartmouth Summer Research Project on Artificial Intelligence
-            </h3>
-            <p>
-              Dartmouth closes Era 2 by naming and consolidating a field that
-              the earlier decades had already made possible.
-            </p>
-          </article>
-        </div>
+        <EditorialCardGrid
+          className="institution-grid"
+          items={[
+            {
+              title: "Bell Labs",
+              description:
+                "Bell Labs gives the slice an institutional setting for Shannon's engineering work, which helps explain why logic and information are not just philosophical ideas in this story.",
+            },
+            {
+              title:
+                "Dartmouth Summer Research Project on Artificial Intelligence",
+              description:
+                "Dartmouth closes Era 2 by naming and consolidating a field that the earlier decades had already made possible.",
+            },
+          ]}
+        />
 
         <GuideCallout
           variant="misconception-watch"
@@ -483,25 +463,10 @@ export default function ComputationInformationFieldFormationPage() {
         eyebrow="Documentary Profiles"
         title="Portraits and source anchors for the field-formation era"
       >
-        <div className="documentary-grid">
-          {era2People.map((person) => (
-            <NarrativeCard
-              key={person.slug}
-              title={person.name}
-              subtitle={`${person.era} · ${person.role}`}
-              summary={person.summary}
-              story={person.story}
-              officialLink={{
-                href: person.officialUrl,
-                label: person.officialLabel,
-              }}
-              sourceRecord={person.sourceRecord}
-              imageUrl={person.imageUrl}
-              imageAlt={person.imageAlt}
-              className="narrative-card--person"
-            />
-          ))}
-        </div>
+        <NarrativeProfileGrid
+          profiles={era2People}
+          cardClassName="narrative-card--person"
+        />
       </ChapterSection>
 
       <TransitionBlock

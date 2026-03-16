@@ -4,54 +4,23 @@ import {
   HomeEyebrow,
   homeTokens,
 } from "@/components/content/home/home-design-system";
-import { footerNavigation } from "@/lib/site-navigation";
+import {
+  footerNavigation,
+  footerQuickLinks,
+  footerReturnSignals,
+  type SiteNavigationLink,
+} from "@/lib/site-navigation";
 import { cn } from "@/lib/utils";
 
 const footerBorderClassName = homeTokens.border;
 const footerLinkClassName =
   "text-[0.94rem] font-semibold leading-6 text-(--ink-84) no-underline nav-link";
 
-const footerSectionDescriptions: Record<string, string> = {
-  "Main Line":
-    "Use the opener, chronology, and current era to keep the central argument intact.",
-  "Companion Proof":
-    "Use papers, cast, and guides when the sequence needs evidence, actors, or translation.",
-  "Return Points":
-    "These hinge chapters restore the plot quickly when you come back later.",
-};
-
-const footerQuickLinks = [
-  { href: "/#home-chronology", label: "Read the seven-era run" },
-  {
-    href: "/reading-maps/intellectual-lineage",
-    label: "Trace the paper lineage",
-  },
-  { href: "/people-and-institutions", label: "Meet the cast and institutions" },
-];
-
-const footerReturnSignals = [
-  {
-    eyebrow: "Sequence",
-    description:
-      "Seven eras carry the argument from machine logic to public AI.",
-  },
-  {
-    eyebrow: "Evidence",
-    description:
-      "Papers and reading maps show which documents made each turn stick.",
-  },
-  {
-    eyebrow: "Cast",
-    description:
-      "People, labs, and institutions keep the history tied to actors and power.",
-  },
-];
-
 function FooterLinkList({
   links,
   variant = "plain",
 }: {
-  links: { href: string; label: string }[];
+  links: SiteNavigationLink[];
   variant?: "plain" | "ruled";
 }) {
   return (
@@ -169,7 +138,7 @@ export function SiteFooter() {
                 </p>
               </div>
               <p className="mt-1.5 max-w-[34ch] text-(--ink-70) text-[0.86rem] leading-6 sm:text-[0.9rem]">
-                {footerSectionDescriptions[section.title]}
+                {section.description}
               </p>
               <div className="mt-2.5">
                 <FooterLinkList links={section.links} />

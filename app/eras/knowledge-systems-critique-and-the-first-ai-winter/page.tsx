@@ -3,12 +3,19 @@ import type { Metadata } from "next";
 import {
   ChapterHero,
   ChapterSection,
+  ChapterTimeline,
   EditorialAside,
   PullQuote,
   TransitionBlock,
 } from "@/components/content/chapter";
+import { EditorialCardGrid } from "@/components/content/editorial/editorial-card-grid";
+import { EditorialSplit } from "@/components/content/editorial/editorial-layout";
+import {
+  HistoricalAnchorGrid,
+  NarrativeProfileGrid,
+} from "@/components/content/editorial/narrative-card-grid";
+import { EditorialSummaryGrid } from "@/components/content/editorial/editorial-summary-grid";
 import { GuideCallout } from "@/components/content/guide-callout";
-import { NarrativeCard } from "@/components/content/narrative-card";
 import { historicalAnchors, peopleProfiles } from "@/lib/narrative-data";
 
 const era4People = peopleProfiles.filter((p) => p.era === "Era 4");
@@ -91,6 +98,47 @@ const conceptCards = [
   },
 ];
 
+const minimumRouteCards = [
+  {
+    title: "Things still worked",
+    description:
+      "Expert systems produced real bounded successes, so the era is not a story of total failure.",
+  },
+  {
+    title: "The success did not generalize",
+    description:
+      "Knowledge engineering stayed expensive and brittle once the world stopped being narrow and hand-maintained.",
+  },
+  {
+    title: "Institutions reacted",
+    description:
+      "Critique plus funding pressure turned technical limits into a public winter rather than leaving them as internal lab concerns.",
+  },
+];
+
+const causalChainCards = [
+  {
+    title: "1. Local success",
+    description:
+      "Expert systems work in bounded domains strongly enough to keep AI credible for medicine and science.",
+  },
+  {
+    title: "2. Scaling limits",
+    description:
+      "Knowledge engineering stays labor-intensive and brittle once the domain stops being narrow and carefully controlled.",
+  },
+  {
+    title: "3. Public critique",
+    description:
+      "Lighthill and related criticism make the gap between promise and robust delivery visible beyond the lab.",
+  },
+  {
+    title: "4. Funding pressure",
+    description:
+      "Once critique and limited scale meet tighter institutional patience, the field enters winter conditions instead of collapse.",
+  },
+];
+
 export const metadata: Metadata = {
   title: "Knowledge Systems, Critique, And The First AI Winter",
   description:
@@ -157,36 +205,15 @@ export default function KnowledgeSystemsCritiqueAndFirstAiWinterPage() {
         eyebrow="Cause And Effect"
         title="How the first winter actually forms"
       >
-        <div className="content-grid content-grid--dense">
-          <article className="content-card">
-            <h3>1. Local success</h3>
-            <p>
-              Expert systems work in bounded domains strongly enough to keep AI
-              credible for medicine and science.
-            </p>
-          </article>
-          <article className="content-card">
-            <h3>2. Scaling limits</h3>
-            <p>
-              Knowledge engineering stays labor-intensive and brittle once the
-              domain stops being narrow and carefully controlled.
-            </p>
-          </article>
-          <article className="content-card">
-            <h3>3. Public critique</h3>
-            <p>
-              Lighthill and related criticism make the gap between promise and
-              robust delivery visible beyond the lab.
-            </p>
-          </article>
-          <article className="content-card">
-            <h3>4. Funding pressure</h3>
-            <p>
-              Once critique and limited scale meet tighter institutional
-              patience, the field enters winter conditions instead of collapse.
-            </p>
-          </article>
-        </div>
+        <EditorialSummaryGrid items={causalChainCards} />
+      </ChapterSection>
+
+      <ChapterSection
+        id="era-4-minimum-route"
+        eyebrow="Shortest Route"
+        title="If the winter story feels too binary, keep these three facts"
+      >
+        <EditorialSummaryGrid items={minimumRouteCards} />
       </ChapterSection>
 
       <ChapterSection
@@ -194,15 +221,14 @@ export default function KnowledgeSystemsCritiqueAndFirstAiWinterPage() {
         eyebrow="Chronology"
         title="Five anchor points"
       >
-        <ol className="timeline-list">
-          {milestoneItems.map((item) => (
-            <li key={item.year} className="timeline-card">
-              <p className="timeline-year">{item.year}</p>
-              <h3>{item.title}</h3>
-              <p>{item.detail}</p>
-            </li>
-          ))}
-        </ol>
+        <ChapterTimeline
+          items={milestoneItems.map((item) => ({
+            key: `${item.year}-${item.title}`,
+            eyebrow: item.year,
+            title: item.title,
+            description: item.detail,
+          }))}
+        />
       </ChapterSection>
 
       <PullQuote
@@ -216,37 +242,43 @@ export default function KnowledgeSystemsCritiqueAndFirstAiWinterPage() {
         title="Why critique and usefulness coexist here"
         prose
       >
-        <div className="chapter-split">
-          <div className="prose-block">
-            <p>
-              Era 4 should not be framed as the moment when AI suddenly stopped
-              working. It is better understood as the period when symbolic
-              AI&apos;s strengths became more specialized and its weaknesses
-              became harder to hide. Expert systems worked because they focused
-              on narrow, knowledge-rich settings where rules and representations
-              could be maintained by hand.
-            </p>
-            <p>
-              Those same conditions revealed the field&apos;s broader problem.
-              Knowledge entry was expensive, general reasoning did not scale
-              cleanly, perception remained weak, and the confidence of funders
-              and critics shifted. The Lighthill critique matters because it
-              made those pressures historically visible, but the winter itself
-              came from the larger combination of technical, institutional, and
-              expectation-management failures.
-            </p>
-          </div>
-          <EditorialAside
-            label="Promise Versus Limit"
-            title="What worked locally could not carry the whole promise"
-            tone="contrast"
-          >
-            <p>
-              This is the causal center of the chapter and the best bridge into
-              later data-driven methods.
-            </p>
-          </EditorialAside>
-        </div>
+        <EditorialSplit
+          className="chapter-split"
+          leftClassName="prose-block"
+          left={
+            <>
+              <p>
+                Era 4 should not be framed as the moment when AI suddenly
+                stopped working. It is better understood as the period when
+                symbolic AI&apos;s strengths became more specialized and its
+                weaknesses became harder to hide. Expert systems worked because
+                they focused on narrow, knowledge-rich settings where rules and
+                representations could be maintained by hand.
+              </p>
+              <p>
+                Those same conditions revealed the field&apos;s broader problem.
+                Knowledge entry was expensive, general reasoning did not scale
+                cleanly, perception remained weak, and the confidence of funders
+                and critics shifted. The Lighthill critique matters because it
+                made those pressures historically visible, but the winter itself
+                came from the larger combination of technical, institutional,
+                and expectation-management failures.
+              </p>
+            </>
+          }
+          right={
+            <EditorialAside
+              label="Promise Versus Limit"
+              title="What worked locally could not carry the whole promise"
+              tone="contrast"
+            >
+              <p>
+                This is the causal center of the chapter and the best bridge
+                into later data-driven methods.
+              </p>
+            </EditorialAside>
+          }
+        />
       </ChapterSection>
 
       <ChapterSection
@@ -254,17 +286,13 @@ export default function KnowledgeSystemsCritiqueAndFirstAiWinterPage() {
         eyebrow="Linked People"
         title="Who makes the narrowing visible"
       >
-        <div className="content-grid">
-          {peopleCards.map((person) => (
-            <article key={person.name} className="content-card">
-              <h3>{person.name}</h3>
-              <p>{person.summary}</p>
-              <p className="content-card__meta">
-                Linked ideas: {person.links.join("; ")}
-              </p>
-            </article>
-          ))}
-        </div>
+        <EditorialCardGrid
+          items={peopleCards.map((person) => ({
+            title: person.name,
+            description: person.summary,
+            meta: `Linked ideas: ${person.links.join("; ")}`,
+          }))}
+        />
       </ChapterSection>
 
       <ChapterSection
@@ -272,17 +300,13 @@ export default function KnowledgeSystemsCritiqueAndFirstAiWinterPage() {
         eyebrow="Linked Concepts"
         title="The causal structure of the first winter"
       >
-        <div className="content-grid content-grid--dense">
-          {conceptCards.map((concept) => (
-            <article
-              key={concept.title}
-              className="content-card content-card--concept"
-            >
-              <h3>{concept.title}</h3>
-              <p>{concept.summary}</p>
-            </article>
-          ))}
-        </div>
+        <EditorialCardGrid
+          dense
+          items={conceptCards.map((concept) => ({
+            title: concept.title,
+            description: concept.summary,
+          }))}
+        />
         <p className="artifact-note">
           This era is the handoff point to later methods: once symbolic systems
           prove difficult to scale and costly to maintain, the field becomes
@@ -309,23 +333,21 @@ export default function KnowledgeSystemsCritiqueAndFirstAiWinterPage() {
         eyebrow="Institutions And Turning Point"
         title="Narrow success meets public critique"
       >
-        <div className="institution-grid">
-          <article className="content-card">
-            <h3>DARPA</h3>
-            <p>
-              DARPA remains important because changing funding conditions are
-              part of the causal story, not just background scenery.
-            </p>
-          </article>
-          <article className="content-card">
-            <h3>Lighthill critique</h3>
-            <p>
-              Lighthill does not explain everything, but the report gives the
-              era a durable public symbol for scaling criticism and the limits
-              of broad symbolic ambition.
-            </p>
-          </article>
-        </div>
+        <EditorialCardGrid
+          className="institution-grid"
+          items={[
+            {
+              title: "DARPA",
+              description:
+                "DARPA remains important because changing funding conditions are part of the causal story, not just background scenery.",
+            },
+            {
+              title: "Lighthill critique",
+              description:
+                "Lighthill does not explain everything, but the report gives the era a durable public symbol for scaling criticism and the limits of broad symbolic ambition.",
+            },
+          ]}
+        />
         <p className="artifact-note">
           The chronology now moves directly from this constrained symbolic era
           into data-driven and probabilistic approaches, where learning from
@@ -339,44 +361,15 @@ export default function KnowledgeSystemsCritiqueAndFirstAiWinterPage() {
         eyebrow="Documentary Profiles"
         title="Portraits and source anchors for the knowledge-systems era"
       >
-        <div className="documentary-grid">
-          {era4People.map((person) => (
-            <NarrativeCard
-              key={person.slug}
-              title={person.name}
-              subtitle={`${person.era} \u00b7 ${person.role}`}
-              summary={person.summary}
-              story={person.story}
-              officialLink={{
-                href: person.officialUrl,
-                label: person.officialLabel,
-              }}
-              sourceRecord={person.sourceRecord}
-              imageUrl={person.imageUrl}
-              imageAlt={person.imageAlt}
-              className="narrative-card--person"
-            />
-          ))}
-        </div>
-        <div className="documentary-grid documentary-grid--anchors">
-          {era4Anchors.map((anchor) => (
-            <NarrativeCard
-              key={anchor.slug}
-              title={anchor.title}
-              subtitle={`${anchor.era} \u00b7 source anchor`}
-              summary={anchor.summary}
-              story="This anchor keeps the era tied to a named document rather than to retrospective summary alone."
-              officialLink={{
-                href: anchor.officialUrl,
-                label: anchor.officialLabel,
-              }}
-              sourceRecord={anchor.sourceRecord}
-              imageUrl={anchor.imageUrl}
-              imageAlt={anchor.imageAlt}
-              className="narrative-card--anchor"
-            />
-          ))}
-        </div>
+        <NarrativeProfileGrid
+          profiles={era4People}
+          cardClassName="narrative-card--person"
+        />
+        <HistoricalAnchorGrid
+          anchors={era4Anchors}
+          className="documentary-grid--anchors"
+          story="This anchor keeps the era tied to a named document rather than to retrospective summary alone."
+        />
       </ChapterSection>
 
       <TransitionBlock

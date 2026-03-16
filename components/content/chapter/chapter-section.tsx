@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 
+import { SectionHeading } from "@/components/ui";
 import { cn } from "@/lib/utils";
 
 type ChapterSectionProps = {
@@ -25,10 +26,12 @@ export function ChapterSection({
       )}
       aria-labelledby={id}
     >
-      <div className="section-heading">
-        <p className="eyebrow">{eyebrow}</p>
-        <h2 id={id}>{title}</h2>
-      </div>
+      <SectionHeading
+        className="section-heading"
+        eyebrow={eyebrow}
+        title={title}
+        titleId={id}
+      />
       {children}
     </section>
   );

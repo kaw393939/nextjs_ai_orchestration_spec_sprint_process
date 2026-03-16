@@ -3,12 +3,19 @@ import type { Metadata } from "next";
 import {
   ChapterHero,
   ChapterSection,
+  ChapterTimeline,
   EditorialAside,
   PullQuote,
   TransitionBlock,
 } from "@/components/content/chapter";
+import { EditorialCardGrid } from "@/components/content/editorial/editorial-card-grid";
+import { EditorialSplit } from "@/components/content/editorial/editorial-layout";
+import {
+  HistoricalAnchorGrid,
+  NarrativeProfileGrid,
+} from "@/components/content/editorial/narrative-card-grid";
+import { EditorialSummaryGrid } from "@/components/content/editorial/editorial-summary-grid";
 import { GuideCallout } from "@/components/content/guide-callout";
-import { NarrativeCard } from "@/components/content/narrative-card";
 import {
   historicalAnchors,
   institutionProfiles,
@@ -96,6 +103,37 @@ const conceptCards = [
   },
 ];
 
+const minimumRouteCards = [
+  {
+    title: "Method changes first",
+    description:
+      "Probability, ranking, and benchmark culture redefine what counts as progress after the limits of hand-built symbolic systems.",
+  },
+  {
+    title: "Networks regain credibility inside that shift",
+    description:
+      "Backpropagation and representation learning matter because the field is newly ready to trust learned features and empirical performance.",
+  },
+  {
+    title: "Era 6 is the acceleration, not the beginning",
+    description:
+      "Deep learning dominates later, but the standards that make that dominance believable are built in this chapter.",
+  },
+];
+
+const twoStrandsCards = [
+  {
+    title: "Learning from data",
+    description:
+      "Probability, benchmarks, and representation learning redefine progress as something measured on data rather than encoded by hand.",
+  },
+  {
+    title: "Industrial scale",
+    description:
+      "Deep Blue, Watson, and later lab infrastructure make the era an engineering story as much as a methodological one.",
+  },
+];
+
 export const metadata: Metadata = {
   title: "Statistical Learning And Network Revival",
   description:
@@ -161,23 +199,15 @@ export default function StatisticalLearningAndNetworkRevivalPage() {
         eyebrow="Organizing Lens"
         title="Two strands make the revival era legible"
       >
-        <div className="content-grid content-grid--dense">
-          <article className="content-card">
-            <h3>Learning from data</h3>
-            <p>
-              Probability, benchmarks, and representation learning redefine
-              progress as something measured on data rather than encoded by
-              hand.
-            </p>
-          </article>
-          <article className="content-card">
-            <h3>Industrial scale</h3>
-            <p>
-              Deep Blue, Watson, and later lab infrastructure make the era an
-              engineering story as much as a methodological one.
-            </p>
-          </article>
-        </div>
+        <EditorialSummaryGrid items={twoStrandsCards} />
+      </ChapterSection>
+
+      <ChapterSection
+        id="era-5-minimum-route"
+        eyebrow="Shortest Route"
+        title="If you only need the bridge to Era 6, keep these three claims"
+      >
+        <EditorialSummaryGrid items={minimumRouteCards} />
       </ChapterSection>
 
       <ChapterSection
@@ -185,15 +215,14 @@ export default function StatisticalLearningAndNetworkRevivalPage() {
         eyebrow="Chronology"
         title="Five anchor points"
       >
-        <ol className="timeline-list">
-          {milestoneItems.map((item) => (
-            <li key={item.year} className="timeline-card">
-              <p className="timeline-year">{item.year}</p>
-              <h3>{item.title}</h3>
-              <p>{item.detail}</p>
-            </li>
-          ))}
-        </ol>
+        <ChapterTimeline
+          items={milestoneItems.map((item) => ({
+            key: `${item.year}-${item.title}`,
+            eyebrow: item.year,
+            title: item.title,
+            description: item.detail,
+          }))}
+        />
       </ChapterSection>
 
       <PullQuote
@@ -207,34 +236,41 @@ export default function StatisticalLearningAndNetworkRevivalPage() {
         title="Why the field moves toward learning"
         prose
       >
-        <div className="chapter-split">
-          <div className="prose-block">
-            <p>
-              Era 5 works best when it is taught as a change in method rather
-              than a clean ideological break. The limits of hand-built symbolic
-              systems make researchers more willing to trust models that learn
-              from examples, rank uncertain answers, and improve through larger
-              datasets and clearer benchmarks.
-            </p>
-            <p>
-              Neural networks belong inside that same story. Backpropagation and
-              later deep-architecture work matter because they reopen a line of
-              research that had been weakened after earlier criticism. But the
-              better historical claim is modest: this era prepares the field for
-              deep learning by making data, probability, and learned features
-              feel normal and increasingly powerful.
-            </p>
-          </div>
-          <EditorialAside
-            label="Compare The Methods"
-            title="Hand-built rules give way to learned features and measurable prediction"
-          >
-            <p>
-              This is why the chapter matters: it changes not only tools but the
-              standards by which the field decides what counts as progress.
-            </p>
-          </EditorialAside>
-        </div>
+        <EditorialSplit
+          className="chapter-split"
+          leftClassName="prose-block"
+          left={
+            <>
+              <p>
+                Era 5 works best when it is taught as a change in method rather
+                than a clean ideological break. The limits of hand-built
+                symbolic systems make researchers more willing to trust models
+                that learn from examples, rank uncertain answers, and improve
+                through larger datasets and clearer benchmarks.
+              </p>
+              <p>
+                Neural networks belong inside that same story. Backpropagation
+                and later deep-architecture work matter because they reopen a
+                line of research that had been weakened after earlier criticism.
+                But the better historical claim is modest: this era prepares the
+                field for deep learning by making data, probability, and learned
+                features feel normal and increasingly powerful.
+              </p>
+            </>
+          }
+          right={
+            <EditorialAside
+              label="Compare The Methods"
+              title="Hand-built rules give way to learned features and measurable prediction"
+            >
+              <p>
+                This is why the chapter matters: it changes not only tools but
+                the standards by which the field decides what counts as
+                progress.
+              </p>
+            </EditorialAside>
+          }
+        />
       </ChapterSection>
 
       <ChapterSection
@@ -242,17 +278,13 @@ export default function StatisticalLearningAndNetworkRevivalPage() {
         eyebrow="Linked People"
         title="Who carries the transition"
       >
-        <div className="content-grid">
-          {peopleCards.map((person) => (
-            <article key={person.name} className="content-card">
-              <h3>{person.name}</h3>
-              <p>{person.summary}</p>
-              <p className="content-card__meta">
-                Linked ideas: {person.links.join("; ")}
-              </p>
-            </article>
-          ))}
-        </div>
+        <EditorialCardGrid
+          items={peopleCards.map((person) => ({
+            title: person.name,
+            description: person.summary,
+            meta: `Linked ideas: ${person.links.join("; ")}`,
+          }))}
+        />
       </ChapterSection>
 
       <ChapterSection
@@ -260,14 +292,13 @@ export default function StatisticalLearningAndNetworkRevivalPage() {
         eyebrow="Linked Concepts"
         title="The methods that change the field"
       >
-        <div className="content-grid content-grid--dense">
-          {conceptCards.map((concept) => (
-            <article key={concept.title} className="content-card">
-              <h3>{concept.title}</h3>
-              <p>{concept.summary}</p>
-            </article>
-          ))}
-        </div>
+        <EditorialCardGrid
+          dense
+          items={conceptCards.map((concept) => ({
+            title: concept.title,
+            description: concept.summary,
+          }))}
+        />
         <p className="artifact-note">
           This era is the runway for deep learning rather than its full victory
           lap. By the end of Era 5, the field is primed to trust large-scale
@@ -284,24 +315,21 @@ export default function StatisticalLearningAndNetworkRevivalPage() {
         eyebrow="Institutions And Milestones"
         title="Industrial research starts to matter differently"
       >
-        <div className="institution-grid">
-          <article className="content-card">
-            <h3>IBM Research</h3>
-            <p>
-              IBM keeps the era grounded in industrial AI milestones such as
-              Deep Blue and Watson, where large-scale computation, ranking, and
-              language systems become part of the public story of AI again.
-            </p>
-          </article>
-          <article className="content-card">
-            <h3>Google Brain</h3>
-            <p>
-              Google Brain represents the changing research environment of the
-              2010s, where compute, scale, and industrial labs increasingly
-              shape the future of learning systems.
-            </p>
-          </article>
-        </div>
+        <EditorialCardGrid
+          className="institution-grid"
+          items={[
+            {
+              title: "IBM Research",
+              description:
+                "IBM keeps the era grounded in industrial AI milestones such as Deep Blue and Watson, where large-scale computation, ranking, and language systems become part of the public story of AI again.",
+            },
+            {
+              title: "Google Brain",
+              description:
+                "Google Brain represents the changing research environment of the 2010s, where compute, scale, and industrial labs increasingly shape the future of learning systems.",
+            },
+          ]}
+        />
         <p className="artifact-note">
           Era 5 ends by pointing directly toward a new question: once models can
           learn stronger internal representations from large data, what happens
@@ -315,63 +343,20 @@ export default function StatisticalLearningAndNetworkRevivalPage() {
         eyebrow="Documentary Profiles"
         title="Portraits, source anchors, and institutions for the revival era"
       >
-        <div className="documentary-grid">
-          {era5People.map((person) => (
-            <NarrativeCard
-              key={person.slug}
-              title={person.name}
-              subtitle={`${person.era} \u00b7 ${person.role}`}
-              summary={person.summary}
-              story={person.story}
-              officialLink={{
-                href: person.officialUrl,
-                label: person.officialLabel,
-              }}
-              sourceRecord={person.sourceRecord}
-              imageUrl={person.imageUrl}
-              imageAlt={person.imageAlt}
-              className="narrative-card--person"
-            />
-          ))}
-        </div>
-        <div className="documentary-grid documentary-grid--anchors">
-          {era5Anchors.map((anchor) => (
-            <NarrativeCard
-              key={anchor.slug}
-              title={anchor.title}
-              subtitle={`${anchor.era} \u00b7 source anchor`}
-              summary={anchor.summary}
-              story="This anchor keeps the era tied to a named document rather than to retrospective summary alone."
-              officialLink={{
-                href: anchor.officialUrl,
-                label: anchor.officialLabel,
-              }}
-              sourceRecord={anchor.sourceRecord}
-              imageUrl={anchor.imageUrl}
-              imageAlt={anchor.imageAlt}
-              className="narrative-card--anchor"
-            />
-          ))}
-        </div>
-        <div className="documentary-grid documentary-grid--institutions">
-          {era5Institutions.map((institution) => (
-            <NarrativeCard
-              key={institution.slug}
-              title={institution.name}
-              subtitle={`${institution.era} \u00b7 ${institution.role}`}
-              summary={institution.summary}
-              story={institution.story}
-              officialLink={{
-                href: institution.officialUrl,
-                label: institution.officialLabel,
-              }}
-              sourceRecord={institution.sourceRecord}
-              imageUrl={institution.imageUrl}
-              imageAlt={institution.imageAlt}
-              className="narrative-card--institution"
-            />
-          ))}
-        </div>
+        <NarrativeProfileGrid
+          profiles={era5People}
+          cardClassName="narrative-card--person"
+        />
+        <HistoricalAnchorGrid
+          anchors={era5Anchors}
+          className="documentary-grid--anchors"
+          story="This anchor keeps the era tied to a named document rather than to retrospective summary alone."
+        />
+        <NarrativeProfileGrid
+          profiles={era5Institutions}
+          className="documentary-grid--institutions"
+          cardClassName="narrative-card--institution"
+        />
       </ChapterSection>
 
       <TransitionBlock

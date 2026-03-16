@@ -3,12 +3,16 @@ import type { Metadata } from "next";
 import {
   ChapterHero,
   ChapterSection,
+  ChapterTimeline,
   EditorialAside,
   PullQuote,
   TransitionBlock,
 } from "@/components/content/chapter";
+import { EditorialCardGrid } from "@/components/content/editorial/editorial-card-grid";
+import { EditorialSplit } from "@/components/content/editorial/editorial-layout";
+import { NarrativeProfileGrid } from "@/components/content/editorial/narrative-card-grid";
+import { EditorialSummaryGrid } from "@/components/content/editorial/editorial-summary-grid";
 import { GuideCallout } from "@/components/content/guide-callout";
-import { NarrativeCard } from "@/components/content/narrative-card";
 import { institutionProfiles, peopleProfiles } from "@/lib/narrative-data";
 
 const era3People = peopleProfiles.filter((p) => p.era === "Era 3");
@@ -91,6 +95,37 @@ const conceptCards = [
   },
 ];
 
+const minimumRouteCards = [
+  {
+    title: "The success",
+    description:
+      "Symbolic AI really could search, prove, plan, and make intelligence look programmable enough to justify lab-scale ambition.",
+  },
+  {
+    title: "The limit",
+    description:
+      "The same methods still looked brittle once the field tried to scale from clean demonstrations to messier worlds and broader claims.",
+  },
+  {
+    title: "The next stop",
+    description:
+      "Read Era 4 as the pressure test on ambitions that became credible here rather than as a rejection of everything this chapter built.",
+  },
+];
+
+const tensionCards = [
+  {
+    title: "What the era could do",
+    description:
+      "Symbolic systems could prove theorems, search problem spaces, plan actions, and make intelligence look programmable.",
+  },
+  {
+    title: "What the era could not yet scale",
+    description:
+      "The same methods still struggled with messy environments, brittle representations, and the widening ambition of general AI.",
+  },
+];
+
 export const metadata: Metadata = {
   title: "Symbolic Optimism And Early AI Programs",
   description:
@@ -156,22 +191,15 @@ export default function SymbolicOptimismAndEarlyAiProgramsPage() {
         eyebrow="Organizing Tension"
         title="What symbolic AI could do, and what it could not yet scale"
       >
-        <div className="content-grid content-grid--dense">
-          <article className="content-card">
-            <h3>What the era could do</h3>
-            <p>
-              Symbolic systems could prove theorems, search problem spaces, plan
-              actions, and make intelligence look programmable.
-            </p>
-          </article>
-          <article className="content-card">
-            <h3>What the era could not yet scale</h3>
-            <p>
-              The same methods still struggled with messy environments, brittle
-              representations, and the widening ambition of general AI.
-            </p>
-          </article>
-        </div>
+        <EditorialSummaryGrid items={tensionCards} />
+      </ChapterSection>
+
+      <ChapterSection
+        id="era-3-minimum-route"
+        eyebrow="Shortest Route"
+        title="If you only need the chapter hinge, keep one success and one limit in view"
+      >
+        <EditorialSummaryGrid items={minimumRouteCards} />
       </ChapterSection>
 
       <ChapterSection
@@ -179,15 +207,14 @@ export default function SymbolicOptimismAndEarlyAiProgramsPage() {
         eyebrow="Chronology"
         title="Five anchor points"
       >
-        <ol className="timeline-list">
-          {milestoneItems.map((item) => (
-            <li key={item.year} className="timeline-card">
-              <p className="timeline-year">{item.year}</p>
-              <h3>{item.title}</h3>
-              <p>{item.detail}</p>
-            </li>
-          ))}
-        </ol>
+        <ChapterTimeline
+          items={milestoneItems.map((item) => ({
+            key: `${item.year}-${item.title}`,
+            eyebrow: item.year,
+            title: item.title,
+            description: item.detail,
+          }))}
+        />
       </ChapterSection>
 
       <PullQuote
@@ -201,36 +228,49 @@ export default function SymbolicOptimismAndEarlyAiProgramsPage() {
         title="How the era teaches the field after Dartmouth"
         prose
       >
-        <div className="chapter-split">
-          <div className="prose-block">
-            <p>
-              Era 3 works best when it is taught as the field&apos;s first
-              serious attempt to operationalize reasoning. Logic Theorist and
-              GPS matter because they make symbolic problem solving look
-              programmable. Search and heuristics matter because they give the
-              period a way to act intelligently without examining every possible
-              move.
-            </p>
-            <p>
-              The era also broadens quickly. LISP makes AI easier to build,
-              theorem proving deepens the formal side of the field, and planning
-              plus robotics show that symbolic systems can be used to connect
-              internal representations to action. The historical strength of the
-              era is exactly what later critique has to answer: symbolic AI did
-              enough real work that its limitations only became visible once its
-              ambitions widened.
-            </p>
-          </div>
-          <EditorialAside
-            label="What They Thought Intelligence Was"
-            title="Explicit representation plus symbolic manipulation"
-          >
-            <p>
-              Era 3 needs this premise made visible. Otherwise later critiques
-              of brittleness and scaling float without a clear target.
-            </p>
-          </EditorialAside>
-        </div>
+        <EditorialSplit
+          className="chapter-split"
+          leftClassName="prose-block"
+          left={
+            <>
+              <p>
+                Era 3 works best when it is taught as the field&apos;s first
+                serious attempt to operationalize reasoning. Logic Theorist and
+                GPS matter because they make symbolic problem solving look
+                programmable. Search and heuristics matter because they give the
+                period a way to act intelligently without examining every
+                possible move.
+              </p>
+              <p>
+                The era also broadens quickly. LISP makes AI easier to build,
+                theorem proving deepens the formal side of the field, and
+                planning plus robotics show that symbolic systems can be used to
+                connect internal representations to action. The historical
+                strength of the era is exactly what later critique has to
+                answer: symbolic AI did enough real work that its limitations
+                only became visible once its ambitions widened.
+              </p>
+            </>
+          }
+          right={
+            <EditorialAside
+              label="What They Thought Intelligence Was"
+              title="Explicit representation plus symbolic manipulation"
+            >
+              <p>
+                Era 3 needs this premise made visible. Otherwise later critiques
+                of brittleness and scaling float without a clear target.
+              </p>
+            </EditorialAside>
+          }
+        />
+        <p className="artifact-note">
+          These ideas also prepare the next turn in the chronology: once
+          symbolic AI can do theorem proving and planning in bounded settings,
+          the real historical question becomes what happens when researchers,
+          funders, and the public expect the same methods to scale much more
+          broadly.
+        </p>
       </ChapterSection>
 
       <ChapterSection
@@ -238,17 +278,13 @@ export default function SymbolicOptimismAndEarlyAiProgramsPage() {
         eyebrow="Linked People"
         title="Who carries the symbolic era"
       >
-        <div className="content-grid">
-          {peopleCards.map((person) => (
-            <article key={person.name} className="content-card">
-              <h3>{person.name}</h3>
-              <p>{person.summary}</p>
-              <p className="content-card__meta">
-                Linked ideas: {person.links.join("; ")}
-              </p>
-            </article>
-          ))}
-        </div>
+        <EditorialCardGrid
+          items={peopleCards.map((person) => ({
+            title: person.name,
+            description: person.summary,
+            meta: `Linked ideas: ${person.links.join("; ")}`,
+          }))}
+        />
       </ChapterSection>
 
       <GuideCallout
@@ -268,17 +304,13 @@ export default function SymbolicOptimismAndEarlyAiProgramsPage() {
         eyebrow="Linked Concepts"
         title="The ideas that make the optimism intelligible"
       >
-        <div className="content-grid content-grid--dense">
-          {conceptCards.map((concept) => (
-            <article
-              key={concept.title}
-              className="content-card content-card--concept"
-            >
-              <h3>{concept.title}</h3>
-              <p>{concept.summary}</p>
-            </article>
-          ))}
-        </div>
+        <EditorialCardGrid
+          dense
+          items={conceptCards.map((concept) => ({
+            title: concept.title,
+            description: concept.summary,
+          }))}
+        />
         <p className="artifact-note">
           These ideas also prepare the next turn in the chronology: once
           symbolic AI can do theorem proving and planning in bounded settings,
@@ -293,24 +325,21 @@ export default function SymbolicOptimismAndEarlyAiProgramsPage() {
         eyebrow="Institutions And Pressure"
         title="Labs and funding shape the research style"
       >
-        <div className="institution-grid">
-          <article className="content-card">
-            <h3>MIT Artificial Intelligence Laboratory</h3>
-            <p>
-              MIT gives the symbolic era a visible home where programming,
-              robotics, and ambitious views of machine intelligence reinforce
-              one another.
-            </p>
-          </article>
-          <article className="content-card">
-            <h3>DARPA</h3>
-            <p>
-              DARPA helps make large early AI projects possible, which matters
-              because the era&apos;s optimism is not only intellectual. It is
-              also institutional and strategic.
-            </p>
-          </article>
-        </div>
+        <EditorialCardGrid
+          className="institution-grid"
+          items={[
+            {
+              title: "MIT Artificial Intelligence Laboratory",
+              description:
+                "MIT gives the symbolic era a visible home where programming, robotics, and ambitious views of machine intelligence reinforce one another.",
+            },
+            {
+              title: "DARPA",
+              description:
+                "DARPA helps make large early AI projects possible, which matters because the era's optimism is not only intellectual. It is also institutional and strategic.",
+            },
+          ]}
+        />
         <p className="artifact-note">
           Era 3 is therefore a bridge period: the field inherits the formal
           logic of Era 2, builds symbolic systems that genuinely work, and in
@@ -324,44 +353,15 @@ export default function SymbolicOptimismAndEarlyAiProgramsPage() {
         eyebrow="Documentary Profiles"
         title="Portraits and institutions of the symbolic era"
       >
-        <div className="documentary-grid">
-          {era3People.map((person) => (
-            <NarrativeCard
-              key={person.slug}
-              title={person.name}
-              subtitle={`${person.era} \u00b7 ${person.role}`}
-              summary={person.summary}
-              story={person.story}
-              officialLink={{
-                href: person.officialUrl,
-                label: person.officialLabel,
-              }}
-              sourceRecord={person.sourceRecord}
-              imageUrl={person.imageUrl}
-              imageAlt={person.imageAlt}
-              className="narrative-card--person"
-            />
-          ))}
-        </div>
-        <div className="documentary-grid documentary-grid--institutions">
-          {era3Institutions.map((institution) => (
-            <NarrativeCard
-              key={institution.slug}
-              title={institution.name}
-              subtitle={`${institution.era} \u00b7 ${institution.role}`}
-              summary={institution.summary}
-              story={institution.story}
-              officialLink={{
-                href: institution.officialUrl,
-                label: institution.officialLabel,
-              }}
-              sourceRecord={institution.sourceRecord}
-              imageUrl={institution.imageUrl}
-              imageAlt={institution.imageAlt}
-              className="narrative-card--institution"
-            />
-          ))}
-        </div>
+        <NarrativeProfileGrid
+          profiles={era3People}
+          cardClassName="narrative-card--person"
+        />
+        <NarrativeProfileGrid
+          profiles={era3Institutions}
+          className="documentary-grid--institutions"
+          cardClassName="narrative-card--institution"
+        />
         <p className="artifact-note">
           Want the documents behind this chapter? Start with the{" "}
           <a href="/reading-maps/intellectual-lineage#reading-map-era-3">

@@ -3,12 +3,19 @@ import type { Metadata } from "next";
 import {
   ChapterHero,
   ChapterSection,
+  ChapterTimeline,
   EditorialAside,
   PullQuote,
   TransitionBlock,
 } from "@/components/content/chapter";
+import { EditorialCardGrid } from "@/components/content/editorial/editorial-card-grid";
+import { EditorialSplit } from "@/components/content/editorial/editorial-layout";
+import {
+  HistoricalAnchorGrid,
+  NarrativeProfileGrid,
+} from "@/components/content/editorial/narrative-card-grid";
+import { EditorialSummaryGrid } from "@/components/content/editorial/editorial-summary-grid";
 import { GuideCallout } from "@/components/content/guide-callout";
-import { NarrativeCard } from "@/components/content/narrative-card";
 import { historicalAnchors, peopleProfiles } from "@/lib/narrative-data";
 
 const era6People = peopleProfiles.filter((p) => p.era === "Era 6");
@@ -91,6 +98,37 @@ const conceptCards = [
   },
 ];
 
+const minimumRouteCards = [
+  {
+    title: "Deep models start winning broadly",
+    description:
+      "Performance gains in vision, speech, and language make deep learning the field&apos;s main empirical regime rather than one promising option among several.",
+  },
+  {
+    title: "Scale becomes explanatory",
+    description:
+      "Data, compute, and training practice are no longer background details. They help explain why the systems work.",
+  },
+  {
+    title: "Transformers make the next era immediate",
+    description:
+      "Attention-centered architecture turns the chapter from a breakthrough story into a direct runway for foundation models.",
+  },
+];
+
+const beforeAfterCards = [
+  {
+    title: "Era 5: plausible methods",
+    description:
+      "Statistical learning and revived networks matter because they reopen the path, but they do not yet dominate the field.",
+  },
+  {
+    title: "Era 6: dominant regime",
+    description:
+      "Deep learning becomes the main performance story once scale, representation learning, and transformers move from promising to decisive.",
+  },
+];
+
 export const metadata: Metadata = {
   title: "Deep Learning Breakthroughs",
   description:
@@ -154,23 +192,15 @@ export default function DeepLearningBreakthroughsPage() {
         eyebrow="Before And After"
         title="What changes between Era 5 and Era 6"
       >
-        <div className="content-grid content-grid--dense">
-          <article className="content-card">
-            <h3>Era 5: plausible methods</h3>
-            <p>
-              Statistical learning and revived networks matter because they
-              reopen the path, but they do not yet dominate the field.
-            </p>
-          </article>
-          <article className="content-card">
-            <h3>Era 6: dominant regime</h3>
-            <p>
-              Deep learning becomes the main performance story once scale,
-              representation learning, and transformers move from promising to
-              decisive.
-            </p>
-          </article>
-        </div>
+        <EditorialSummaryGrid items={beforeAfterCards} />
+      </ChapterSection>
+
+      <ChapterSection
+        id="era-6-minimum-route"
+        eyebrow="Shortest Route"
+        title="If you only need the handoff to Era 7, keep these three moves"
+      >
+        <EditorialSummaryGrid items={minimumRouteCards} />
       </ChapterSection>
 
       <ChapterSection
@@ -178,15 +208,14 @@ export default function DeepLearningBreakthroughsPage() {
         eyebrow="Chronology"
         title="Five anchor points"
       >
-        <ol className="timeline-list">
-          {milestoneItems.map((item) => (
-            <li key={item.year} className="timeline-card">
-              <p className="timeline-year">{item.year}</p>
-              <h3>{item.title}</h3>
-              <p>{item.detail}</p>
-            </li>
-          ))}
-        </ol>
+        <ChapterTimeline
+          items={milestoneItems.map((item) => ({
+            key: `${item.year}-${item.title}`,
+            eyebrow: item.year,
+            title: item.title,
+            description: item.detail,
+          }))}
+        />
       </ChapterSection>
 
       <PullQuote
@@ -200,36 +229,43 @@ export default function DeepLearningBreakthroughsPage() {
         title="Why scale and representation matter here"
         prose
       >
-        <div className="chapter-split">
-          <div className="prose-block">
-            <p>
-              Era 6 should not be summarized as simple hype around larger
-              models. The stronger historical claim is that deep systems
-              increasingly learn intermediate structure for themselves and do so
-              well enough to change the research agenda. Vision, speech, and
-              language systems all start to benefit from the same general logic:
-              large-scale layered models can discover useful representations
-              from data rather than depending entirely on handcrafted features.
-            </p>
-            <p>
-              The transformer is the era&apos;s decisive late turn. Attention Is
-              All You Need matters because it shows that sequence models do not
-              have to inherit older recurrent assumptions. Once
-              attention-centered architectures prove stronger and more
-              parallelizable, the field has the immediate architectural runway
-              for the foundation-model and large-language-model period.
-            </p>
-          </div>
-          <EditorialAside
-            label="Runway"
-            title="Transformers matter because they reorganize what scale can do"
-          >
-            <p>
-              That is why the final handoff into Era 7 should feel immediate,
-              not like a separate product story detached from research.
-            </p>
-          </EditorialAside>
-        </div>
+        <EditorialSplit
+          className="chapter-split"
+          leftClassName="prose-block"
+          left={
+            <>
+              <p>
+                Era 6 should not be summarized as simple hype around larger
+                models. The stronger historical claim is that deep systems
+                increasingly learn intermediate structure for themselves and do
+                so well enough to change the research agenda. Vision, speech,
+                and language systems all start to benefit from the same general
+                logic: large-scale layered models can discover useful
+                representations from data rather than depending entirely on
+                handcrafted features.
+              </p>
+              <p>
+                The transformer is the era&apos;s decisive late turn. Attention
+                Is All You Need matters because it shows that sequence models do
+                not have to inherit older recurrent assumptions. Once
+                attention-centered architectures prove stronger and more
+                parallelizable, the field has the immediate architectural runway
+                for the foundation-model and large-language-model period.
+              </p>
+            </>
+          }
+          right={
+            <EditorialAside
+              label="Runway"
+              title="Transformers matter because they reorganize what scale can do"
+            >
+              <p>
+                That is why the final handoff into Era 7 should feel immediate,
+                not like a separate product story detached from research.
+              </p>
+            </EditorialAside>
+          }
+        />
       </ChapterSection>
 
       <ChapterSection
@@ -237,17 +273,13 @@ export default function DeepLearningBreakthroughsPage() {
         eyebrow="Linked People"
         title="Who makes the breakthrough legible"
       >
-        <div className="content-grid">
-          {peopleCards.map((person) => (
-            <article key={person.name} className="content-card">
-              <h3>{person.name}</h3>
-              <p>{person.summary}</p>
-              <p className="content-card__meta">
-                Linked ideas: {person.links.join("; ")}
-              </p>
-            </article>
-          ))}
-        </div>
+        <EditorialCardGrid
+          items={peopleCards.map((person) => ({
+            title: person.name,
+            description: person.summary,
+            meta: `Linked ideas: ${person.links.join("; ")}`,
+          }))}
+        />
       </ChapterSection>
 
       <GuideCallout
@@ -257,7 +289,7 @@ export default function DeepLearningBreakthroughsPage() {
         <p>
           The transformer shift is the clearest direct bridge into the next era,
           but you do not need to hold every repetition in your head here. If you
-          want the cleanest documentary handoff, jump from this chapter to
+          want the cleanest documentary handoff, jump from this chapter to{" "}
           <a href="/reading-maps/intellectual-lineage#reading-map-main">
             the reading map&apos;s Era 6 cluster
           </a>{" "}
@@ -272,14 +304,13 @@ export default function DeepLearningBreakthroughsPage() {
         eyebrow="Linked Concepts"
         title="The ideas that define the breakthrough"
       >
-        <div className="content-grid content-grid--dense">
-          {conceptCards.map((concept) => (
-            <article key={concept.title} className="content-card">
-              <h3>{concept.title}</h3>
-              <p>{concept.summary}</p>
-            </article>
-          ))}
-        </div>
+        <EditorialCardGrid
+          dense
+          items={conceptCards.map((concept) => ({
+            title: concept.title,
+            description: concept.summary,
+          }))}
+        />
         <p className="artifact-note">
           The transformer shift is the last major hinge before foundation
           models. It makes the next era possible by turning attention and
@@ -293,24 +324,21 @@ export default function DeepLearningBreakthroughsPage() {
         eyebrow="Institutions And Turning Point"
         title="Industrial labs and the transformer inflection"
       >
-        <div className="institution-grid">
-          <article className="content-card">
-            <h3>Google Brain</h3>
-            <p>
-              Google Brain represents the era&apos;s large-scale research
-              setting, where attention, compute, and deployment ambitions start
-              to move together.
-            </p>
-          </article>
-          <article className="content-card">
-            <h3>Attention Is All You Need</h3>
-            <p>
-              The 2017 transformer paper marks the historical pivot where
-              attention-centered architecture becomes the clearest direct runway
-              into foundation models and large language models.
-            </p>
-          </article>
-        </div>
+        <EditorialCardGrid
+          className="institution-grid"
+          items={[
+            {
+              title: "Google Brain",
+              description:
+                "Google Brain represents the era's large-scale research setting, where attention, compute, and deployment ambitions start to move together.",
+            },
+            {
+              title: "Attention Is All You Need",
+              description:
+                "The 2017 transformer paper marks the historical pivot where attention-centered architecture becomes the clearest direct runway into foundation models and large language models.",
+            },
+          ]}
+        />
       </ChapterSection>
 
       <ChapterSection
@@ -318,44 +346,15 @@ export default function DeepLearningBreakthroughsPage() {
         eyebrow="Documentary Profiles"
         title="Portraits and source anchors for the deep learning era"
       >
-        <div className="documentary-grid">
-          {era6People.map((person) => (
-            <NarrativeCard
-              key={person.slug}
-              title={person.name}
-              subtitle={`${person.era} \u00b7 ${person.role}`}
-              summary={person.summary}
-              story={person.story}
-              officialLink={{
-                href: person.officialUrl,
-                label: person.officialLabel,
-              }}
-              sourceRecord={person.sourceRecord}
-              imageUrl={person.imageUrl}
-              imageAlt={person.imageAlt}
-              className="narrative-card--person"
-            />
-          ))}
-        </div>
-        <div className="documentary-grid documentary-grid--anchors">
-          {era6Anchors.map((anchor) => (
-            <NarrativeCard
-              key={anchor.slug}
-              title={anchor.title}
-              subtitle={`${anchor.era} \u00b7 source anchor`}
-              summary={anchor.summary}
-              story="This anchor keeps the era tied to a named document rather than to retrospective summary alone."
-              officialLink={{
-                href: anchor.officialUrl,
-                label: anchor.officialLabel,
-              }}
-              sourceRecord={anchor.sourceRecord}
-              imageUrl={anchor.imageUrl}
-              imageAlt={anchor.imageAlt}
-              className="narrative-card--anchor"
-            />
-          ))}
-        </div>
+        <NarrativeProfileGrid
+          profiles={era6People}
+          cardClassName="narrative-card--person"
+        />
+        <HistoricalAnchorGrid
+          anchors={era6Anchors}
+          className="documentary-grid--anchors"
+          story="This anchor keeps the era tied to a named document rather than to retrospective summary alone."
+        />
       </ChapterSection>
 
       <TransitionBlock

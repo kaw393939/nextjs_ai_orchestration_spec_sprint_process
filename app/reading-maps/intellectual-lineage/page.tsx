@@ -7,6 +7,8 @@ import {
   PullQuote,
   TransitionBlock,
 } from "@/components/content/chapter";
+import { EditorialCardGrid } from "@/components/content/editorial/editorial-card-grid";
+import { EditorialSummaryGrid } from "@/components/content/editorial/editorial-summary-grid";
 import { GuideCallout } from "@/components/content/guide-callout";
 import { FoundationModelTurningPointsDiagram } from "@/components/content/visualizations/foundation-model-turning-points-diagram";
 import { InterpretabilityGapDiagram } from "@/components/content/visualizations/interpretability-gap-diagram";
@@ -318,6 +320,69 @@ const eraGuideposts: Record<string, string> = {
     "This cluster is the shortest path from large pretrained models to deployment, alignment, and infrastructure debates.",
 };
 
+const minimumRoute = [
+  {
+    eyebrow: "Era 1",
+    work: "Ada Lovelace, Notes on the Analytical Engine",
+    description:
+      "Keeps the origin story disciplined by separating programmable machinery from stronger claims about intelligence.",
+  },
+  {
+    eyebrow: "Era 2",
+    work: "Dartmouth proposal",
+    description:
+      "Shows where the field is named and where multiple strands become one research agenda.",
+  },
+  {
+    eyebrow: "Era 4",
+    work: "James Lighthill, Artificial Intelligence: A General Survey",
+    description:
+      "Prevents the middle of the chronology from reading like uninterrupted success.",
+  },
+  {
+    eyebrow: "Era 5",
+    work: "Rumelhart, Hinton, and Williams, Learning Representations by Back-Propagating Errors",
+    description:
+      "Marks the methodological turn that reopens learned representation as the field's strongest path.",
+  },
+  {
+    eyebrow: "Era 6",
+    work: "Vaswani et al., Attention Is All You Need",
+    description:
+      "Provides the architecture handoff into large-scale modern language systems.",
+  },
+  {
+    eyebrow: "Era 7",
+    work: "Bommasani et al., On the Opportunities and Risks of Foundation Models",
+    description:
+      "Names the current era as a reusable-system ecosystem rather than a single model release.",
+  },
+];
+
+const readingPathCards = [
+  {
+    title: "15-minute chronology",
+    description:
+      "Read one era cluster at a time if you want the shortest paper-based route from precursors to foundation models.",
+    href: "#reading-map-main",
+    linkLabel: "Start the main chronology",
+  },
+  {
+    title: "Turning-point scan",
+    description:
+      "Jump to the hinge documents if you need the decisive moments without committing to every reading entry on the page.",
+    href: "#reading-map-turning-points",
+    linkLabel: "Go to turning points",
+  },
+  {
+    title: "Follow the safety thread",
+    description:
+      "Use the companion thread when your question is less about the whole chronology and more about how alignment vocabulary forms.",
+    href: "#reading-map-safety",
+    linkLabel: "Go to the safety thread",
+  },
+];
+
 export const metadata: Metadata = {
   title: "Intellectual Lineage Reading Map",
   description:
@@ -402,38 +467,23 @@ export default function IntellectualLineageReadingMapPage() {
           eyebrow="Reading Paths"
           title="Choose the path that matches the time and focus you have"
         >
-          <div className="content-grid content-grid--dense">
-            <article className="content-card">
-              <h3>15-minute chronology</h3>
-              <p>
-                Read one era cluster at a time if you want the shortest
-                paper-based route from precursors to foundation models.
-              </p>
-              <p className="artifact-note">
-                <a href="#reading-map-main">Start the main chronology</a>
-              </p>
-            </article>
-            <article className="content-card">
-              <h3>Turning-point scan</h3>
-              <p>
-                Jump to the hinge documents if you need the decisive moments
-                without committing to every reading entry on the page.
-              </p>
-              <p className="artifact-note">
-                <a href="#reading-map-turning-points">Go to turning points</a>
-              </p>
-            </article>
-            <article className="content-card">
-              <h3>Follow the safety thread</h3>
-              <p>
-                Use the companion thread when your question is less about the
-                whole chronology and more about how alignment vocabulary forms.
-              </p>
-              <p className="artifact-note">
-                <a href="#reading-map-safety">Go to the safety thread</a>
-              </p>
-            </article>
-          </div>
+          <EditorialSummaryGrid items={readingPathCards} />
+        </ChapterSection>
+
+        <ChapterSection
+          id="reading-map-minimum-route"
+          eyebrow="Shortest Route"
+          title="If you only read six items, read these handoff documents"
+        >
+          <EditorialSummaryGrid
+            items={minimumRoute.map((entry) => ({
+              eyebrow: entry.eyebrow,
+              title: entry.work,
+              description: entry.description,
+              href: eraRouteByEra[entry.eyebrow],
+              linkLabel: "Read the matching era chapter",
+            }))}
+          />
         </ChapterSection>
 
         <PullQuote
@@ -537,25 +587,23 @@ export default function IntellectualLineageReadingMapPage() {
           eyebrow="Parallel Thread"
           title="Safety And Interpretability Thread"
         >
-          <div className="content-grid">
-            {safetyThread.map((item) => (
-              <article
-                key={`${item.year}-${item.work}`}
-                className="content-card"
-              >
-                <p className="timeline-year">{item.year}</p>
-                <h3>
-                  <a href={item.href} target="_blank" rel="noreferrer">
-                    {item.work}
-                  </a>
-                </h3>
-                <p>{item.why}</p>
+          <EditorialCardGrid
+            items={safetyThread.map((item) => ({
+              key: `${item.year}-${item.work}`,
+              title: (
+                <a href={item.href} target="_blank" rel="noreferrer">
+                  {item.work}
+                </a>
+              ),
+              description: item.why,
+              meta: item.year,
+              footer: (
                 <p className="artifact-note">
                   Connects forward: {item.lineage}
                 </p>
-              </article>
-            ))}
-          </div>
+              ),
+            }))}
+          />
         </ChapterSection>
       </article>
     </main>

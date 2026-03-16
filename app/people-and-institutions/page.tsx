@@ -7,7 +7,11 @@ import {
   PullQuote,
   TransitionBlock,
 } from "@/components/content/chapter";
-import { NarrativeCard } from "@/components/content/narrative-card";
+import {
+  HistoricalAnchorGrid,
+  NarrativeProfileGrid,
+} from "@/components/content/editorial/narrative-card-grid";
+import { EditorialSummaryGrid } from "@/components/content/editorial/editorial-summary-grid";
 import { cn } from "@/lib/utils";
 import { GuideCallout } from "@/components/content/guide-callout";
 import {
@@ -94,6 +98,62 @@ const castGroups = [
   },
 ];
 
+const quickRoutes = [
+  {
+    title: "Need the shortest cast route?",
+    description:
+      "Read symbolic generation, then statistical revival, then the modern deployment group. That path gets you from field naming to public AI with the fewest stops.",
+    href: "#people-index",
+    label: "Start with the cast groups",
+  },
+  {
+    title: "Need the institutions first?",
+    description:
+      "Jump to Bell Labs, MIT AI Lab, DARPA, and then the modern frontier-model labs if you want the story told through organizations rather than personalities.",
+    href: "#institution-index",
+    label: "Go to institutions",
+  },
+  {
+    title: "Need the documents to keep you honest?",
+    description:
+      "Use the anchors when the story starts sounding too smooth. Reports, proposals, and papers keep the chronology tied to named historical objects.",
+    href: "#source-anchors",
+    label: "Go to source anchors",
+  },
+];
+
+const useThisPageCards = [
+  {
+    title: "Meet the cast",
+    description:
+      "Start with the grouped figures if you need the chronology to feel human before it feels institutional.",
+    href: "#people-index",
+    linkLabel: "Go to people groups",
+  },
+  {
+    title: "Follow the labs and companies",
+    description:
+      "Use the institution section when you want the story told through Bell Labs, MIT, DARPA, and the modern frontier-model labs.",
+    href: "#institution-index",
+    linkLabel: "Go to institutions",
+  },
+  {
+    title: "Check the documents",
+    description:
+      "Move to the source anchors when you want named reports, papers, and documentary objects to keep the story honest.",
+    href: "#source-anchors",
+    linkLabel: "Go to source anchors",
+  },
+];
+
+const earlierInstitutions = institutionProfiles.filter(
+  (profile) => profile.era !== "Era 7"
+);
+
+const modernInstitutions = institutionProfiles.filter(
+  (profile) => profile.era === "Era 7"
+);
+
 export const metadata: Metadata = {
   title: "People And Institutions",
   description:
@@ -163,38 +223,22 @@ export default function PeopleAndInstitutionsPage() {
           eyebrow="How To Use This Page"
           title="Choose the route that matches the question you have"
         >
-          <div className="content-grid content-grid--dense">
-            <article className="content-card">
-              <h3>Meet the cast</h3>
-              <p>
-                Start with the grouped figures if you need the chronology to
-                feel human before it feels institutional.
-              </p>
-              <p className="artifact-note">
-                <a href="#people-index">Go to people groups</a>
-              </p>
-            </article>
-            <article className="content-card">
-              <h3>Follow the labs and companies</h3>
-              <p>
-                Use the institution section when you want the story told through
-                Bell Labs, MIT, DARPA, and the modern frontier-model labs.
-              </p>
-              <p className="artifact-note">
-                <a href="#institution-index">Go to institutions</a>
-              </p>
-            </article>
-            <article className="content-card">
-              <h3>Check the documents</h3>
-              <p>
-                Move to the source anchors when you want named reports, papers,
-                and documentary objects to keep the story honest.
-              </p>
-              <p className="artifact-note">
-                <a href="#source-anchors">Go to source anchors</a>
-              </p>
-            </article>
-          </div>
+          <EditorialSummaryGrid items={useThisPageCards} />
+        </ChapterSection>
+
+        <ChapterSection
+          id="five-minute-route"
+          eyebrow="Five-Minute Route"
+          title="If this page feels too wide, use the minimum path"
+        >
+          <EditorialSummaryGrid
+            items={quickRoutes.map((route) => ({
+              title: route.title,
+              description: route.description,
+              href: route.href,
+              linkLabel: route.label,
+            }))}
+          />
         </ChapterSection>
 
         <PullQuote
@@ -234,24 +278,13 @@ export default function PeopleAndInstitutionsPage() {
                     group.members.length === 1 && "cast-group__cards--single"
                   )}
                 >
-                  {group.members.map((profile) => (
-                    <NarrativeCard
-                      key={profile.slug}
-                      title={profile.name}
-                      subtitle={`${profile.era} · ${profile.role}`}
-                      summary={profile.summary}
-                      story={profile.story}
-                      officialLink={{
-                        href: profile.officialUrl,
-                        label: profile.officialLabel,
-                      }}
-                      sourceRecord={profile.sourceRecord}
-                      imageUrl={profile.imageUrl}
-                      imageAlt={profile.imageAlt}
-                      socialLinks={profile.socialLinks}
-                      className="narrative-card--person"
-                    />
-                  ))}
+                  <NarrativeProfileGrid
+                    profiles={group.members}
+                    className={cn(
+                      group.members.length === 1 && "cast-group__cards--single"
+                    )}
+                    cardClassName="narrative-card--person"
+                  />
                 </div>
               </section>
             ))}
@@ -269,26 +302,51 @@ export default function PeopleAndInstitutionsPage() {
           eyebrow="Institutions"
           title="Where the public era becomes organizational"
         >
-          <div className="documentary-grid documentary-grid--institutions">
-            {institutionProfiles.map((profile) => (
-              <NarrativeCard
-                key={profile.slug}
-                title={profile.name}
-                subtitle={`${profile.era} · ${profile.role}`}
-                summary={profile.summary}
-                story={profile.story}
-                officialLink={{
-                  href: profile.officialUrl,
-                  label: profile.officialLabel,
-                }}
-                sourceRecord={profile.sourceRecord}
-                imageUrl={profile.imageUrl}
-                imageAlt={profile.imageAlt}
-                socialLinks={profile.socialLinks}
-                className="narrative-card--institution"
-                imageFit={profile.slug === "openai" ? "cover" : "contain"}
+          <p className="artifact-note">
+            Read these in two passes instead of one sweep: first the labs and
+            funders that make the field possible, then the frontier-model
+            organizations that make the systems public.
+          </p>
+          <div className="cast-group-list">
+            <section className="cast-group">
+              <div className="cast-group__intro">
+                <p className="eyebrow">Institutional groundwork</p>
+                <h3>Before the public AI era</h3>
+                <p>
+                  Bell Labs, MIT AI Lab, and DARPA explain how the field gets
+                  its technical substrate, symbolic confidence, and long-term
+                  funding support before modern deployment becomes the story.
+                </p>
+              </div>
+              <NarrativeProfileGrid
+                profiles={earlierInstitutions}
+                className="documentary-grid--institutions"
+                cardClassName="narrative-card--institution"
+                getImageFit={(profile) =>
+                  profile.slug === "openai" ? "cover" : "contain"
+                }
               />
-            ))}
+            </section>
+            <section className="cast-group cast-group--builders">
+              <div className="cast-group__intro">
+                <p className="eyebrow">Frontier-model institutions</p>
+                <h3>The organizations that make the systems public</h3>
+                <p>
+                  OpenAI, Google DeepMind, and Anthropic matter because they do
+                  not only build models. They decide how capability, scientific
+                  ambition, safety language, and public interface get bundled
+                  together.
+                </p>
+              </div>
+              <NarrativeProfileGrid
+                profiles={modernInstitutions}
+                className="documentary-grid--institutions"
+                cardClassName="narrative-card--institution"
+                getImageFit={(profile) =>
+                  profile.slug === "openai" ? "cover" : "contain"
+                }
+              />
+            </section>
           </div>
         </ChapterSection>
 
@@ -297,25 +355,11 @@ export default function PeopleAndInstitutionsPage() {
           eyebrow="Historical Source Anchors"
           title="Earlier source anchors kept in view"
         >
-          <div className="documentary-grid documentary-grid--anchors">
-            {historicalAnchors.map((anchor) => (
-              <NarrativeCard
-                key={anchor.slug}
-                title={anchor.title}
-                subtitle={`${anchor.era} · source anchor`}
-                summary={anchor.summary}
-                story="These cards keep the early chronology tied to named documents and source pages, even when the live route is still text-first."
-                officialLink={{
-                  href: anchor.officialUrl,
-                  label: anchor.officialLabel,
-                }}
-                sourceRecord={anchor.sourceRecord}
-                imageUrl={anchor.imageUrl}
-                imageAlt={anchor.imageAlt}
-                className="narrative-card--anchor"
-              />
-            ))}
-          </div>
+          <HistoricalAnchorGrid
+            anchors={historicalAnchors}
+            className="documentary-grid--anchors"
+            story="These cards keep the early chronology tied to named documents and source pages, even when the live route is still text-first."
+          />
         </ChapterSection>
 
         <GuideCallout

@@ -3,12 +3,19 @@ import type { Metadata } from "next";
 import {
   ChapterHero,
   ChapterSection,
+  ChapterTimeline,
   EditorialAside,
   PullQuote,
   TransitionBlock,
 } from "@/components/content/chapter";
+import { EditorialCardGrid } from "@/components/content/editorial/editorial-card-grid";
+import { EditorialSplit } from "@/components/content/editorial/editorial-layout";
+import {
+  HistoricalAnchorGrid,
+  NarrativeProfileGrid,
+} from "@/components/content/editorial/narrative-card-grid";
+import { EditorialSummaryGrid } from "@/components/content/editorial/editorial-summary-grid";
 import { GuideCallout } from "@/components/content/guide-callout";
-import { NarrativeCard } from "@/components/content/narrative-card";
 import {
   historicalAnchors,
   institutionProfiles,
@@ -126,6 +133,71 @@ const conceptCards = [
   },
 ];
 
+const synthesisCards = [
+  {
+    title: "What changes here",
+    description:
+      "One pretrained system stops being a single demonstration and starts acting like reusable infrastructure across many tasks, tools, and interfaces.",
+  },
+  {
+    title: "What does not change",
+    description:
+      "Fluency is still not the same thing as understanding, and public usefulness still arrives before the field can fully explain every internal mechanism.",
+  },
+  {
+    title: "How to stay oriented",
+    description:
+      "Read chronology for the public timeline, concepts for the technical stack, and institutions for the governance and deployment choices that make the era historical.",
+  },
+];
+
+const readingLaneCards = [
+  {
+    title: "Public deployment",
+    description:
+      "Start here if your question is how models became part of work, education, search, and everyday public interfaces.",
+    href: "#era-7-chronology",
+    linkLabel: "Start with chronology",
+  },
+  {
+    title: "Technical stack",
+    description:
+      "Use this lane if you want embeddings, retrieval, multimodality, and transformers to stay connected as one system story.",
+    href: "#era-7-concepts",
+    linkLabel: "Go to concepts",
+  },
+  {
+    title: "Safety and governance",
+    description:
+      "Follow this lane if reliability, institutional posture, and alignment debates are the reason you are on the page.",
+    href: "#era-7-institutions",
+    linkLabel: "Go to institutions",
+  },
+];
+
+const institutionCards = [
+  {
+    title: "OpenAI",
+    description:
+      "OpenAI helps define Era 7 because it turns large language models into a widely used public interface and makes iterative deployment part of the modern AI story.",
+  },
+  {
+    title: "DeepMind",
+    description:
+      "DeepMind keeps the current era broader than chat by tying modern AI to AlphaFold, scientific discovery, multimodal work, and the institutional merger that becomes Google DeepMind.",
+  },
+  {
+    title: "Anthropic",
+    description:
+      "Anthropic gives Era 7 a distinct safety-and-interpretability institution, where reliability, steerability, and responsible scaling are treated as central parts of frontier-model work.",
+  },
+  {
+    title: "Foundation model deployment and public use",
+    description:
+      "The real turning point is not only stronger models. It is the decision to place them into public workflows, where capability claims immediately collide with questions of trust, education, labor, and governance.",
+  },
+];
+
 const featuredPeople = peopleProfiles.filter((p) => p.era === "Era 7");
 const featuredInstitutions = institutionProfiles.filter(
   (i) => i.era === "Era 7"
@@ -197,38 +269,7 @@ export default function FoundationModelsAndGenerativeAiPage() {
         eyebrow="Reading Lanes"
         title="Choose the lane that matches what you need from the modern era"
       >
-        <div className="content-grid content-grid--dense">
-          <article className="content-card">
-            <h3>Public deployment</h3>
-            <p>
-              Start here if your question is how models became part of work,
-              education, search, and everyday public interfaces.
-            </p>
-            <p className="artifact-note">
-              <a href="#era-7-chronology">Start with chronology</a>
-            </p>
-          </article>
-          <article className="content-card">
-            <h3>Technical stack</h3>
-            <p>
-              Use this lane if you want embeddings, retrieval, multimodality,
-              and transformers to stay connected as one system story.
-            </p>
-            <p className="artifact-note">
-              <a href="#era-7-concepts">Go to concepts</a>
-            </p>
-          </article>
-          <article className="content-card">
-            <h3>Safety and governance</h3>
-            <p>
-              Follow this lane if reliability, institutional posture, and
-              alignment debates are the reason you are on the page.
-            </p>
-            <p className="artifact-note">
-              <a href="#era-7-institutions">Go to institutions</a>
-            </p>
-          </article>
-        </div>
+        <EditorialSummaryGrid items={readingLaneCards} />
       </ChapterSection>
 
       <ChapterSection
@@ -236,15 +277,22 @@ export default function FoundationModelsAndGenerativeAiPage() {
         eyebrow="Chronology"
         title="Five anchor points"
       >
-        <ol className="timeline-list">
-          {milestoneItems.map((item) => (
-            <li key={`${item.year}-${item.title}`} className="timeline-card">
-              <p className="timeline-year">{item.year}</p>
-              <h3>{item.title}</h3>
-              <p>{item.detail}</p>
-            </li>
-          ))}
-        </ol>
+        <ChapterTimeline
+          items={milestoneItems.map((item) => ({
+            key: `${item.year}-${item.title}`,
+            eyebrow: item.year,
+            title: item.title,
+            description: item.detail,
+          }))}
+        />
+      </ChapterSection>
+
+      <ChapterSection
+        id="era-7-synthesis"
+        eyebrow="Keep These Three Claims"
+        title="If the modern stack starts to sprawl, compress it back to three ideas"
+      >
+        <EditorialSummaryGrid items={synthesisCards} />
       </ChapterSection>
 
       <PullQuote
@@ -258,38 +306,44 @@ export default function FoundationModelsAndGenerativeAiPage() {
         title="Why modern AI becomes public and infrastructural"
         prose
       >
-        <div className="chapter-split">
-          <div className="prose-block">
-            <p>
-              Era 7 is not best understood as a generic victory lap for bigger
-              models. The stronger historical claim is that pretrained
-              transformer systems become reusable bases for many downstream
-              tasks, which turns a research architecture into a platform model.
-              That is why the concept of a foundation model matters more than a
-              simple list of brand names.
-            </p>
-            <p>
-              Public deployment changes the era just as much as scaling does.
-              Once conversational systems, coding tools, retrieval pipelines,
-              and multimodal assistants enter ordinary workflows, debates over
-              trust, labor, governance, and educational use move from the edge
-              of AI history into the center of it. This repository therefore
-              teaches the current period through its 2026 horizon, not as an
-              unlimited present.
-            </p>
-          </div>
-          <EditorialAside
-            label="System View"
-            title="Think of Era 7 as one stack, not a list of disconnected novelties"
-          >
-            <p>
-              Transformers make LLMs possible, embeddings support retrieval,
-              latent space explains learned internal structure, multimodality
-              extends that structure across media, and deployment turns the
-              whole system into public infrastructure.
-            </p>
-          </EditorialAside>
-        </div>
+        <EditorialSplit
+          className="chapter-split"
+          leftClassName="prose-block"
+          left={
+            <>
+              <p>
+                Era 7 is not best understood as a generic victory lap for bigger
+                models. The stronger historical claim is that pretrained
+                transformer systems become reusable bases for many downstream
+                tasks, which turns a research architecture into a platform
+                model. That is why the concept of a foundation model matters
+                more than a simple list of brand names.
+              </p>
+              <p>
+                Public deployment changes the era just as much as scaling does.
+                Once conversational systems, coding tools, retrieval pipelines,
+                and multimodal assistants enter ordinary workflows, debates over
+                trust, labor, governance, and educational use move from the edge
+                of AI history into the center of it. This repository therefore
+                teaches the current period through its 2026 horizon, not as an
+                unlimited present.
+              </p>
+            </>
+          }
+          right={
+            <EditorialAside
+              label="System View"
+              title="Think of Era 7 as one stack, not a list of disconnected novelties"
+            >
+              <p>
+                Transformers make LLMs possible, embeddings support retrieval,
+                latent space explains learned internal structure, multimodality
+                extends that structure across media, and deployment turns the
+                whole system into public infrastructure.
+              </p>
+            </EditorialAside>
+          }
+        />
       </ChapterSection>
 
       <ChapterSection
@@ -297,17 +351,18 @@ export default function FoundationModelsAndGenerativeAiPage() {
         eyebrow="Linked People"
         title="Who makes the modern turn legible"
       >
-        <div className="content-grid">
-          {peopleCards.map((person) => (
-            <article key={person.name} className="content-card">
-              <h3>{person.name}</h3>
-              <p>{person.summary}</p>
-              <p className="content-card__meta">
-                Linked ideas: {person.links.join("; ")}
-              </p>
-            </article>
-          ))}
-        </div>
+        <p className="artifact-note">
+          This is not a complete roster of everyone who matters. It is a
+          teaching cast: builders, explainers, deployers, and safety voices who
+          make the era easier to remember as a human story.
+        </p>
+        <EditorialCardGrid
+          items={peopleCards.map((person) => ({
+            title: person.name,
+            description: person.summary,
+            meta: `Linked ideas: ${person.links.join("; ")}`,
+          }))}
+        />
       </ChapterSection>
 
       <ChapterSection
@@ -322,47 +377,19 @@ export default function FoundationModelsAndGenerativeAiPage() {
           here because they attach claims to real actors, labs, and
           public-facing organizations.
         </p>
-        <div className="documentary-grid">
-          {featuredPeople.map((person) => (
-            <NarrativeCard
-              key={person.slug}
-              title={person.name}
-              subtitle={person.role}
-              summary={person.summary}
-              story={person.story}
-              officialLink={{
-                href: person.officialUrl,
-                label: person.officialLabel,
-              }}
-              sourceRecord={person.sourceRecord}
-              imageUrl={person.imageUrl}
-              imageAlt={person.imageAlt}
-              socialLinks={person.socialLinks}
-              className="narrative-card--person"
-            />
-          ))}
-        </div>
-        <div className="documentary-grid">
-          {featuredInstitutions.map((institution) => (
-            <NarrativeCard
-              key={institution.slug}
-              title={institution.name}
-              subtitle={institution.role}
-              summary={institution.summary}
-              story={institution.story}
-              officialLink={{
-                href: institution.officialUrl,
-                label: institution.officialLabel,
-              }}
-              sourceRecord={institution.sourceRecord}
-              imageUrl={institution.imageUrl}
-              imageAlt={institution.imageAlt}
-              socialLinks={institution.socialLinks}
-              className="narrative-card--institution"
-              imageFit={institution.slug === "openai" ? "cover" : "contain"}
-            />
-          ))}
-        </div>
+        <NarrativeProfileGrid
+          profiles={featuredPeople}
+          cardClassName="narrative-card--person"
+          getSubtitle={(profile) => profile.role}
+        />
+        <NarrativeProfileGrid
+          profiles={featuredInstitutions}
+          cardClassName="narrative-card--institution"
+          getSubtitle={(profile) => profile.role}
+          getImageFit={(profile) =>
+            profile.slug === "openai" ? "cover" : "contain"
+          }
+        />
       </ChapterSection>
 
       <GuideCallout
@@ -402,14 +429,13 @@ export default function FoundationModelsAndGenerativeAiPage() {
         eyebrow="Linked Concepts"
         title="The ideas that define the current horizon"
       >
-        <div className="content-grid content-grid--dense">
-          {conceptCards.map((concept) => (
-            <article key={concept.title} className="content-card">
-              <h3>{concept.title}</h3>
-              <p>{concept.summary}</p>
-            </article>
-          ))}
-        </div>
+        <EditorialCardGrid
+          dense
+          items={conceptCards.map((concept) => ({
+            title: concept.title,
+            description: concept.summary,
+          }))}
+        />
         <p className="artifact-note">
           The modern stack is easiest to teach as continuity rather than
           rupture: transformers make LLMs possible, embeddings support
@@ -427,41 +453,16 @@ export default function FoundationModelsAndGenerativeAiPage() {
         eyebrow="Institutions And Turning Point"
         title="Deployment choices become historical facts"
       >
-        <div className="institution-grid">
-          <article className="content-card">
-            <h3>OpenAI</h3>
-            <p>
-              OpenAI helps define Era 7 because it turns large language models
-              into a widely used public interface and makes iterative deployment
-              part of the modern AI story.
-            </p>
-          </article>
-          <article className="content-card">
-            <h3>DeepMind</h3>
-            <p>
-              DeepMind keeps the current era broader than chat by tying modern
-              AI to AlphaFold, scientific discovery, multimodal work, and the
-              institutional merger that becomes Google DeepMind.
-            </p>
-          </article>
-          <article className="content-card">
-            <h3>Anthropic</h3>
-            <p>
-              Anthropic gives Era 7 a distinct safety-and-interpretability
-              institution, where reliability, steerability, and responsible
-              scaling are treated as central parts of frontier-model work.
-            </p>
-          </article>
-          <article className="content-card">
-            <h3>Foundation model deployment and public use</h3>
-            <p>
-              The real turning point is not only stronger models. It is the
-              decision to place them into public workflows, where capability
-              claims immediately collide with questions of trust, education,
-              labor, and governance.
-            </p>
-          </article>
-        </div>
+        <p className="artifact-note">
+          The shortest way to read this section is to compare institutional
+          posture. OpenAI foregrounds public deployment, DeepMind keeps the era
+          tied to science and general systems, and Anthropic frames frontier
+          work through reliability and steerability.
+        </p>
+        <EditorialSummaryGrid
+          className="institution-grid"
+          items={institutionCards}
+        />
       </ChapterSection>
 
       <ChapterSection
@@ -469,25 +470,11 @@ export default function FoundationModelsAndGenerativeAiPage() {
         eyebrow="Source Anchors"
         title="The architecture paper that made this era possible"
       >
-        <div className="documentary-grid documentary-grid--anchors">
-          {era7Anchors.map((anchor) => (
-            <NarrativeCard
-              key={anchor.slug}
-              title={anchor.title}
-              subtitle={`${anchor.era} \u00b7 source anchor`}
-              summary={anchor.summary}
-              story="This anchor keeps the era tied to a named document rather than to retrospective summary alone."
-              officialLink={{
-                href: anchor.officialUrl,
-                label: anchor.officialLabel,
-              }}
-              sourceRecord={anchor.sourceRecord}
-              imageUrl={anchor.imageUrl}
-              imageAlt={anchor.imageAlt}
-              className="narrative-card--anchor"
-            />
-          ))}
-        </div>
+        <HistoricalAnchorGrid
+          anchors={era7Anchors}
+          className="documentary-grid--anchors"
+          story="This anchor keeps the era tied to a named document rather than to retrospective summary alone."
+        />
       </ChapterSection>
 
       <TransitionBlock

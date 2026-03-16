@@ -1,4 +1,7 @@
-import { cn } from "@/lib/utils";
+import {
+  EditorialPanelSplit,
+  EditorialSplit,
+} from "@/components/content/editorial/editorial-layout";
 
 export function HomeSectionSplit({
   className,
@@ -14,10 +17,13 @@ export function HomeSectionSplit({
   rightClassName?: string;
 }) {
   return (
-    <div className={cn("grid gap-4 xl:items-start xl:gap-5", className)}>
-      <div className={leftClassName}>{left}</div>
-      <div className={rightClassName}>{right}</div>
-    </div>
+    <EditorialSplit
+      className={className}
+      left={left}
+      right={right}
+      leftClassName={leftClassName}
+      rightClassName={rightClassName}
+    />
   );
 }
 
@@ -35,9 +41,12 @@ export function HomePanelSplit({
   rightClassName?: string;
 }) {
   return (
-    <div className={cn("grid gap-0", className)}>
-      <div className={leftClassName}>{left}</div>
-      <div className={rightClassName}>{right}</div>
-    </div>
+    <EditorialPanelSplit
+      className={className}
+      left={left}
+      right={right}
+      leftClassName={leftClassName}
+      rightClassName={rightClassName}
+    />
   );
 }

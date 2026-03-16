@@ -1,71 +1,150 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 import { siteConfig } from "@/lib/site";
-import { primaryNavigation, secondaryNavigation } from "@/lib/site-navigation";
+import {
+  homeSectionNavigation,
+  mainNavigation,
+  type HeaderNavigationItem,
+} from "@/lib/site-navigation";
+import { cn } from "@/lib/utils";
+
+const siteTagline =
+  "Seven eras, key papers, institutions, and a clear bridge into the math.";
+
+function normalizeHash(hash: string) {
+  if (!hash) {
+    return "";
+  }
+
+  return hash.startsWith("#") ? hash : `#${hash}`;
+}
+
+function isNavigationItemActive(
+  item: HeaderNavigationItem,
+  pathname: string,
+  hash: string
+) {
+  const normalizedHash = normalizeHash(hash);
+
+  if (pathname === "/" && item.match.homeHashes?.includes(normalizedHash)) {
+    return true;
+  }
+
+  if (item.match.exactPathnames?.includes(pathname)) {
+    return true;
+  }
+
+  return (
+    item.match.pathnamePrefixes?.some((prefix) =>
+      pathname.startsWith(prefix)
+    ) ?? false
+  );
+}
+
+function NavigationRow({
+  items,
+  pathname,
+  hash,
+  variant,
+  ariaLabel,
+}: {
+  items: HeaderNavigationItem[];
+  pathname: string;
+  hash: string;
+  variant: "primary" | "secondary";
+  ariaLabel: string;
+}) {
+  const navClassName = variant === "primary" ? "site-nav" : "site-subnav";
+  const linkClassName =
+    variant === "primary" ? "site-nav__link" : "site-subnav__link";
+  const activeClassName =
+    variant === "primary"
+      ? "site-nav__link--active"
+      : "site-subnav__link--active";
+
+  return (
+    <nav aria-label={ariaLabel} className={navClassName}>
+      {items.map((item) => {
+        const isActive = isNavigationItemActive(item, pathname, hash);
+
+        return (
+          <Link
+            key={item.href}
+            href={item.href}
+            aria-current={
+              isActive
+                ? variant === "primary"
+                  ? "page"
+                  : "location"
+                : undefined
+            }
+            className={cn(linkClassName, isActive && activeClassName)}
+          >
+            {item.label}
+          </Link>
+        );
+      })}
+    </nav>
+  );
+}
 
 export function SiteHeader() {
+  const pathname = usePathname() ?? "/";
+  const [hash, setHash] = useState("");
+
+  useEffect(() => {
+    const syncHash = () => {
+      setHash(window.location.hash);
+    };
+
+    syncHash();
+    window.addEventListener("hashchange", syncHash);
+
+    return () => {
+      window.removeEventListener("hashchange", syncHash);
+    };
+  }, [pathname]);
+
   return (
-    <header className="border-b border-(--ink-12) px-4 pt-1 sm:px-6 lg:px-8">
-      <div className="mx-auto w-full max-w-(--frame-width)">
-        <div className="grid gap-3 py-3 sm:py-4 lg:grid-cols-[minmax(0,9.5rem)_minmax(0,1fr)] lg:items-end lg:gap-6">
-          <div className="max-w-[9rem] space-y-1.5">
-            <p className="text-(--accent-strong) text-[0.69rem] font-semibold uppercase tracking-[0.26em]">
-              Story-led reference
-            </p>
-            <Link
-              href="/"
-              className="block max-w-[7ch] font-(family-name:--font-display) text-[1.72rem] leading-[0.92] tracking-[-0.04em] text-foreground no-underline sm:text-[1.9rem]"
-            >
+    <header className="site-header">
+      <div className="site-header__inner">
+        <div className="site-header__top">
+          <div className="site-header__brandlock">
+            <p className="site-header__eyebrow">Story-led reference</p>
+            <Link href="/" className="site-brand">
               {siteConfig.name}
             </Link>
+            <p className="site-tagline">{siteTagline}</p>
           </div>
 
-          <div className="flex min-w-0 flex-col gap-2.5 lg:items-end">
-            <div className="flex w-full flex-col gap-2.5 lg:items-end">
-              <div className="flex w-full flex-col gap-1.5 lg:items-end">
-                <p className="text-(--accent-strong) text-[0.69rem] font-semibold uppercase tracking-[0.26em]">
-                  Browse
-                </p>
-                <nav
-                  aria-label="Primary navigation"
-                  className="flex flex-wrap gap-x-4 gap-y-1.5 lg:justify-end"
-                >
-                  {primaryNavigation.map((item) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className="text-[0.88rem] font-semibold leading-5 text-(--ink-90) no-underline nav-link sm:text-[0.92rem]"
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                </nav>
-              </div>
-
-              <div className="w-full border-t border-(--ink-12) pt-2">
-                <div className="flex flex-col gap-1.5 lg:items-end">
-                  <p className="text-(--accent-strong) text-[0.69rem] font-semibold uppercase tracking-[0.26em]">
-                    Start with
-                  </p>
-                  <nav
-                    aria-label="Secondary navigation"
-                    className="flex flex-wrap gap-x-3 gap-y-1.5 lg:justify-end"
-                  >
-                    {secondaryNavigation.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        className="text-[0.82rem] font-medium leading-5 text-(--ink-72) no-underline nav-link sm:text-[0.85rem]"
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </nav>
-                </div>
-              </div>
-            </div>
+          <div className="site-header__navblock">
+            <p className="site-nav__label">Main navigation</p>
+            <NavigationRow
+              items={mainNavigation}
+              pathname={pathname}
+              hash={hash}
+              variant="primary"
+              ariaLabel="Main navigation"
+            />
           </div>
         </div>
+
+        {pathname === "/" ? (
+          <div className="site-header__subnavblock">
+            <p className="site-nav__label">On this page</p>
+            <NavigationRow
+              items={homeSectionNavigation}
+              pathname={pathname}
+              hash={hash}
+              variant="secondary"
+              ariaLabel="Homepage sections"
+            />
+          </div>
+        ) : null}
       </div>
     </header>
   );

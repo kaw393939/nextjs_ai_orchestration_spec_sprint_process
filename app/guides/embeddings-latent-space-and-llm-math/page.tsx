@@ -3,9 +3,12 @@ import type { Metadata } from "next";
 import {
   ChapterHero,
   ChapterSection,
+  ChapterTimeline,
   EditorialAside,
   TransitionBlock,
 } from "@/components/content/chapter";
+import { EditorialCardGrid } from "@/components/content/editorial/editorial-card-grid";
+import { EditorialSummaryGrid } from "@/components/content/editorial/editorial-summary-grid";
 import { GuideCallout } from "@/components/content/guide-callout";
 import { FocalImage } from "@/components/media/focal-image";
 import { EmbeddingsNeighborhoodDiagram } from "@/components/content/visualizations/embeddings-neighborhood-diagram";
@@ -72,6 +75,61 @@ const historicalAnchors = [
     title: "Embeddings become infrastructure",
     detail:
       "Vector search, retrieval, recommendation, and assistant pipelines make embeddings visible as part of everyday AI systems.",
+  },
+];
+
+const reentryRoutes = [
+  {
+    title: "You mainly needed embeddings and retrieval",
+    description:
+      "Return to Era 7 once vectors, neighborhoods, and retrieval pipelines feel concrete enough to follow the public AI stack.",
+    href: "/eras/foundation-models-and-generative-ai",
+    label: "Return to Era 7",
+  },
+  {
+    title: "You mainly needed the representational backstory",
+    description:
+      "Go back to Era 5 if you want the historical hinge where learned representations stop looking marginal and start redefining progress.",
+    href: "/eras/statistical-learning-and-network-revival",
+    label: "Return to Era 5",
+  },
+  {
+    title: "You mainly needed the paper trail",
+    description:
+      "Jump to the reading map if you want to connect these ideas to the specific papers that carry them forward across eras.",
+    href: "/reading-maps/intellectual-lineage",
+    label: "Open the reading map",
+  },
+];
+
+const workedExampleCards = [
+  {
+    title: "1. A user asks a question",
+    description:
+      "Start with a natural-language query such as asking for the causes of the first AI winter.",
+  },
+  {
+    title: "2. The system embeds the query",
+    description:
+      "The question becomes a dense vector so it can be compared with document chunks that live nearby in semantic space.",
+  },
+  {
+    title: "3. Retrieval pulls the nearest context",
+    description:
+      "A vector index finds passages about expert systems, Lighthill, and funding pressure instead of relying on exact keyword match.",
+  },
+  {
+    title: "4. The model answers with that context in view",
+    description:
+      "The response becomes more historically grounded because the LLM now works with retrieved evidence rather than memory alone.",
+    footer: (
+      <p className="artifact-note">
+        This is why{" "}
+        <a href="/eras/statistical-learning-and-network-revival">Era 5</a> and{" "}
+        <a href="/eras/foundation-models-and-generative-ai">Era 7</a> belong on
+        the same representational line.
+      </p>
+    ),
   },
 ];
 
@@ -144,15 +202,19 @@ export default function EmbeddingsLatentSpaceAndLlmMathPage() {
           eyebrow="Minimum Math"
           title="Three ideas do most of the work"
         >
-          <div className="content-grid content-grid--dense">
-            {mathCards.map((card) => (
-              <article key={card.title} className="content-card equation-card">
-                <h3>{card.title}</h3>
-                <p className="equation-line">{card.expression}</p>
-                <p>{card.explanation}</p>
-              </article>
-            ))}
-          </div>
+          <EditorialCardGrid
+            dense
+            cardClassName="equation-card"
+            items={mathCards.map((card) => ({
+              title: card.title,
+              description: (
+                <>
+                  <p className="equation-line">{card.expression}</p>
+                  <p>{card.explanation}</p>
+                </>
+              ),
+            }))}
+          />
         </ChapterSection>
 
         <GuideCallout
@@ -173,14 +235,28 @@ export default function EmbeddingsLatentSpaceAndLlmMathPage() {
           eyebrow="Pipeline"
           title="From tokens to retrieval and prediction"
         >
-          <ol className="timeline-list">
-            {pipelineSteps.map((step) => (
-              <li key={step.title} className="timeline-card">
-                <h3>{step.title}</h3>
-                <p>{step.detail}</p>
-              </li>
-            ))}
-          </ol>
+          <ChapterTimeline
+            items={pipelineSteps.map((step) => ({
+              key: step.title,
+              title: step.title,
+              description: step.detail,
+            }))}
+          />
+        </ChapterSection>
+
+        <ChapterSection
+          id="math-bridge-stop-point"
+          eyebrow="Stop Here If Needed"
+          title="You do not need more math than this to keep reading the site"
+        >
+          <EditorialSummaryGrid
+            items={reentryRoutes.map((route) => ({
+              title: route.title,
+              description: route.description,
+              href: route.href,
+              linkLabel: route.label,
+            }))}
+          />
         </ChapterSection>
 
         <ChapterSection
@@ -188,45 +264,7 @@ export default function EmbeddingsLatentSpaceAndLlmMathPage() {
           eyebrow="Worked Example"
           title="One modern workflow from question to model response"
         >
-          <div className="content-grid content-grid--dense">
-            <article className="content-card">
-              <h3>1. A user asks a question</h3>
-              <p>
-                Start with a natural-language query such as asking for the
-                causes of the first AI winter.
-              </p>
-            </article>
-            <article className="content-card">
-              <h3>2. The system embeds the query</h3>
-              <p>
-                The question becomes a dense vector so it can be compared with
-                document chunks that live nearby in semantic space.
-              </p>
-            </article>
-            <article className="content-card">
-              <h3>3. Retrieval pulls the nearest context</h3>
-              <p>
-                A vector index finds passages about expert systems, Lighthill,
-                and funding pressure instead of relying on exact keyword match.
-              </p>
-            </article>
-            <article className="content-card">
-              <h3>4. The model answers with that context in view</h3>
-              <p>
-                The response becomes more historically grounded because the LLM
-                now works with retrieved evidence rather than memory alone.
-              </p>
-              <p className="artifact-note">
-                This is why{" "}
-                <a href="/eras/statistical-learning-and-network-revival">
-                  Era 5
-                </a>{" "}
-                and{" "}
-                <a href="/eras/foundation-models-and-generative-ai">Era 7</a>{" "}
-                belong on the same representational line.
-              </p>
-            </article>
-          </div>
+          <EditorialSummaryGrid items={workedExampleCards} />
         </ChapterSection>
 
         <ChapterSection
@@ -261,15 +299,13 @@ export default function EmbeddingsLatentSpaceAndLlmMathPage() {
           title="Why this math belongs inside the history"
           prose
         >
-          <div className="content-grid">
-            {historicalAnchors.map((anchor) => (
-              <article key={anchor.period} className="content-card">
-                <p className="content-card__meta">{anchor.period}</p>
-                <h3>{anchor.title}</h3>
-                <p>{anchor.detail}</p>
-              </article>
-            ))}
-          </div>
+          <EditorialCardGrid
+            items={historicalAnchors.map((anchor) => ({
+              title: anchor.title,
+              description: anchor.detail,
+              meta: anchor.period,
+            }))}
+          />
           <div className="prose-block">
             <p>
               The modern period feels less mysterious once readers see that
