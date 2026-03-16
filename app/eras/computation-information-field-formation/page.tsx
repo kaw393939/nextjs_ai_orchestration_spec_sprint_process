@@ -9,7 +9,10 @@ import {
 import { GuideCallout } from "@/components/content/guide-callout";
 import { NarrativeCard } from "@/components/content/narrative-card";
 import { LogicToAiDiagram } from "@/components/content/visualizations/logic-to-ai-diagram";
-import { historicalAnchors } from "@/lib/narrative-data";
+import { historicalAnchors, peopleProfiles } from "@/lib/narrative-data";
+
+const era2People = peopleProfiles.filter((p) => p.era === "Era 2");
+const era2Anchors = historicalAnchors.filter((a) => a.era === "Era 2");
 
 const milestoneItems = [
   {
@@ -158,10 +161,6 @@ const storyCards = [
     path: "docs/content/media/records/shannon-bell-labs-story-card.md",
   },
 ];
-
-const era2Anchors = historicalAnchors.filter(
-  (anchor) => anchor.era === "Era 2"
-);
 
 export const metadata: Metadata = {
   title: "Computation, Information, And Field Formation",
@@ -438,6 +437,32 @@ export default function ComputationInformationFieldFormationPage() {
           pages, and story cards show how the chapter is built from named
           objects rather than only from retrospective summary.
         </p>
+      </ChapterSection>
+
+      <ChapterSection
+        id="era-2-documentary-profiles"
+        eyebrow="Documentary Profiles"
+        title="Portraits and source anchors for the field-formation era"
+      >
+        <div className="documentary-grid">
+          {era2People.map((person) => (
+            <NarrativeCard
+              key={person.slug}
+              title={person.name}
+              subtitle={`${person.era} · ${person.role}`}
+              summary={person.summary}
+              story={person.story}
+              officialLink={{
+                href: person.officialUrl,
+                label: person.officialLabel,
+              }}
+              sourceRecord={person.sourceRecord}
+              imageUrl={person.imageUrl}
+              imageAlt={person.imageAlt}
+              className="narrative-card--person"
+            />
+          ))}
+        </div>
       </ChapterSection>
 
       <TransitionBlock

@@ -18,6 +18,47 @@ import {
 
 const castGroups = [
   {
+    key: "precursors",
+    title: "Precursors and field formation",
+    description:
+      "The cast begins before anyone says 'artificial intelligence.' These figures build the mathematical, mechanical, and informational substrate the field inherits.",
+    members: peopleProfiles.filter((profile) =>
+      ["charles-babbage", "alan-turing"].includes(profile.slug)
+    ),
+  },
+  {
+    key: "symbolic",
+    title: "The symbolic generation",
+    description:
+      "After Dartmouth, these researchers turn AI into a working research program built on symbolic logic, heuristic search, and institutional ambition.",
+    members: peopleProfiles.filter((profile) =>
+      ["john-mccarthy", "marvin-minsky", "herbert-simon"].includes(profile.slug)
+    ),
+  },
+  {
+    key: "knowledge-systems",
+    title: "Knowledge systems and critique",
+    description:
+      "Expert systems narrow AI into commercially viable tools, but the pivot also reveals the limits of hand-coded knowledge.",
+    members: peopleProfiles.filter((profile) =>
+      ["edward-feigenbaum"].includes(profile.slug)
+    ),
+  },
+  {
+    key: "revival",
+    title: "Statistical revival and neural pioneers",
+    description:
+      "These figures bridge the gap between the symbolic era and the deep learning revolution, proving that learning from data can outperform handcrafted rules.",
+    members: peopleProfiles.filter((profile) =>
+      [
+        "frank-rosenblatt",
+        "geoffrey-hinton",
+        "yann-lecun",
+        "yoshua-bengio",
+      ].includes(profile.slug)
+    ),
+  },
+  {
     key: "builders",
     title: "Builders and deployers",
     description:

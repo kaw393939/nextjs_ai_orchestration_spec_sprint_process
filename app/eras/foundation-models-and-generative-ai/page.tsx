@@ -9,7 +9,11 @@ import {
 } from "@/components/content/chapter";
 import { GuideCallout } from "@/components/content/guide-callout";
 import { NarrativeCard } from "@/components/content/narrative-card";
-import { institutionProfiles, peopleProfiles } from "@/lib/narrative-data";
+import {
+  historicalAnchors,
+  institutionProfiles,
+  peopleProfiles,
+} from "@/lib/narrative-data";
 
 const milestoneItems = [
   {
@@ -122,8 +126,11 @@ const conceptCards = [
   },
 ];
 
-const featuredPeople = peopleProfiles;
-const featuredInstitutions = institutionProfiles;
+const featuredPeople = peopleProfiles.filter((p) => p.era === "Era 7");
+const featuredInstitutions = institutionProfiles.filter(
+  (i) => i.era === "Era 7"
+);
+const era7Anchors = historicalAnchors.filter((a) => a.era === "Era 7");
 
 export const metadata: Metadata = {
   title: "Foundation Models And Generative AI",
@@ -410,6 +417,32 @@ export default function FoundationModelsAndGenerativeAiPage() {
               labor, and governance.
             </p>
           </article>
+        </div>
+      </ChapterSection>
+
+      <ChapterSection
+        id="era-7-source-anchors"
+        eyebrow="Source Anchors"
+        title="The architecture paper that made this era possible"
+      >
+        <div className="documentary-grid documentary-grid--anchors">
+          {era7Anchors.map((anchor) => (
+            <NarrativeCard
+              key={anchor.slug}
+              title={anchor.title}
+              subtitle={`${anchor.era} \u00b7 source anchor`}
+              summary={anchor.summary}
+              story="This anchor keeps the era tied to a named document rather than to retrospective summary alone."
+              officialLink={{
+                href: anchor.officialUrl,
+                label: anchor.officialLabel,
+              }}
+              sourceRecord={anchor.sourceRecord}
+              imageUrl={anchor.imageUrl}
+              imageAlt={anchor.imageAlt}
+              className="narrative-card--anchor"
+            />
+          ))}
         </div>
       </ChapterSection>
 

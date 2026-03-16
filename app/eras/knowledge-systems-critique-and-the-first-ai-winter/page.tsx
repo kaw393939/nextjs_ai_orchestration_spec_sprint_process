@@ -8,6 +8,11 @@ import {
   TransitionBlock,
 } from "@/components/content/chapter";
 import { GuideCallout } from "@/components/content/guide-callout";
+import { NarrativeCard } from "@/components/content/narrative-card";
+import { historicalAnchors, peopleProfiles } from "@/lib/narrative-data";
+
+const era4People = peopleProfiles.filter((p) => p.era === "Era 4");
+const era4Anchors = historicalAnchors.filter((a) => a.era === "Era 4");
 
 const milestoneItems = [
   {
@@ -289,6 +294,51 @@ export default function KnowledgeSystemsCritiqueAndFirstAiWinterPage() {
           examples increasingly looks more scalable than encoding everything by
           hand.
         </p>
+      </ChapterSection>
+
+      <ChapterSection
+        id="era-4-documentary-profiles"
+        eyebrow="Documentary Profiles"
+        title="Portraits and source anchors for the knowledge-systems era"
+      >
+        <div className="documentary-grid">
+          {era4People.map((person) => (
+            <NarrativeCard
+              key={person.slug}
+              title={person.name}
+              subtitle={`${person.era} \u00b7 ${person.role}`}
+              summary={person.summary}
+              story={person.story}
+              officialLink={{
+                href: person.officialUrl,
+                label: person.officialLabel,
+              }}
+              sourceRecord={person.sourceRecord}
+              imageUrl={person.imageUrl}
+              imageAlt={person.imageAlt}
+              className="narrative-card--person"
+            />
+          ))}
+        </div>
+        <div className="documentary-grid documentary-grid--anchors">
+          {era4Anchors.map((anchor) => (
+            <NarrativeCard
+              key={anchor.slug}
+              title={anchor.title}
+              subtitle={`${anchor.era} \u00b7 source anchor`}
+              summary={anchor.summary}
+              story="This anchor keeps the era tied to a named document rather than to retrospective summary alone."
+              officialLink={{
+                href: anchor.officialUrl,
+                label: anchor.officialLabel,
+              }}
+              sourceRecord={anchor.sourceRecord}
+              imageUrl={anchor.imageUrl}
+              imageAlt={anchor.imageAlt}
+              className="narrative-card--anchor"
+            />
+          ))}
+        </div>
       </ChapterSection>
 
       <TransitionBlock

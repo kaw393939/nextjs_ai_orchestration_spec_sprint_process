@@ -8,6 +8,11 @@ import {
   TransitionBlock,
 } from "@/components/content/chapter";
 import { GuideCallout } from "@/components/content/guide-callout";
+import { NarrativeCard } from "@/components/content/narrative-card";
+import { institutionProfiles, peopleProfiles } from "@/lib/narrative-data";
+
+const era3People = peopleProfiles.filter((p) => p.era === "Era 3");
+const era3Institutions = institutionProfiles.filter((i) => i.era === "Era 3");
 
 const milestoneItems = [
   {
@@ -289,6 +294,51 @@ export default function SymbolicOptimismAndEarlyAiProgramsPage() {
           doing so creates the expectations that Era 4 will test much more
           harshly.
         </p>
+      </ChapterSection>
+
+      <ChapterSection
+        id="era-3-documentary-profiles"
+        eyebrow="Documentary Profiles"
+        title="Portraits and institutions of the symbolic era"
+      >
+        <div className="documentary-grid">
+          {era3People.map((person) => (
+            <NarrativeCard
+              key={person.slug}
+              title={person.name}
+              subtitle={`${person.era} \u00b7 ${person.role}`}
+              summary={person.summary}
+              story={person.story}
+              officialLink={{
+                href: person.officialUrl,
+                label: person.officialLabel,
+              }}
+              sourceRecord={person.sourceRecord}
+              imageUrl={person.imageUrl}
+              imageAlt={person.imageAlt}
+              className="narrative-card--person"
+            />
+          ))}
+        </div>
+        <div className="documentary-grid documentary-grid--institutions">
+          {era3Institutions.map((institution) => (
+            <NarrativeCard
+              key={institution.slug}
+              title={institution.name}
+              subtitle={`${institution.era} \u00b7 ${institution.role}`}
+              summary={institution.summary}
+              story={institution.story}
+              officialLink={{
+                href: institution.officialUrl,
+                label: institution.officialLabel,
+              }}
+              sourceRecord={institution.sourceRecord}
+              imageUrl={institution.imageUrl}
+              imageAlt={institution.imageAlt}
+              className="narrative-card--institution"
+            />
+          ))}
+        </div>
       </ChapterSection>
 
       <TransitionBlock
